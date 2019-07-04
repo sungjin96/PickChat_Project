@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.web.domain.CategoryVO;
+import com.example.web.domain.DistinctVO;
 import com.example.web.domain.HobbyVO;
 import com.example.web.domain.LikeTypeVO;
 import com.example.web.domain.LikepeopleVO;
@@ -29,6 +30,11 @@ public class UserDAOImpl implements UserDAO {
 		return session.selectList(namespace + ".list_user");
 	}
 
+	@Override
+	public UserVO readUser(String userid) {
+		return session.selectOne(namespace+".read_user",userid);
+	}
+	
 	@Override
 	public List<UserImageVO> listUserImage(String userid) throws Exception {
 		return session.selectList(namespace + ".list_userimage", userid);
@@ -68,24 +74,6 @@ public class UserDAOImpl implements UserDAO {
 		return session.selectList(namespace+".list_likereceiver",userid);
 	}
 	@Override
-	public void insertPuser(UserVO vo) throws Exception {
-		session.insert(namespace + ".insert_puser", vo);
-	}
-
-	@Override
-	public void insertUserpoint(String userid) throws Exception {
-		session.insert(namespace + ".insert_userpoint", userid);
-	}
-
-	@Override
-	public void insertLiketype(String userid, int typeid) throws Exception {
-		Map<Object, Object> map = new HashMap<Object, Object>();
-		map.put("userid", userid);
-		map.put("typeid", typeid);
-		session.insert(namespace + ".insert_liketype", map);
-	}
-
-	@Override
 	public int checkid(String userid) throws Exception {
 		return session.selectOne(namespace + ".checkid", userid);
 	}
@@ -94,63 +82,5 @@ public class UserDAOImpl implements UserDAO {
 	public int checknickname(String usernickname) throws Exception {
 		return session.selectOne(namespace + ".checknickname", usernickname);
 	}
-
-	@Override
-	public void insertUserinfo(UserVO vo) throws Exception {
-		session.insert(namespace + ".insert_userinfo", vo);
-	}
-
-	@Override
-	public void insertImg(String userid, String imgpath, int imgshow) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("userid", userid);
-		map.put("imgpath", imgpath);
-		map.put("imgshow", imgshow);
-		session.insert(namespace + ".insert_userimage", map);
-	}
-
-	@Override
-	public void insertUserHobby(String userid, int hobbyid) throws Exception {
-		Map<Object, Object> map = new HashMap<Object, Object>();
-		map.put("userid", userid);
-		map.put("hobbyid", hobbyid);
-		session.insert(namespace + ".insert_userhobby", map);
-	}
-
-	@Override
-	public void insertUserVoice(String userid, String voicepath) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("userid", userid);
-		map.put("voicepath", voicepath);
-		session.insert(namespace + ".insert_uservoice", map);
-	}
-
-	@Override
-	public void insertMytype(String userid, int typeid) throws Exception {
-		Map<Object, Object> map = new HashMap<Object, Object>();
-		map.put("userid", userid);
-		map.put("typeid", typeid);
-		session.insert(namespace + ".insert_mytype", map);
-	}
-
 	
-
-	
-
-	
-
-
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-
-
 }

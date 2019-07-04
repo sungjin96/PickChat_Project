@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="userMapper">
+    <mapper namespace="userMapper">
     <select id="list_user" resultType="com.example.web.domain.UserVO">
         select * from userlist
+    </select>
+    <select id="read_user" resultType="com.example.web.domain.UserVO">
+        select * from userlist where userid = #{userid}
     </select>
     <select id="list_userimage" resultType="com.example.web.domain.UserImageVO">
         select i.imgpath from tbl_puser p, tbl_userimg i where p.userid=i.userid and p.userid=#{userid}
@@ -38,35 +41,5 @@
     <select id="checknickname" resultType="int">
         select count(*) from tbl_puser where usernickname=#{usernickname}
     </select>
-    <insert id="insert_puser">
-        insert into tbl_puser(userid, userpassword, userage, username, usernickname, gendercode, regdate, localcode, loginstatus,userdelete)
-        values(#{userid}, #{userpassword}, #{userage}, #{username}, #{usernickname}, #{gendercode}, now(), #{localcode}, true,0);
-    </insert>
-    <insert id="insert_userpoint">
-        insert into tbl_userpoint(userid, userpoint) values(#{userid}, 100)
-    </insert>
-    <insert id="insert_userimage">
-        insert into tbl_userimg(userid, imgpath, imgshow) values(#{userid}, #{imgpath}, #{imgshow});
-    </insert>
-    <insert id="insert_liketype">
-        insert into tbl_liketype(userid, typeid) values(#{userid}, #{typeid})
-    </insert>
-    <insert id="insert_userinfo">
-        insert into tbl_userinfo(userid, userheight, userjob, usercomment)
-        values(#{userid}, #{userheight}, #{userjob}, #{usercomment})
-    </insert>
-    <insert id="insert_mytype">
-       insert into tbl_mytype(userid, typeid) values(#{userid}, #{typeid})
-    </insert>
-    <insert id="insert_userimg">
-       insert into tbl_userimg(userid, imgpath) values(#{userid}, #{imgpath})
-    </insert>
-    <insert id="insert_uservoice">
-        insert into tbl_uservoice(userid, voicepath) values(#{userid},#{voicepath});
-    </insert>
-    <insert id="insert_userhobby">
-       insert into tbl_userhobby(userid, hobbyid) values(#{userid}, #{hobbyid})
-    </insert>
-   
-
+    
 </mapper>
