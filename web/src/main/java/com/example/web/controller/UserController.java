@@ -73,6 +73,7 @@ public class UserController {
   public List<CategoryVO> listhobbyCategory()throws Exception{
     return dao.listHobbyCategory();
   }
+
   //좋아요 테이블 리스트-내가 좋아요 한 사람 리스트
   @GetMapping(value = "list_likesender/{userid}")
   public List<LikepeopleVO> userLikesender(@PathVariable String userid)throws Exception{
@@ -80,17 +81,16 @@ public class UserController {
   }
 
   
-  //좋아요 한 사람 리스트 뽑아오기???
-  @GetMapping(value= "user_like_profile/{userid}")
-  public List<UserVO> userlikelist(@PathVariable String userid) throws Exception{
+  //내가 좋아요 한 사람 프로필 리스트
+  @GetMapping(value= "user_sender_profile/{userid}")
+  public List<UserVO> likesenderlist(@PathVariable String userid) throws Exception{
     List<LikepeopleVO> array = dao.listLikesender(userid);
     ArrayList<UserVO> array2 = new ArrayList<>();
     for(int i =0; i<array.size();i++){
       UserVO vo = dao.readUser(array.get(i).getReceiver());
-          System.out.println("...................."+vo.toString());
+          //System.out.println("...................."+vo.toString());
           array2.add(vo);
         }
-
   return array2;
 } 
   //좋아요 테이블 리스트-나를 좋아요 한 사람 리스트
@@ -98,6 +98,20 @@ public class UserController {
   public List<LikepeopleVO> userLikereceiver(@PathVariable String userid)throws Exception{
       return dao.listLikereceiver(userid);
   }
+
+  //나를 좋아요 한 사람의 프로필 리스트
+  @GetMapping(value= "user_receiver_profile/{userid}")
+  public List<UserVO> likereceiverlist(@PathVariable String userid) throws Exception{
+    List<LikepeopleVO> array = dao.listLikereceiver(userid);
+    ArrayList<UserVO> array2 = new ArrayList<>();
+    for(int i =0; i<array.size();i++){
+      UserVO vo = dao.readUser(array.get(i).getSender());
+          //System.out.println("...................."+vo.toString());
+          array2.add(vo);
+        }
+  return array2;
+} 
+
   // 유저 아이디 중복확인
   @GetMapping(value = "checkid/{userid}")
   public int checkid(@PathVariable String userid) throws Exception {

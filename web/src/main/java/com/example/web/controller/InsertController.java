@@ -1,5 +1,6 @@
 package com.example.web.controller;
 
+import com.example.web.domain.LikepeopleVO;
 import com.example.web.domain.UserVO;
 import com.example.web.persistence.InsertDAO;
 import com.example.web.service.UserService;
@@ -88,6 +89,17 @@ public class InsertController {
     }
 
   }
+
+  //좋아요 입력
+  @PostMapping(value="insert_likepeople")
+  public void insertLikepeople(@RequestBody LikepeopleVO vo)throws Exception {
+    try{
+      idao.insertLikePeople(vo.getSender(), vo.getReceiver());
+    }catch(Exception e){
+      System.out.println("좋아요 입력 오류" + e.toString());
+    }
+  }
+  
 }
 
   

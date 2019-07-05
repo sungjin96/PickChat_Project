@@ -75,4 +75,12 @@ public class InsertDAOImpl implements InsertDAO {
 		session.insert(namespace2 + ".insert_mytype", map);
 	}
 
+	@Override
+	public void insertLikePeople(String sender, String receiver) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("sender", sender);
+		map.put("receiver", receiver);
+		session.insert(namespace2+".insert_likepeople",map);
+	}
+
 }

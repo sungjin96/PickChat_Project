@@ -11,4 +11,5 @@ public interface InsertDAO {
 	public void insertUserinfo(UserVO vo)throws Exception;
 	public void insertUserHobby(String userid,int hobbyid)throws Exception;
 	public void insertUserVoice(String userid, String voicepath)throws Exception;
+	public void insertLikePeople(String sender,String receiver)throws Exception;
 }

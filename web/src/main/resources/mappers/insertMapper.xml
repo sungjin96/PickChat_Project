@@ -31,4 +31,7 @@
     <insert id="insert_userhobby">
        insert into tbl_userhobby(userid, hobbyid) values(#{userid}, #{hobbyid})
     </insert>
+    <insert id="insert_likepeople">
+        insert into tbl_likepeople(sender, receiver) values(#{sender}, #{receiver})
+    </insert>
 </mapper>
