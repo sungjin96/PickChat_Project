@@ -32,18 +32,18 @@ import { Portlet, PortletContent } from 'components';
 // Component styles
 import styles from './styles';
 import Axios from 'axios';
+import Users from 'views/Dashboard/components/Users';
 
 class UsersTable extends Component {
   state = {
     selectedUsers: [],
     rowsPerPage: 10,
     page: 0,
-    client: [],
-    total: 0
+    client: []
   };
 
   componentDidMount() {
-    Axios.get('http://192.168.0.26/user/list_user').then(data =>
+    Axios.get('http://192.168.0.104:5000/board/bbslist').then(data =>
       this.setState((this.client = data.data))
     );
   }
@@ -119,11 +119,11 @@ class UsersTable extends Component {
                       }
                       onChange={this.handleSelectAll}
                     />
-                    이름
+                    작성자
                   </TableCell>
-                  <TableCell align="left">아이디</TableCell>
-                  <TableCell align="left">성별</TableCell>
-                  <TableCell align="left">나이</TableCell>
+                  <TableCell align="left">제목</TableCell>
+                  <TableCell align="left">내용</TableCell>
+                  <TableCell align="left">태그</TableCell>
                   <TableCell align="left">등록일</TableCell>
                 </TableRow>
               </TableHead>
@@ -133,31 +133,29 @@ class UsersTable extends Component {
                       <TableRow
                         className={classes.tableRow}
                         hover
-                        key={user.userid}
-                        selected={selectedUsers.indexOf(user.userid) !== -1}>
+                        key={user.bno}
+                        selected={selectedUsers.indexOf(user.bno) !== -1}>
                         <TableCell className={classes.tableCell}>
                           <div className={classes.tableCellInner}>
                             <Checkbox
-                              checked={
-                                selectedUsers.indexOf(user.userid) !== -1
-                              }
+                              checked={selectedUsers.indexOf(user.bno) !== -1}
                               color="primary"
                               onChange={event =>
-                                this.handleSelectOne(event, user.userid)
+                                this.handleSelectOne(event, user.bno)
                               }
                               value="true"
                             />
                             <Avatar
                               className={classes.avatar}
-                              src={user.soloimg}>
-                              {getInitials(user.username)}
+                              src={user.imgpath}>
+                              {getInitials(user.writer)}
                             </Avatar>
                             <Link to="#">
                               <Typography
                                 className={classes.nameText}
                                 variant="body1"
                                 style={{ fontSize: '1rem' }}>
-                                {user.username}
+                                {user.writer}
                               </Typography>
                             </Link>
                           </div>
@@ -165,17 +163,17 @@ class UsersTable extends Component {
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {user.userid}
+                          {user.title}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {user.gendername}
+                          {user.content}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {user.userage}
+                          {user.tagword}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
@@ -193,7 +191,7 @@ class UsersTable extends Component {
               'aria-label': 'Previous Page'
             }}
             component="div"
-            count={this.total}
+            count={Users.length}
             nextIconButtonProps={{
               'aria-label': 'Next Page'
             }}

@@ -15,12 +15,20 @@ import NotFound from './views/NotFound';
 import Main from './views/Main';
 import PickSta from './views/PickSta';
 import Cs from './views/Cs';
+import QuestionList from './views/QuestionList';
+import PickList from 'views/PickList';
+import NoticeList from 'views/NoticeList';
+import FAQsList from 'views/FAQsList';
 
 export default class Routes extends Component {
   render() {
     return (
       <Switch>
         <Route component={Main} exact path="/" />
+        <Route component={FAQsList} exact path="/faqslist" />
+        <Route component={NoticeList} exact path="/noticelist" />
+        <Route component={QuestionList} exact path="/questionlist" />
+        <Route component={PickList} exact path="/picklist" />
         <Route component={PickSta} exact path="/pick" />
         <Route component={Cs} exact path="/cs" />
         <Route component={Dashboard} exact path="/dashboard" />

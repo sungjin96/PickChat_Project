@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Chip from '@material-ui/core/Chip';
 
 // Externals
 import classNames from 'classnames';
@@ -38,12 +39,11 @@ class UsersTable extends Component {
     selectedUsers: [],
     rowsPerPage: 10,
     page: 0,
-    client: [],
-    total: 0
+    client: []
   };
 
   componentDidMount() {
-    Axios.get('http://192.168.0.26/user/list_user').then(data =>
+    Axios.get('http://192.168.0.104:5000/question/list').then(data =>
       this.setState((this.client = data.data))
     );
   }
@@ -119,11 +119,11 @@ class UsersTable extends Component {
                       }
                       onChange={this.handleSelectAll}
                     />
-                    이름
+                    아이디
                   </TableCell>
-                  <TableCell align="left">아이디</TableCell>
-                  <TableCell align="left">성별</TableCell>
-                  <TableCell align="left">나이</TableCell>
+                  <TableCell align="left">제목</TableCell>
+                  <TableCell align="left">내용</TableCell>
+                  <TableCell align="left">답글</TableCell>
                   <TableCell align="left">등록일</TableCell>
                 </TableRow>
               </TableHead>
@@ -133,31 +133,24 @@ class UsersTable extends Component {
                       <TableRow
                         className={classes.tableRow}
                         hover
-                        key={user.userid}
-                        selected={selectedUsers.indexOf(user.userid) !== -1}>
+                        key={user.qno}
+                        selected={selectedUsers.indexOf(user.qno) !== -1}>
                         <TableCell className={classes.tableCell}>
                           <div className={classes.tableCellInner}>
                             <Checkbox
-                              checked={
-                                selectedUsers.indexOf(user.userid) !== -1
-                              }
+                              checked={selectedUsers.indexOf(user.qno) !== -1}
                               color="primary"
                               onChange={event =>
-                                this.handleSelectOne(event, user.userid)
+                                this.handleSelectOne(event, user.qno)
                               }
                               value="true"
                             />
-                            <Avatar
-                              className={classes.avatar}
-                              src={user.soloimg}>
-                              {getInitials(user.username)}
-                            </Avatar>
                             <Link to="#">
                               <Typography
                                 className={classes.nameText}
                                 variant="body1"
                                 style={{ fontSize: '1rem' }}>
-                                {user.username}
+                                {user.qwriter}
                               </Typography>
                             </Link>
                           </div>
@@ -165,22 +158,22 @@ class UsersTable extends Component {
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {user.userid}
+                          {user.qtitle}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {user.gendername}
+                          {user.qcontent}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {user.userage}
+                          {user.qccontent}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {moment(user.regdate).format('DD/MM/YYYY')}
+                          {moment(user.qregdate).format('DD/MM/YYYY')}
                         </TableCell>
                       </TableRow>
                     ))
@@ -193,7 +186,7 @@ class UsersTable extends Component {
               'aria-label': 'Previous Page'
             }}
             component="div"
-            count={this.total}
+            count={users.length}
             nextIconButtonProps={{
               'aria-label': 'Next Page'
             }}
