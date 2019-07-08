@@ -148,7 +148,7 @@ class UsersTable extends Component {
                             <Avatar
                               className={classes.avatar}
                               src={user.imgpath}>
-                              {getInitials(user.writer)}
+                              {getInitials(user.writer !== null ? user.writer : '')}
                             </Avatar>
                             <Link to="#">
                               <Typography

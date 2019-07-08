@@ -45,7 +45,7 @@ class UsersTable extends Component {
 
   componentDidMount() {
     Axios.get('http://192.168.0.104:5000/board/bbslist').then(data =>
-      this.setState((this.client = data.data))
+      this.setState((this.state.client = data.data))
     );
   }
 
@@ -100,7 +100,7 @@ class UsersTable extends Component {
 
   render() {
     const { classes, className, users } = this.props;
-    const { activeTab, selectedUsers, rowsPerPage, page } = this.state;
+    const { activeTab, selectedUsers, rowsPerPage, page, client } = this.state;
 
     const rootClassName = classNames(classes.root, className);
     return (
@@ -129,8 +129,8 @@ class UsersTable extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.client !== undefined
-                  ? this.client.slice(0, rowsPerPage).map(user => (
+                {client !== undefined
+                  ? client.slice(0, rowsPerPage).map(user => (
                       <TableRow
                         className={classes.tableRow}
                         hover
@@ -149,7 +149,9 @@ class UsersTable extends Component {
                             <Avatar
                               className={classes.avatar}
                               src={user.imgpath}>
-                              {getInitials(user.writer)}
+                              {getInitials(
+                                user.writer !== null ? user.writer : ''
+                              )}
                             </Avatar>
                             <Link to="#">
                               <Typography
@@ -198,7 +200,7 @@ class UsersTable extends Component {
               'aria-label': 'Previous Page'
             }}
             component="div"
-            count={Users.length}
+            count={client.length}
             nextIconButtonProps={{
               'aria-label': 'Next Page'
             }}
