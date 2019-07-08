@@ -54,18 +54,6 @@ class UsersToolbar extends Component {
             </IconButton>
           )}
           <Button
-            className={classes.importButton}
-            size="small"
-            variant="outlined">
-            수정
-          </Button>
-          <Button
-            className={classes.exportButton}
-            size="small"
-            variant="outlined">
-            삭제
-          </Button>
-          <Button
             color="primary"
             size="small"
             variant="outlined"

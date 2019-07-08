@@ -21,6 +21,9 @@ import './assets/scss/index.scss';
 // Routes
 import Routes from './Routes';
 
+import { Provider } from 'react-redux';
+import Configure from './store/Configure';
+
 // Browser history
 const browserHistory = createBrowserHistory();
 
@@ -29,13 +32,17 @@ Chart.helpers.extend(Chart.elements.Rectangle.prototype, {
   draw: chartjs.draw
 });
 
+const store = Configure();
+
 export default class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <Router history={browserHistory}>
-          <Routes />
-        </Router>
+        <Provider store={store}>
+          <Router history={browserHistory}>
+            <Routes />
+          </Router>
+        </Provider>
       </ThemeProvider>
     );
   }

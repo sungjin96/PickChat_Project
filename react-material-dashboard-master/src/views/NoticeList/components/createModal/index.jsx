@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import NoticeModalContainer from '../../../../containers/NoticeModalContainer';
 
 const Style = makeStyles(theme => ({
   container: {
@@ -19,8 +20,9 @@ const Style = makeStyles(theme => ({
   }
 }));
 
-const createModal = () => {
-  const classes = Style();
+const CreateModal = ({ onInsert }) => {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
   return (
     <div
@@ -47,22 +49,26 @@ const createModal = () => {
         label="제목"
         multiline
         rows="2"
-        className={classes.textField}
         margin="normal"
         variant="outlined"
         style={{ width: '98%' }}
+        value={title}
+        onChange={e => setTitle(e.target.value)}
       />
       <TextField
         label="내용"
         multiline
         rows="2"
-        className={classes.textField}
         margin="normal"
         variant="outlined"
         style={{ width: '98%' }}
+        value={content}
+        onChange={e => setContent(e.target.value)}
       />
+
+      <NoticeModalContainer title={title} content={content} />
     </div>
   );
 };
 
-export default createModal;
+export default CreateModal;
