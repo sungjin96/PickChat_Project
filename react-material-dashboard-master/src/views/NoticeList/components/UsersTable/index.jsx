@@ -20,8 +20,10 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Button,
   TablePagination
 } from '@material-ui/core';
+import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
 
 // Shared helpers
 import { getInitials } from 'helpers';
@@ -98,7 +100,7 @@ class UsersTable extends Component {
 
   render() {
     const { classes, className, users } = this.props;
-    const { activeTab, selectedUsers, rowsPerPage, page } = this.state;
+    const { selectedUsers } = this.state;
 
     const rootClassName = classNames(classes.root, className);
     return (
@@ -108,21 +110,11 @@ class UsersTable extends Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell align="left">
-                    <Checkbox
-                      checked={selectedUsers.length === users.length}
-                      color="primary"
-                      indeterminate={
-                        selectedUsers.length > 0 &&
-                        selectedUsers.length < users.length
-                      }
-                      onChange={this.handleSelectAll}
-                    />
-                    번호
-                  </TableCell>
+                  <TableCell align="left">번호</TableCell>
                   <TableCell align="left">제목</TableCell>
                   <TableCell align="left">내용</TableCell>
                   <TableCell align="left">등록일</TableCell>
+                  <TableCell align="left" />
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -135,14 +127,6 @@ class UsersTable extends Component {
                         selected={selectedUsers.indexOf(user.nno) !== -1}>
                         <TableCell className={classes.tableCell}>
                           <div className={classes.tableCellInner}>
-                            <Checkbox
-                              checked={selectedUsers.indexOf(user.nno) !== -1}
-                              color="primary"
-                              onChange={event =>
-                                this.handleSelectOne(event, user.nno)
-                              }
-                              value="true"
-                            />
                             <Link to="#">
                               <Typography
                                 className={classes.nameText}
@@ -156,7 +140,7 @@ class UsersTable extends Component {
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {user.title}
+                          ={user.title}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
@@ -167,6 +151,11 @@ class UsersTable extends Component {
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
                           {moment(user.regdate).format('DD/MM/YYYY')}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          <DeleteBtn id={user.nno} />
                         </TableCell>
                       </TableRow>
                     ))

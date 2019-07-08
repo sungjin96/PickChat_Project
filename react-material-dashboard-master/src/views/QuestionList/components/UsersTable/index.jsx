@@ -129,7 +129,7 @@ class UsersTable extends Component {
               </TableHead>
               <TableBody>
                 {this.client !== undefined
-                  ? this.client.slice(0, rowsPerPage).map(user => (
+                  ? this.client.map(user => (
                       <TableRow
                         className={classes.tableRow}
                         hover
@@ -181,21 +181,6 @@ class UsersTable extends Component {
               </TableBody>
             </Table>
           </PerfectScrollbar>
-          <TablePagination
-            backIconButtonProps={{
-              'aria-label': 'Previous Page'
-            }}
-            component="div"
-            count={users.length}
-            nextIconButtonProps={{
-              'aria-label': 'Next Page'
-            }}
-            onChangePage={this.handleChangePage}
-            onChangeRowsPerPage={this.handleChangeRowsPerPage}
-            page={page}
-            rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 10, 25]}
-          />
         </PortletContent>
       </Portlet>
     );

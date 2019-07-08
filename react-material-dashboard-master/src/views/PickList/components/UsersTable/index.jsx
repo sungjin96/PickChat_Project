@@ -33,7 +33,6 @@ import { Portlet, PortletContent } from 'components';
 // Component styles
 import styles from './styles';
 import Axios from 'axios';
-import Users from 'views/Dashboard/components/Users';
 
 class UsersTable extends Component {
   state = {
@@ -100,7 +99,7 @@ class UsersTable extends Component {
 
   render() {
     const { classes, className, users } = this.props;
-    const { activeTab, selectedUsers, rowsPerPage, page, client } = this.state;
+    const { selectedUsers, page, client } = this.state;
 
     const rootClassName = classNames(classes.root, className);
     return (
@@ -130,7 +129,7 @@ class UsersTable extends Component {
               </TableHead>
               <TableBody>
                 {client !== undefined
-                  ? client.slice(0, rowsPerPage).map(user => (
+                  ? client.map(user => (
                       <TableRow
                         className={classes.tableRow}
                         hover
@@ -195,21 +194,6 @@ class UsersTable extends Component {
               </TableBody>
             </Table>
           </PerfectScrollbar>
-          <TablePagination
-            backIconButtonProps={{
-              'aria-label': 'Previous Page'
-            }}
-            component="div"
-            count={client.length}
-            nextIconButtonProps={{
-              'aria-label': 'Next Page'
-            }}
-            onChangePage={this.handleChangePage}
-            onChangeRowsPerPage={this.handleChangeRowsPerPage}
-            page={page}
-            rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 10, 25]}
-          />
         </PortletContent>
       </Portlet>
     );
