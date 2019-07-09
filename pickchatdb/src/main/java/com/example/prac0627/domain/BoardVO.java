@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 public class BoardVO {
     private int bno;
+    private String userid;
     private String writer;
     private String title;
     private String content;
@@ -113,11 +114,20 @@ public class BoardVO {
         this.tagword = tagword;
     }
 
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
     @Override
     public String toString() {
         return "BoardVO [blno=" + blno + ", bno=" + bno + ", content=" + content + ", imgpath=" + imgpath + ", liker="
                 + liker + ", regdate=" + regdate + ", tagcode=" + tagcode + ", tagword=" + Arrays.toString(tagword)
-                + ", title=" + title + ", tno=" + tno + ", updatedate=" + updatedate + ", writer=" + writer + "]";
+                + ", title=" + title + ", tno=" + tno + ", updatedate=" + updatedate + ", userid=" + userid
+                + ", writer=" + writer + "]";
     }
 
 }

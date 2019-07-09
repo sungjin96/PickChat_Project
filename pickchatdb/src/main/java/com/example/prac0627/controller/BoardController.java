@@ -53,40 +53,6 @@ public class BoardController {
     }
 
     @CrossOrigin("*")
-    @GetMapping(value = "userbbslist/{writer}")
-    public List<BoardVO> userbbslist(@PathVariable("writer") String writer) throws Exception {
-        return dao.userbbslist(writer);
-    }
-
-    // service-----bbs&bbsimg------------------------------------------------------------------
-    @CrossOrigin("*")
-    @PostMapping(value = "bbsinsert")
-    public void bbsinsert(@RequestBody BoardVO vo) throws Exception {
-        // String path = vo.getWriter()+LocalTime.now();
-        // File imgpath = new
-        // File("C:\\taeyong\\finalproject\\pickchat\\pickchatdb\\src\\main\\resources\\static\\image\\"+path);
-        // URL url = null;
-        // BufferedImage bi = null;
-
-        try {
-            // url = new URL(vo.getImgpath());
-            // bi = ImageIO.read(url);
-            // ImageIO.write(bi, "png", imgpath);
-
-            service.bbsinsert(vo);
-            // vo.setImgpath(path);
-        } catch (Exception e) {
-            System.out.println("서비스 입력 오류" + e.toString());
-        }
-    }
-
-    @CrossOrigin("*")
-    @DeleteMapping(value = "bbsdelete/{bno}")
-    public void bbsdelete(@PathVariable("bno") int bno) throws Exception {
-        dao.bbsdelete(bno);
-    }
-
-    @CrossOrigin("*")
     @GetMapping(value = "bbsupdateread/{bno}")
     public BoardVO bbsupdateread(@PathVariable("bno") int bno) throws Exception {
         return dao.bbsread(bno);
@@ -96,6 +62,30 @@ public class BoardController {
     @PatchMapping(value = "bbsupdate")
     public void bbsupdate(@RequestBody BoardVO vo) throws Exception {
         dao.bbsupdate(vo);
+    }
+
+    @CrossOrigin("*")
+    @GetMapping(value = "userbbslist/{userid}")
+    public List<BoardVO> userbbslist(@PathVariable("userid") String userid) throws Exception {
+        return dao.userbbslist(userid);
+    }
+
+    // service-----bbs&bbsimg------------------------------------------------------------------
+    @CrossOrigin("*")
+    @PostMapping(value = "bbsinsert")
+    public void bbsinsert(@RequestBody BoardVO vo) throws Exception {
+
+        try {
+            service.bbsinsert(vo);
+        } catch (Exception e) {
+            System.out.println("서비스 입력 오류" + e.toString());
+        }
+    }
+
+    @CrossOrigin("*")
+    @DeleteMapping(value = "bbsdelete/{bno}")
+    public void bbsdelete(@PathVariable("bno") int bno) throws Exception {
+        dao.bbsdelete(bno);
     }
 
     // -------------------------------------------------------------bbslikeStart
@@ -142,5 +132,4 @@ public class BoardController {
             System.out.println("태그 인서트" + e.toString());
         }
     }
-
 }

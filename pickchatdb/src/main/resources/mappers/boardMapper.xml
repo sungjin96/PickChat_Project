@@ -7,8 +7,8 @@
     </select>
     
     <select id="bbslist" resultType="com.example.prac0627.domain.BoardVO">
-        select * from tbl_bbs       
-         order by bno desc      
+        select * from tbl_bbs
+        order by bno desc
     </select>
 
     <select id="bbsread" resultType="com.example.prac0627.domain.BoardVO">
@@ -41,7 +41,7 @@
     
     <select id="userbbslist" resultType="com.example.prac0627.domain.BoardVO">
         select b.* from tbl_bbs b, tbl_puser p
-        where b.writer = #{writer} and b.writer = p.usernickname
+        where p.userid = #{userid} and b.writer = p.usernickname
         order by bno desc
     </select>
 <!-- bbslike Start -->
@@ -66,14 +66,14 @@
         
 <!-- bbstag Start -->
     <select id="bbstagread" resultType="com.example.prac0627.domain.BoardVO">
-        select distinct bno from tbl_tag where tagword like "%"#{tagword}"%";
+        select distinct bno from tbl_tag where tagword like concat('%',#{tagword},'%');
     </select>
-<select id="bnotagread" resultType="String">
+    <select id="bnotagread" resultType="String">
         select tagword from tbl_tag where bno = #{bno};
     </select>
     <insert id="bbstaginsert">
         insert into tbl_tag(bno, tagword)
         values(#{bno}, #{tagword})
-    </insert>
+    </insert> 
 
 </mapper>

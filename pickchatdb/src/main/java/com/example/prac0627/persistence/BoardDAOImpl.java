@@ -53,8 +53,8 @@ public class BoardDAOImpl implements BoardDAO {
     }
 
     @Override
-    public List<BoardVO> userbbslist(String writer) {
-        return session.selectList(namespace + ".userbbslist");
+    public List<BoardVO> userbbslist(String userid) {
+        return session.selectList(namespace + ".userbbslist", userid);
     }
 
     // ----------------------------------------bbslikeStart
@@ -97,13 +97,12 @@ public class BoardDAOImpl implements BoardDAO {
 
     @Override
     public int bbsmax() {
-        return session.selectOne(namespace+".bbsmax");
+        return session.selectOne(namespace + ".bbsmax");
     }
 
     @Override
     public List<String> bnotagread(int bno) {
-        return session.selectList(namespace+".bnotagread",bno);
+        return session.selectList(namespace + ".bnotagread", bno);
     }
 
-   
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.example.prac0627.domain.BoardVO;
 import com.example.prac0627.persistence.BoardDAO;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +42,7 @@ public class BbsServiceImpl implements BbsService {
         List<String> tagwords = dao.bnotagread(bno);
         read.setTagword(tagwords.toArray((new String[tagwords.size()])));
         return read;
-    }
+    }  
+    
 
 }
