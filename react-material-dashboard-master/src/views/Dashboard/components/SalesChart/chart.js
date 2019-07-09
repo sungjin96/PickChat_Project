@@ -1,19 +1,19 @@
 // Palette
 import palette from 'theme/palette';
-
 // Chart data
 export const data = {
   labels: ['10대', '20대', '30대', '40대', '50대', '60대'],
+
   datasets: [
     {
       label: '남',
       backgroundColor: palette.primary.main,
-      data: [18, 5, 19, 27, 29, 19, 20]
+      data: [2, 5, 10, 27, 2, 0, 0]
     },
     {
       label: '여',
       backgroundColor: palette.common.neutral,
-      data: [11, 20, 12, 29, 30, 25, 13]
+      data: [1, 3, 7, 13, 1, 0, 0]
     }
   ]
 };

@@ -40,21 +40,6 @@ class UsersToolbar extends Component {
               <DeleteIcon />
             </IconButton>
           )}
-          <Button
-            className={classes.importButton}
-            size="small"
-            variant="outlined">
-            수정
-          </Button>
-          <Button
-            className={classes.exportButton}
-            size="small"
-            variant="outlined">
-            삭제
-          </Button>
-          <Button color="primary" size="small" variant="outlined">
-            생성
-          </Button>
         </div>
         <div className={classes.row}>
           <SearchInput

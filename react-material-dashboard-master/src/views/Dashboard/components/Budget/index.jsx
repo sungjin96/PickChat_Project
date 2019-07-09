@@ -21,52 +21,44 @@ import { Paper } from 'components';
 
 // Component styles
 import styles from './styles';
+import axios from 'axios';
 
 class Budget extends Component {
+  state = {
+    total: 0
+  };
+
+  componentDidMount() {
+    axios.get('http://192.168.0.104:5000/board/bbslist').then(data => {
+      const total = data.data.length;
+
+      this.setState({
+        total
+      });
+    });
+  }
+
   render() {
     const { classes, className, ...rest } = this.props;
 
     const rootClassName = classNames(classes.root, className);
 
     return (
-      <Paper
-        {...rest}
-        className={rootClassName}
-      >
+      <Paper {...rest} className={rootClassName}>
         <div className={classes.content}>
           <div className={classes.details}>
-            <Typography
-              className={classes.title}
-              variant="body2"
-            >
-              BUDGET
+            <Typography className={classes.title} variant="body2">
+              게시글수
             </Typography>
-            <Typography
-              className={classes.value}
-              variant="h3"
-            >
-              $24,000
+            <Typography className={classes.value} variant="h3">
+              {this.state.total}
             </Typography>
           </div>
           <div className={classes.iconWrapper}>
             <MoneyIcon className={classes.icon} />
           </div>
         </div>
-        <div className={classes.footer}>
-          <Typography
-            className={classes.difference}
-            variant="body2"
-          >
-            <ArrowDownwardIcon />
-            12%
-          </Typography>
-          <Typography
-            className={classes.caption}
-            variant="caption"
-          >
-            Since last month
-          </Typography>
-        </div>
+        <div className={classes.footer} />
       </Paper>
     );
   }

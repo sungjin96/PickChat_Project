@@ -109,18 +109,7 @@ class UsersTable extends Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell align="left">
-                    <Checkbox
-                      checked={selectedUsers.length === users.length}
-                      color="primary"
-                      indeterminate={
-                        selectedUsers.length > 0 &&
-                        selectedUsers.length < users.length
-                      }
-                      onChange={this.handleSelectAll}
-                    />
-                    이름
-                  </TableCell>
+                  <TableCell align="left">이름</TableCell>
                   <TableCell align="left">아이디</TableCell>
                   <TableCell align="left">성별</TableCell>
                   <TableCell align="left">나이</TableCell>
@@ -129,7 +118,7 @@ class UsersTable extends Component {
               </TableHead>
               <TableBody>
                 {this.client !== undefined
-                  ? this.client.slice(0, rowsPerPage).map(user => (
+                  ? this.client.map(user => (
                       <TableRow
                         className={classes.tableRow}
                         hover
@@ -137,22 +126,12 @@ class UsersTable extends Component {
                         selected={selectedUsers.indexOf(user.userid) !== -1}>
                         <TableCell className={classes.tableCell}>
                           <div className={classes.tableCellInner}>
-                            <Checkbox
-                              checked={
-                                selectedUsers.indexOf(user.userid) !== -1
-                              }
-                              color="primary"
-                              onChange={event =>
-                                this.handleSelectOne(event, user.userid)
-                              }
-                              value="true"
-                            />
                             <Avatar
                               className={classes.avatar}
                               src={user.soloimg}>
                               {getInitials(user.username)}
                             </Avatar>
-                            <Link to="#">
+                            <Link to={`/user/${user.userid}`}>
                               <Typography
                                 className={classes.nameText}
                                 variant="body1"
@@ -188,21 +167,6 @@ class UsersTable extends Component {
               </TableBody>
             </Table>
           </PerfectScrollbar>
-          <TablePagination
-            backIconButtonProps={{
-              'aria-label': 'Previous Page'
-            }}
-            component="div"
-            count={this.total}
-            nextIconButtonProps={{
-              'aria-label': 'Next Page'
-            }}
-            onChangePage={this.handleChangePage}
-            onChangeRowsPerPage={this.handleChangeRowsPerPage}
-            page={page}
-            rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 10, 25]}
-          />
         </PortletContent>
       </Portlet>
     );

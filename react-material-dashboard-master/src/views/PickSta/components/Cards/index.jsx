@@ -16,6 +16,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChatBubbleOutline from '@material-ui/icons/ChatBubbleOutline';
 import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -40,14 +41,26 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Cards = ({ title, content, writer, img, tag, date, rcount, lcount }) => {
+const Cards = ({ title, content, writer, img, tag, date, id }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+
+  const [rcount, setRcount] = React.useState(0);
+  const [lcount, setLcount] = React.useState(0);
+
+  React.useEffect(() => {
+    axios
+      .get(`http://192.168.0.104:5000/reply/count/${id}`)
+      .then(data => setRcount(data.data));
+
+    axios
+      .get(`http://192.168.0.104:5000/board/bbslikecount/${id}`)
+      .then(data => setLcount(data.data));
+  }, [id]);
 
   function handleExpandClick() {
     setExpanded(!expanded);
   }
-
   return (
     <Card className={classes.card} style={{ margin: 'auto' }}>
       <CardHeader
@@ -62,9 +75,11 @@ const Cards = ({ title, content, writer, img, tag, date, rcount, lcount }) => {
       <CardMedia className={classes.media} image={img} title="Paella dish" />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {tag.map(data => (
-            <Button color="secondary">#{data}</Button>
-          ))}
+          {tag.length !== 0 ? (
+            tag.map(data => <Button color="secondary">#{data}</Button>)
+          ) : (
+            <br />
+          )}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

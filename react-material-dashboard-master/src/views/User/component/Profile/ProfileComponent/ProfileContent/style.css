@@ -1,0 +1,21 @@
+span {
+  margin: 0 10px;
+}
+
+p {
+  margin: 0 10px;
+}
+
+.userid {
+  margin: 2.5rem 0 1rem 0;
+  width: 100%;
+}
+
+.count {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+}

@@ -25,12 +25,13 @@ const List = () => {
       <Grid item xs={4} spacing={0}>
         <Cards
           key={data.bno}
+          id={data.bno}
           title={data.title}
           content={data.content}
           date={data.regdate}
           writer={data.writer}
           img={data.imgpath}
-          tag={tags}
+          tag={data.tagword}
           lcount={241}
           rcount={592}
         />
