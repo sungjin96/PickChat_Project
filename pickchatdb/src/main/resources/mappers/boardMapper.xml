@@ -39,14 +39,20 @@
         select count(*) from tbl_bbs
     </select>
     
+    <select id="userbbslist" resultType="com.example.prac0627.domain.BoardVO">
+        select b.* from tbl_bbs b, tbl_puser p
+        where b.writer = #{writer} and b.writer = p.usernickname
+        order by bno desc
+    </select>
 <!-- bbslike Start -->
        <select id="bbslikeread" resultType="com.example.prac0627.domain.BoardVO">
           select liker from tbl_bbslike
           where bno = #{bno}
         </select>
 
-        <select id="bbslikecount" resultType="com.example.prac0627.domain.BoardVO">
-            select l.bno from tbl_bbslike l, tbl_bbs b where l.bno = b.bno;
+        <select id="bbslikecount" resultType="int">
+            select count(*) from tbl_bbslike
+          where bno = #{bno}
         </select>
 
         <insert id="bbslikeinsert">

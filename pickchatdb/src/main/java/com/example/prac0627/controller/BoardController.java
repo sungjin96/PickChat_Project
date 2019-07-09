@@ -1,6 +1,5 @@
 package com.example.prac0627.controller;
 
-
 import java.util.List;
 
 // import javax.imageio.ImageIO;
@@ -23,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping(value = "/board/")
@@ -34,83 +34,103 @@ public class BoardController {
     @Autowired
     private BbsService service;
 
+    @CrossOrigin("*")
     @GetMapping(value = "bbslist")
     public List<BoardVO> bbslist() throws Exception {
         return service.bbslist();
     }
 
+    @CrossOrigin("*")
     @GetMapping(value = "bbsimglist")
     public List<BoardVO> bbsimglist() throws Exception {
         return dao.bbsimglist();
     }
 
+    @CrossOrigin("*")
     @GetMapping(value = "bbsread/{bno}")
     public BoardVO bbsread(@PathVariable("bno") int bno) throws Exception {
         return service.bbsread(bno);
     }
 
-    //service-----bbs&bbsimg------------------------------------------------------------------
+    @CrossOrigin("*")
+    @GetMapping(value = "userbbslist/{writer}")
+    public List<BoardVO> userbbslist(@PathVariable("writer") String writer) throws Exception {
+        return dao.userbbslist(writer);
+    }
+
+    // service-----bbs&bbsimg------------------------------------------------------------------
+    @CrossOrigin("*")
     @PostMapping(value = "bbsinsert")
-    public void bbsinsert(@RequestBody BoardVO vo) throws Exception{
+    public void bbsinsert(@RequestBody BoardVO vo) throws Exception {
         // String path = vo.getWriter()+LocalTime.now();
-        // File imgpath = new File("C:\\taeyong\\finalproject\\pickchat\\pickchatdb\\src\\main\\resources\\static\\image\\"+path);
+        // File imgpath = new
+        // File("C:\\taeyong\\finalproject\\pickchat\\pickchatdb\\src\\main\\resources\\static\\image\\"+path);
         // URL url = null;
         // BufferedImage bi = null;
-        
-        try{            
+
+        try {
             // url = new URL(vo.getImgpath());
             // bi = ImageIO.read(url);
             // ImageIO.write(bi, "png", imgpath);
 
             service.bbsinsert(vo);
             // vo.setImgpath(path);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("서비스 입력 오류" + e.toString());
         }
-    }    
+    }
 
+    @CrossOrigin("*")
     @DeleteMapping(value = "bbsdelete/{bno}")
     public void bbsdelete(@PathVariable("bno") int bno) throws Exception {
         dao.bbsdelete(bno);
     }
 
+    @CrossOrigin("*")
     @GetMapping(value = "bbsupdateread/{bno}")
     public BoardVO bbsupdateread(@PathVariable("bno") int bno) throws Exception {
         return dao.bbsread(bno);
     }
 
+    @CrossOrigin("*")
     @PatchMapping(value = "bbsupdate")
     public void bbsupdate(@RequestBody BoardVO vo) throws Exception {
         dao.bbsupdate(vo);
     }
 
     // -------------------------------------------------------------bbslikeStart
+    @CrossOrigin("*")
     @GetMapping(value = "bbslikeread/{bno}")
     public List<BoardVO> bbslikeread(@PathVariable("bno") int bno) throws Exception {
         return dao.bbslikeread(bno);
     }
 
-    @GetMapping(value = "bbslikecount")
-    public List<BoardVO> bbslikecount(BoardVO vo) throws Exception {
-        return dao.bbslikecount(vo);
+    @CrossOrigin("*")
+    @GetMapping(value = "bbslikecount/{bno}")
+    public int bbslikecount(@PathVariable("bno") int bno) throws Exception {
+        return dao.bbslikecount(bno);
     }
 
+    @CrossOrigin("*")
     @DeleteMapping(value = "bbslikedelete/{bno}/{liker}")
     public void bbslikedelete(@PathVariable("bno") int bno, @PathVariable("liker") String liker) throws Exception {
         dao.bbslikedelete(bno, liker);
     }
 
+    @CrossOrigin("*")
     @PostMapping(value = "bbslikeinsert")
     public void bbslikeinsert(@RequestBody BoardVO vo) throws Exception {
         dao.bbslikeinsert(vo);
     }
 
     // -------------------------------------------------------------bbstagStart
+    @CrossOrigin("*")
     @GetMapping(value = "bbstagread/{tagword}")
     public List<BoardVO> bbstagread(@PathVariable("tagword") String tagword) throws Exception {
         return dao.bbstagread(tagword);
     }
 
+    @CrossOrigin("*")
     @PostMapping(value = "bbstaginsert")
     public void bbstaginsert(@RequestBody BoardVO vo) throws Exception {
         try {
@@ -121,6 +141,6 @@ public class BoardController {
         } catch (Exception e) {
             System.out.println("태그 인서트" + e.toString());
         }
-    }    
-    
+    }
+
 }

@@ -15,9 +15,10 @@ public interface BoardDAO {
     public void bbsdelete(int bno);
     public void bbsupdate(BoardVO vo);   
     public int bbsmax();
+    public List<BoardVO> userbbslist(String writer);
 
     public List<BoardVO> bbslikeread(int bno);
-    public List<BoardVO> bbslikecount(BoardVO vo);
+    public int bbslikecount(int bno);
     public void bbslikedelete(int bno, String liker);
     public void bbslikeinsert(BoardVO vo);
 
