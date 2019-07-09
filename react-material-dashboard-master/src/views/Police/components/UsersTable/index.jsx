@@ -9,9 +9,8 @@ import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // Material helpers
-import { withStyles } from '@material-ui/core';
+import { withStyles, Button } from '@material-ui/core';
 
-// Material components
 import {
   Avatar,
   Checkbox,
@@ -43,8 +42,8 @@ class UsersTable extends Component {
   };
 
   componentDidMount() {
-    Axios.get('http://192.168.0.104:5000/question/list').then(data =>
-      this.setState((this.client = data.data))
+    Axios.get('http://192.168.0.104:5000/boardpolice/list').then(data =>
+      this.setState((this.state.client = data.data))
     );
   }
 
@@ -99,7 +98,7 @@ class UsersTable extends Component {
 
   render() {
     const { classes, className, users } = this.props;
-    const { activeTab, selectedUsers, rowsPerPage, page } = this.state;
+    const { selectedUsers, page, client } = this.state;
 
     const rootClassName = classNames(classes.root, className);
     return (
@@ -109,21 +108,21 @@ class UsersTable extends Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell align="left">아이디</TableCell>
-                  <TableCell align="left">제목</TableCell>
-                  <TableCell align="left">내용</TableCell>
-                  <TableCell align="left">답글</TableCell>
-                  <TableCell align="left">등록일</TableCell>
+                  <TableCell align="left">번호</TableCell>
+                  <TableCell align="left">신고자</TableCell>
+                  <TableCell align="left">신고 글</TableCell>
+                  <TableCell align="left">신고 내용</TableCell>
+                  <TableCell align="left">reasonid</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.client !== undefined
-                  ? this.client.map(user => (
+                {client !== undefined
+                  ? client.map(user => (
                       <TableRow
                         className={classes.tableRow}
                         hover
-                        key={user.qno}
-                        selected={selectedUsers.indexOf(user.qno) !== -1}>
+                        key={user.bpno}
+                        selected={selectedUsers.indexOf(user.bpno) !== -1}>
                         <TableCell className={classes.tableCell}>
                           <div className={classes.tableCellInner}>
                             <Link to="#">
@@ -131,7 +130,7 @@ class UsersTable extends Component {
                                 className={classes.nameText}
                                 variant="body1"
                                 style={{ fontSize: '1rem' }}>
-                                {user.qwriter}
+                                {user.bpno}
                               </Typography>
                             </Link>
                           </div>
@@ -139,22 +138,23 @@ class UsersTable extends Component {
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {user.qtitle}
+                          {user.sender}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {user.qcontent}
+                          {user.bno}
+                        </TableCell>
+
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          {user.pcontent}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {user.qccontent}
-                        </TableCell>
-                        <TableCell
-                          className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
-                          {moment(user.qregdate).format('DD/MM/YYYY')}
+                          {user.reasonid}
                         </TableCell>
                       </TableRow>
                     ))

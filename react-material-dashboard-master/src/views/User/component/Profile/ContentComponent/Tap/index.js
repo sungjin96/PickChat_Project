@@ -5,6 +5,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
 import './style.css';
+import Axios from 'axios';
 
 const AntTabs = withStyles({
   root: {
@@ -97,13 +98,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Tap = () => {
+const Tap = ({ id }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   function handleChange(event, newValue) {
     setValue(newValue);
   }
+
+  React.useEffect(() => {
+    Axios.get(`http://192.168.0.104:5000/board/userbbslist/${id}`);
+  });
 
   return (
     <div>
@@ -117,7 +122,7 @@ const Tap = () => {
       </AntTabs>
       <Typography className={classes.typography} />
       {value === 0 && <TabContainer>Item One</TabContainer>}
-      {value === 1 && <TabContainer>Item Two</TabContainer>}
+      {value === 1 && <TabContainer>게시글</TabContainer>}
       {value === 2 && <TabContainer>Item Three</TabContainer>}
     </div>
   );

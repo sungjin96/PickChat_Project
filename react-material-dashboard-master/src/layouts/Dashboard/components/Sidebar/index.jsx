@@ -24,13 +24,11 @@ import {
 import {
   DashboardOutlined as DashboardIcon,
   PeopleOutlined as PeopleIcon,
-  ShoppingBasketOutlined as ShoppingBasketIcon,
-  LockOpenOutlined as LockOpenIcon,
-  TextFields as TextFieldsIcon,
-  ImageOutlined as ImageIcon,
-  InfoOutlined as InfoIcon,
-  AccountBoxOutlined as AccountBoxIcon,
-  SettingsOutlined as SettingsIcon
+  ErrorOutline as ErrorIcon,
+  ContactSupport as ContactIcon,
+  StarRate as StarIcon,
+  RecordVoiceOverOutlined as RecordIcon,
+  ContactMail as MailIcon
 } from '@material-ui/icons';
 
 // Component styles
@@ -103,7 +101,7 @@ class Sidebar extends Component {
             component={NavLink}
             to="/picklist">
             <ListItemIcon className={classes.listItemIcon}>
-              <PeopleIcon />
+              <StarIcon />
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.listItemText }}
@@ -116,7 +114,7 @@ class Sidebar extends Component {
             component={NavLink}
             to="/questionlist">
             <ListItemIcon className={classes.listItemIcon}>
-              <PeopleIcon />
+              <MailIcon />
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.listItemText }}
@@ -129,7 +127,7 @@ class Sidebar extends Component {
             component={NavLink}
             to="/noticelist">
             <ListItemIcon className={classes.listItemIcon}>
-              <PeopleIcon />
+              <RecordIcon />
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.listItemText }}
@@ -142,11 +140,24 @@ class Sidebar extends Component {
             component={NavLink}
             to="/faqslist">
             <ListItemIcon className={classes.listItemIcon}>
-              <PeopleIcon />
+              <ContactIcon />
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.listItemText }}
               primary="FAQs"
+            />
+          </ListItem>
+          <ListItem
+            activeClassName={classes.activeListItem}
+            className={classes.listItem}
+            component={NavLink}
+            to="/police">
+            <ListItemIcon className={classes.listItemIcon}>
+              <ErrorIcon />
+            </ListItemIcon>
+            <ListItemText
+              classes={{ primary: classes.listItemText }}
+              primary="신고함"
             />
           </ListItem>
         </List>
