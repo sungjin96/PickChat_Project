@@ -18,9 +18,9 @@ const ProfileContent = ({ id }) => {
   }, []);
 
   const getBoardCounter = () => {
-    Axios.get(
-      `http://192.168.0.104:5000/board/userbbslist/${user.usernickname}`
-    ).then(result => setBbsCOunter(result.data.length));
+    Axios.get(`http://192.168.0.104:5000/board/userbbslist/${id}`).then(
+      result => setBbsCOunter(result.data.length)
+    );
   };
 
   getBoardCounter();
@@ -42,13 +42,13 @@ const ProfileContent = ({ id }) => {
         <span>
           <b style={{ fontSize: '1.5em' }}>
             {bbsCounter !== 0 ? bbsCounter : '0'}
-          </b>
+          </b>{' '}
           게시글
         </span>
         <span>
           <b style={{ fontSize: '1.5rem' }}>
             {likeCounter !== 0 ? likeCounter : '0'}
-          </b>
+          </b>{' '}
           좋아요받은수
         </span>
       </div>

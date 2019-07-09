@@ -20,6 +20,7 @@ import PickList from 'views/PickList';
 import NoticeList from 'views/NoticeList';
 import FAQsList from 'views/FAQsList';
 import User from 'views/User';
+import Police from 'views/Police';
 
 export default class Routes extends Component {
   render() {
@@ -27,6 +28,7 @@ export default class Routes extends Component {
       <Switch>
         <Route component={Main} exact path="/" />
         <Route component={FAQsList} exact path="/faqslist" />
+        <Route component={Police} exact path="/police" />
         <Route component={NoticeList} exact path="/noticelist" />
         <Route component={User} exact path="/user/:id" />
         <Route component={QuestionList} exact path="/questionlist" />

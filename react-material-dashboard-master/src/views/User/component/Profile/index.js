@@ -19,7 +19,7 @@ const Profile = ({ id }) => {
         <img src={imgPath} alt="프로필" className="img" />
       </div>
       <div className="profileContent">
-        <ProfileContent id={id} />
+        <ProfileContent id={id} nick={}/>
       </div>
     </Container>
   );

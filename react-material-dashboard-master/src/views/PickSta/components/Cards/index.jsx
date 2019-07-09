@@ -41,12 +41,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Cards = ({ title, content, writer, img, tag, date, id }) => {
+const Cards = ({ title, content, writer, tag, date, id, userid, img }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const [rcount, setRcount] = React.useState(0);
   const [lcount, setLcount] = React.useState(0);
+  const [simg, setSImg] = React.useState('');
 
   React.useEffect(() => {
     axios
@@ -56,17 +57,22 @@ const Cards = ({ title, content, writer, img, tag, date, id }) => {
     axios
       .get(`http://192.168.0.104:5000/board/bbslikecount/${id}`)
       .then(data => setLcount(data.data));
+
+    axios
+      .get(`http://192.168.0.26/user/read/${userid}`)
+      .then(data => setSImg(data.data.soloimg));
   }, [id]);
 
   function handleExpandClick() {
     setExpanded(!expanded);
   }
+
   return (
     <Card className={classes.card} style={{ margin: 'auto' }}>
       <CardHeader
         avatar={
-          <Avatar aria-label="Recipe" className={classes.avatar}>
-            R
+          <Avatar aria-label="Recipe" className={classes.avatar} src={simg}>
+            <img src={simg} alt="프사" />
           </Avatar>
         }
         title={title}

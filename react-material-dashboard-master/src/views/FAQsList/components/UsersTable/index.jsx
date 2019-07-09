@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import faq from '../../../../data/Faq';
 
 // Externals
 import classNames from 'classnames';
@@ -32,7 +33,6 @@ import { Portlet, PortletContent } from 'components';
 // Component styles
 import styles from './styles';
 import Axios from 'axios';
-import Users from 'views/Dashboard/components/Users';
 
 class UsersTable extends Component {
   state = {
@@ -109,59 +109,19 @@ class UsersTable extends Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell align="left">
-                    <Checkbox
-                      checked={selectedUsers.length === users.length}
-                      color="primary"
-                      indeterminate={
-                        selectedUsers.length > 0 &&
-                        selectedUsers.length < users.length
-                      }
-                      onChange={this.handleSelectAll}
-                    />
-                    작성자
-                  </TableCell>
                   <TableCell align="left">제목</TableCell>
                   <TableCell align="left">내용</TableCell>
-                  <TableCell align="left">태그</TableCell>
                   <TableCell align="left">등록일</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.client !== undefined
-                  ? this.client.map(user => (
+                {faq !== undefined
+                  ? faq.map(user => (
                       <TableRow
                         className={classes.tableRow}
                         hover
                         key={user.bno}
                         selected={selectedUsers.indexOf(user.bno) !== -1}>
-                        <TableCell className={classes.tableCell}>
-                          <div className={classes.tableCellInner}>
-                            <Checkbox
-                              checked={selectedUsers.indexOf(user.bno) !== -1}
-                              color="primary"
-                              onChange={event =>
-                                this.handleSelectOne(event, user.bno)
-                              }
-                              value="true"
-                            />
-                            <Avatar
-                              className={classes.avatar}
-                              src={user.imgpath}>
-                              {getInitials(
-                                user.writer !== null ? user.writer : ''
-                              )}
-                            </Avatar>
-                            <Link to="#">
-                              <Typography
-                                className={classes.nameText}
-                                variant="body1"
-                                style={{ fontSize: '1rem' }}>
-                                {user.writer}
-                              </Typography>
-                            </Link>
-                          </div>
-                        </TableCell>
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
@@ -171,11 +131,6 @@ class UsersTable extends Component {
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
                           {user.content}
-                        </TableCell>
-                        <TableCell
-                          className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
-                          {user.tagword}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}

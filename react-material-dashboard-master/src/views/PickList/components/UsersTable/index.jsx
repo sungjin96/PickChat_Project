@@ -109,18 +109,7 @@ class UsersTable extends Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell align="left">
-                    <Checkbox
-                      checked={selectedUsers.length === users.length}
-                      color="primary"
-                      indeterminate={
-                        selectedUsers.length > 0 &&
-                        selectedUsers.length < users.length
-                      }
-                      onChange={this.handleSelectAll}
-                    />
-                    작성자
-                  </TableCell>
+                  <TableCell align="left">작성자</TableCell>
                   <TableCell align="left">제목</TableCell>
                   <TableCell align="left">내용</TableCell>
                   <TableCell align="left">태그</TableCell>
@@ -137,14 +126,6 @@ class UsersTable extends Component {
                         selected={selectedUsers.indexOf(user.bno) !== -1}>
                         <TableCell className={classes.tableCell}>
                           <div className={classes.tableCellInner}>
-                            <Checkbox
-                              checked={selectedUsers.indexOf(user.bno) !== -1}
-                              color="primary"
-                              onChange={event =>
-                                this.handleSelectOne(event, user.bno)
-                              }
-                              value="true"
-                            />
                             <Avatar
                               className={classes.avatar}
                               src={user.imgpath}>

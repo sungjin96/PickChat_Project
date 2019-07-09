@@ -6,8 +6,6 @@ import Button from '@material-ui/core/Button';
 
 import Cards from '../Cards';
 
-const tags = ['컴퓨터', '개발자', '공부중', '프로그래머'];
-
 const List = () => {
   const [datas, setDatas] = React.useState([]);
   const [value, setVaule] = React.useState(3);
@@ -32,6 +30,7 @@ const List = () => {
           writer={data.writer}
           img={data.imgpath}
           tag={data.tagword}
+          userid={data.userid}
           lcount={241}
           rcount={592}
         />
