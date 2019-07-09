@@ -29,7 +29,7 @@
     </delete>
 
     <select id="count" resultType="int">
-        select count(*) from tbl_reply
+        select count(*) from tbl_reply where bno = #{bno}
     </select>
 
     </mapper>

@@ -52,6 +52,11 @@ public class BoardDAOImpl implements BoardDAO {
         return session.selectOne(namespace + ".bbscount", bno);
     }
 
+    @Override
+    public List<BoardVO> userbbslist(String writer) {
+        return session.selectList(namespace + ".userbbslist");
+    }
+
     // ----------------------------------------bbslikeStart
     @Override
     public List<BoardVO> bbslikeread(int bno) {
@@ -59,8 +64,8 @@ public class BoardDAOImpl implements BoardDAO {
     }
 
     @Override
-    public List<BoardVO> bbslikecount(BoardVO vo) {
-        return session.selectList(namespace + ".bbslikecount", vo);
+    public int bbslikecount(int bno) {
+        return session.selectOne(namespace + ".bbslikecount", bno);
     }
 
     @Override
