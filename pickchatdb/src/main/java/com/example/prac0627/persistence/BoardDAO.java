@@ -13,7 +13,7 @@ public interface BoardDAO {
     public BoardVO bbsread(int bno);
     public void bbsinsert(BoardVO vo);
     public void bbsdelete(int bno);
-    public void bbsupdate(BoardVO vo);   
+    public void bbsupdate(BoardVO vo);
     public int bbsmax();
     public List<BoardVO> userbbslist(String userid);
 
