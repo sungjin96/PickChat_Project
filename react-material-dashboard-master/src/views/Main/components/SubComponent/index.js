@@ -1,30 +1,24 @@
 import React from 'react';
-import { white } from 'ansi-colors';
+import './style.css';
 
-const SubComponent = ({content, content2, img}) => {
-    return(
-        <div style={style.container}>                                      
-            <div style={{textAlign: 'center', color:'white'}}>
-                <h1 style={{margin: '10px'}}>{content}</h1>
-                <h2  style={{margin: '10px'}}>{content2}</h2>
+const SubComponent = ({ content, content2 }) => {
+    return (
+        <div style={style.container}>
+            <div style={{ textAlign: 'center', color: 'black' }}>
+                <div style={{ margin: '15px' }}><h1>{content}</h1></div>
+                <div style={{ margin: '15px' }}><h2>{content2}</h2></div>
+                <center><div className="mainpic" /></center>
             </div>
-
-            <div style={style.img}/>           
         </div>
     );
 }
 
-const style={
-    container:{
-        width:"1200px",
-        height:"600px",
-        margin:"0 auto",
-        backgroundColor:"#FFE3FF",
+const style = {
+    container: {
+        width: "2000px",
+        height: "600px",
+        margin: "0 auto",
         paddingTop: '80px'
-    },
-    img:{
-        margin:"0 auto",
-        backgroundColor: '#ccc', width:'600px', height: '400px'
     }
 }
 

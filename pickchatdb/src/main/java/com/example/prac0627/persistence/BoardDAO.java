@@ -1,7 +1,5 @@
 package com.example.prac0627.persistence;
-
 import java.util.List;
-
 import com.example.prac0627.domain.BoardVO;
 
 
@@ -24,6 +22,6 @@ public interface BoardDAO {
 
     public List<String> bnotagread(int bno);
     public List<BoardVO> bbstagread(String tagword);
-    public void bbstaginsert(int bno, String tagword);   
+    public void bbstaginsert(int bno, String tagword);
 
 }

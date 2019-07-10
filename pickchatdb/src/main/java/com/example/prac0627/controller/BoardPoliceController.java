@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
-@RequestMapping(value = "/boardpolice/")
+@RequestMapping(value = "/board/police/")
 public class BoardPoliceController {
 
     @Autowired
