@@ -3,6 +3,7 @@ package com.example.web.persistence;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.web.domain.BlockuserVO;
 import com.example.web.domain.UserVO;
 
 import org.apache.ibatis.session.SqlSession;
@@ -81,6 +82,11 @@ public class InsertDAOImpl implements InsertDAO {
 		map.put("sender", sender);
 		map.put("receiver", receiver);
 		session.insert(namespace2+".insert_likepeople",map);
+	}
+
+	@Override
+	public void insertBlockuser(BlockuserVO vo) throws Exception {
+		session.insert(namespace2+".insert_blockuser",vo);
 	}
 
 }

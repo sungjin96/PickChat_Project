@@ -3,13 +3,13 @@ package com.example.web.persistence;
 import java.util.List;
 
 import com.example.web.domain.CategoryVO;
-import com.example.web.domain.DistinctVO;
 import com.example.web.domain.HobbyVO;
 import com.example.web.domain.LikeTypeVO;
 import com.example.web.domain.LikepeopleVO;
 import com.example.web.domain.MytypeVO;
 import com.example.web.domain.UserImageVO;
 import com.example.web.domain.UserVO;
+import com.example.web.domain.BlockuserVO;
 
 public interface UserDAO {
 	public List<UserVO> listUser()throws Exception;
@@ -21,6 +21,8 @@ public interface UserDAO {
 	public List<LikepeopleVO> listLikereceiver(String userid)throws Exception;
 	public List<CategoryVO> listCategory()throws Exception;
 	public List<CategoryVO> listHobbyCategory()throws Exception;
+	public List<BlockuserVO> listBlockUser()throws Exception;
+
 	public UserVO readUser(String userid);
 	public int checkid(String userid)throws Exception;
 	public int checknickname(String usernickname)throws Exception;

@@ -1,11 +1,9 @@
 package com.example.web.persistence;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import com.example.web.domain.BlockuserVO;
 import com.example.web.domain.CategoryVO;
-import com.example.web.domain.DistinctVO;
 import com.example.web.domain.HobbyVO;
 import com.example.web.domain.LikeTypeVO;
 import com.example.web.domain.LikepeopleVO;
@@ -82,5 +80,9 @@ public class UserDAOImpl implements UserDAO {
 	public int checknickname(String usernickname) throws Exception {
 		return session.selectOne(namespace + ".checknickname", usernickname);
 	}
-	
+
+	@Override
+	public List<BlockuserVO> listBlockUser() throws Exception {
+		return session.selectList(namespace + ".list_blockuser");
+	}
 }

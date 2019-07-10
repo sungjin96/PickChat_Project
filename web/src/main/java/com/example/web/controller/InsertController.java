@@ -1,5 +1,6 @@
 package com.example.web.controller;
 
+import com.example.web.domain.BlockuserVO;
 import com.example.web.domain.LikepeopleVO;
 import com.example.web.domain.UserVO;
 import com.example.web.persistence.InsertDAO;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping(value = { "/user/*" })
@@ -22,6 +24,7 @@ public class InsertController {
   private UserService service;
   
   // 내 매력 입력
+  @CrossOrigin("*")
   @PostMapping(value = "insert_mytype")
   public void insertMytype(@RequestBody UserVO vo) throws Exception {
     try {
@@ -37,6 +40,7 @@ public class InsertController {
   }
 
   // 이상형 입력
+  @CrossOrigin("*")
   @PostMapping(value = "insert_liketype")
   public void insertLiketype(@RequestBody UserVO vo) throws Exception {
     try {
@@ -52,6 +56,7 @@ public class InsertController {
   }
 
   // 유저 취미 입력
+  @CrossOrigin("*")
   @PostMapping(value = "insert_userhobby")
   public void insertHobby(@RequestBody UserVO vo) throws Exception {
     try {
@@ -67,6 +72,7 @@ public class InsertController {
   }
 
   // 유저 보이스
+  @CrossOrigin("*")
   @PostMapping(value = "insert_uservoice")
   public void insertVoice(@RequestBody UserVO vo) throws Exception {
     try {
@@ -79,6 +85,7 @@ public class InsertController {
   }
 
   // 유저 회원가입
+  @CrossOrigin("*")
   @PostMapping(value = "insert_puser")
   public void insertPuser(@RequestBody UserVO vo) throws Exception {
     // 기본정보, 포인트, 이미지
@@ -91,6 +98,7 @@ public class InsertController {
   }
 
   //좋아요 입력
+  @CrossOrigin("*")
   @PostMapping(value="insert_likepeople")
   public void insertLikepeople(@RequestBody LikepeopleVO vo)throws Exception {
     try{
@@ -99,6 +107,13 @@ public class InsertController {
       System.out.println("좋아요 입력 오류" + e.toString());
     }
   }
+  //차단유저입력
+  @CrossOrigin("*")
+  @PostMapping(value="insert_blockuser")
+  public void insertBlockUser(@RequestBody BlockuserVO vo)throws Exception{   
+    idao.insertBlockuser(vo);
+  }
+
   
 }
 

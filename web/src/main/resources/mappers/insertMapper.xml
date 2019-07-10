@@ -34,4 +34,7 @@
     <insert id="insert_likepeople">
         insert into tbl_likepeople(sender, receiver) values(#{sender}, #{receiver})
     </insert>
+    <insert id="insert_blockuser">
+        insert into tbl_blockuser(blocker, blocked, blockedname)values(#{blocker},#{blocked},#{blockedname});
+    </insert>
 </mapper>

@@ -1,5 +1,6 @@
 package com.example.web.persistence;
 
+import com.example.web.domain.BlockuserVO;
 import com.example.web.domain.UserVO;
 
 public interface InsertDAO {
@@ -9,6 +10,7 @@ public interface InsertDAO {
 	public void insertMytype(String userid,int typeid)throws Exception;
 	public void insertLiketype(String userid, int typeid)throws Exception;
 	public void insertUserinfo(UserVO vo)throws Exception;
+	public void insertBlockuser(BlockuserVO vo)throws Exception;
 	public void insertUserHobby(String userid,int hobbyid)throws Exception;
 	public void insertUserVoice(String userid, String voicepath)throws Exception;
 	public void insertLikePeople(String sender,String receiver)throws Exception;

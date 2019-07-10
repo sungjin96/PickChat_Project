@@ -41,5 +41,8 @@
     <select id="checknickname" resultType="int">
         select count(*) from tbl_puser where usernickname=#{usernickname}
     </select>
+    <select id="list_blockuser" resultType="com.example.web.domain.BlockuserVO">
+        select * from tbl_blockuser;
+    </select>
     
 </mapper>

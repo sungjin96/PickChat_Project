@@ -1,9 +1,7 @@
 package com.example.web.service;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import com.example.web.domain.DistinctVO;
+
 import com.example.web.domain.UserVO;
 import com.example.web.persistence.InsertDAO;
 import com.example.web.persistence.UserDAO;
