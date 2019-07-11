@@ -4,7 +4,7 @@ import './style.css';
 const SubComponent = ({content, content2, img}) => {
     return(
         <div >
-            <center><div style={style.container} className="subpic" /></center>
+            <center><div style={style.container} className="sub2pic" /></center>
             {/* <div style={{textAlign: 'center', color:'black'}}>
                 <h1 style={{margin: '15px'}}>{content}</h1>                       
             </div>

@@ -7,7 +7,7 @@ const SubComponent = ({ content, content2 }) => {
             <div style={{ textAlign: 'center', color: 'black' }}>
                 <div style={{ margin: '15px' }}><h1>{content}</h1></div>
                 <div style={{ margin: '15px' }}><h2>{content2}</h2></div>
-                <center><div className="mainpic" /></center>
+                <center><div className="sub1pic" /></center>
             </div>
         </div>
     );
