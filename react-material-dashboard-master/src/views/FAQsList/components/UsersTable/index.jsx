@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import faq from '../../../../data/Faq';
+import Faq from '../../../../data/Faq';
 
 // Externals
 import classNames from 'classnames';
@@ -115,8 +115,8 @@ class UsersTable extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {faq !== undefined
-                  ? faq.map(user => (
+                {Faq !== undefined
+                  ? Faq.map(user => (
                       <TableRow
                         className={classes.tableRow}
                         hover
