@@ -3,6 +3,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import * as Itams from '../Itams';
 
 import './style.css';
 import Axios from 'axios';
@@ -49,40 +50,6 @@ const AntTab = withStyles(theme => ({
   selected: {}
 }))(props => <Tab disableRipple {...props} />);
 
-const StyledTabs = withStyles({
-  indicator: {
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    '& > div': {
-      maxWidth: 40,
-      width: '100%',
-      backgroundColor: '#635ee7'
-    }
-  }
-})(props => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
-
-const StyledTab = withStyles(theme => ({
-  root: {
-    textTransform: 'none',
-    color: '#fff',
-    fontWeight: theme.typography.fontWeightRegular,
-    fontSize: theme.typography.pxToRem(15),
-    marginRight: theme.spacing(1),
-    '&:focus': {
-      opacity: 1
-    }
-  }
-}))(props => <Tab disableRipple {...props} />);
-
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -101,14 +68,27 @@ const useStyles = makeStyles(theme => ({
 const Tap = ({ id }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [bbss, setBbss] = React.useState('');
 
   function handleChange(event, newValue) {
     setValue(newValue);
   }
 
+  function TabContainer(props) {
+    return (
+      <Typography component="div" style={{ padding: 8 * 3 }}>
+        {props.children === '게시글' ? <Itams.BoardList data={bbss} /> : ''}
+        {props.children === '차단' ? <Itams.BlockList userid={id} /> : ''}
+        {props.children === '정보' ? <Itams.BlockList data={bbss} /> : ''}
+      </Typography>
+    );
+  }
+
   React.useEffect(() => {
-    Axios.get(`http://192.168.0.104:5000/board/userbbslist/${id}`);
-  });
+    Axios.get(`http://sungjin5891.cafe24.com/board/userbbslist/${id}`).then(
+      data => setBbss(data.data)
+    );
+  }, []);
 
   return (
     <div>
@@ -121,9 +101,9 @@ const Tap = ({ id }) => {
         <AntTab label="차단" style={{ margin: '0 1rem' }} />
       </AntTabs>
       <Typography className={classes.typography} />
-      {value === 0 && <TabContainer>Item One</TabContainer>}
+      {value === 0 && <TabContainer>정보</TabContainer>}
       {value === 1 && <TabContainer>게시글</TabContainer>}
-      {value === 2 && <TabContainer>Item Three</TabContainer>}
+      {value === 2 && <TabContainer>차단</TabContainer>}
     </div>
   );
 };

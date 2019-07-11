@@ -29,7 +29,7 @@ class Budget extends Component {
   };
 
   componentDidMount() {
-    axios.get('http://192.168.0.104:5000/board/bbslist').then(data => {
+    axios.get('http://sungjin5891.cafe24.com/board/bbslist').then(data => {
       const total = data.data.length;
 
       this.setState({

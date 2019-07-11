@@ -1,25 +1,16 @@
 import React from 'react';
-import axios from 'axios';
-
+import Cards from '../../../../../../PickSta/components/Cards';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
-import Cards from '../Cards';
-
-const List = () => {
+const BoardList = ({ data }) => {
   const [datas, setDatas] = React.useState([]);
   const [value, setVaule] = React.useState(3);
-
-  React.useEffect(() => {
-    axios
-      .get('http://sungjin5891.cafe24.com/board/bbslist')
-      .then(data => setDatas(data.data));
-  }, []);
 
   const getList = () => {
     let bbs = [];
     bbs = datas.slice(0, value);
-    return bbs.map(data => (
+    return data.map(data => (
       <Grid item xs={4} spacing={0}>
         <Cards
           key={data.bno}
@@ -41,14 +32,18 @@ const List = () => {
   return (
     <Grid container spacing={3} style={{ width: '90%', margin: 'auto' }}>
       {getList()}
-      <Button
-        onClick={() => setVaule(value + 3)}
-        style={{ width: '100%' }}
-        variant="outlined">
-        Full
-      </Button>
+      {data.length === 0 ? (
+        '데이터가 없습니다.'
+      ) : (
+        <Button
+          onClick={() => setVaule(value + 3)}
+          style={{ width: '100%' }}
+          variant="outlined">
+          Full
+        </Button>
+      )}
     </Grid>
   );
 };
 
-export default List;
+export default BoardList;

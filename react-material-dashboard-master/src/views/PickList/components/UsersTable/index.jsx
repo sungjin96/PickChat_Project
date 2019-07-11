@@ -43,7 +43,7 @@ class UsersTable extends Component {
   };
 
   componentDidMount() {
-    Axios.get('http://192.168.0.104:5000/board/bbslist').then(data =>
+    Axios.get('http://sungjin5891.cafe24.com/board/bbslist').then(data =>
       this.setState((this.state.client = data.data))
     );
   }

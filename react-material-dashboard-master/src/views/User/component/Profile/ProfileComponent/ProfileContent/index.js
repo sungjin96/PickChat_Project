@@ -8,17 +8,17 @@ const ProfileContent = ({ id }) => {
   const [likeCounter, setLikeCounter] = React.useState(0);
   const [bbsCounter, setBbsCOunter] = React.useState(0);
   React.useEffect(() => {
-    Axios.get(`http://192.168.0.26/user/read/${id}`).then(result =>
+    Axios.get(`http://sungjin5891.cafe24.com/user/read/${id}`).then(result =>
       setUser(result.data)
     );
 
-    Axios.get(`http://192.168.0.26/user/list_likereceiver/${id}`).then(result =>
-      setLikeCounter(result.data.length)
-    );
+    Axios.get(
+      `http://sungjin5891.cafe24.com/user/list_likereceiver/${id}`
+    ).then(result => setLikeCounter(result.data.length));
   }, []);
 
   const getBoardCounter = () => {
-    Axios.get(`http://192.168.0.104:5000/board/userbbslist/${id}`).then(
+    Axios.get(`http://sungjin5891.cafe24.com/board/userbbslist/${id}`).then(
       result => setBbsCOunter(result.data.length)
     );
   };

@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const INSERT = 'INSERT';
-const DELETE = 'DELETE';
-const UPDATE = 'UPDATE';
-const CHECKED = 'CHECKED';
-const CHECK_ALL = 'CHECK_ALL';
+const INSERT = 'Notice/INSERT';
+const DELETE = 'Notice/DELETE';
+const UPDATE = 'Notice/UPDATE';
+const CHECKED = 'Notice/CHECKED';
+const CHECK_ALL = 'Notice/CHECK_ALL';
 
 export const insert = () => ({
   type: INSERT
@@ -23,19 +23,19 @@ const CompleteModule = (state = initialState, action) => {
     case 'INSERT':
       const { title, content } = action.payload;
       axios
-        .post('http://192.168.0.104:5000/notice/insert', { title, content })
+        .post('http://sungjin5891.cafe24.com/notice/insert', { title, content })
         .catch(err => console.log(err));
       return {};
 
     case 'DELETE':
       const { id } = action;
       axios
-        .delete(`http://192.168.0.104:5000/notice/delete/${id}`)
+        .delete(`http://sungjin5891.cafe24.com/notice/delete/${id}`)
         .catch(err => console.log(err));
       return {};
     case 'UPDATE':
       axios
-        .post('http://192.168.0.104:5000/notice/insert', { title, content })
+        .post('http://sungjin5891.cafe24.com/notice/insert', { title, content })
         .catch(err => console.log(err));
       return {};
 

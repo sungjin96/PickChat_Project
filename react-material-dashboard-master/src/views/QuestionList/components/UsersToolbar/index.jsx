@@ -9,6 +9,8 @@ import { withStyles } from '@material-ui/core';
 
 // Material components
 import { Button, IconButton } from '@material-ui/core';
+import CreateModal from '../createModal';
+import Modal from '@material-ui/core/Modal';
 
 // Material icons
 import {
@@ -24,6 +26,18 @@ import { DisplayMode, SearchInput } from 'components';
 import styles from './styles';
 
 class UsersToolbar extends Component {
+  state = {
+    setOpen: false
+  };
+
+  handleOpen = () => {
+    this.setState({ setOpen: true });
+  };
+
+  handleClose = () => {
+    this.setState({ setOpen: false });
+  };
+
   render() {
     const { classes, className, selectedUsers } = this.props;
 
@@ -52,6 +66,15 @@ class UsersToolbar extends Component {
             variant="outlined">
             삭제
           </Button>
+          <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={this.state.setOpen}
+            onClose={this.handleClose}>
+            <div style={{}}>
+              <CreateModal />
+            </div>
+          </Modal>
         </div>
         <div className={classes.row}>
           <SearchInput
