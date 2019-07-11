@@ -13,14 +13,12 @@ import { withStyles } from '@material-ui/core';
 // Material components
 import {
   Avatar,
-  Checkbox,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-  Typography,
-  TablePagination
+  Typography
 } from '@material-ui/core';
 
 // Shared helpers
@@ -43,7 +41,7 @@ class UsersTable extends Component {
   };
 
   componentDidMount() {
-    Axios.get('http://192.168.0.26/user/list_user').then(data =>
+    Axios.get('http://sungjin5891.cafe24.com/user/list_user').then(data =>
       this.setState((this.client = data.data))
     );
   }

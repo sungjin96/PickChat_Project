@@ -32,7 +32,7 @@ class Users extends Component {
   async componentDidMount() {
     let total;
     await axios
-      .get('http://192.168.0.26/user/list_user')
+      .get('http://sungjin5891.cafe24.com/user/list_user')
       .then(data => (total = data.data.length));
     this.setState({ userTotal: total });
   }

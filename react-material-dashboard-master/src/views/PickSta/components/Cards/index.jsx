@@ -48,18 +48,19 @@ const Cards = ({ title, content, writer, tag, date, id, userid, img }) => {
   const [rcount, setRcount] = React.useState(0);
   const [lcount, setLcount] = React.useState(0);
   const [simg, setSImg] = React.useState('');
+  const [tags, setTags] = React.useState(tag === null ? '' : tag);
 
   React.useEffect(() => {
     axios
-      .get(`http://192.168.0.104:5000/reply/count/${id}`)
+      .get(`http://sungjin5891.cafe24.com/board/reply/count/${id}`)
       .then(data => setRcount(data.data));
 
     axios
-      .get(`http://192.168.0.104:5000/board/bbslikecount/${id}`)
+      .get(`http://sungjin5891.cafe24.com/board/bbslikecount/${id}`)
       .then(data => setLcount(data.data));
 
     axios
-      .get(`http://192.168.0.26/user/read/${userid}`)
+      .get(`http://sungjin5891.cafe24.com/user/read/${userid}`)
       .then(data => setSImg(data.data.soloimg));
   }, [id]);
 
@@ -81,8 +82,8 @@ const Cards = ({ title, content, writer, tag, date, id, userid, img }) => {
       <CardMedia className={classes.media} image={img} title="Paella dish" />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {tag.length !== 0 ? (
-            tag.map(data => <Button color="secondary">#{data}</Button>)
+          {tags.length !== 0 ? (
+            tags.map(data => <Button color="secondary">#{data}</Button>)
           ) : (
             <br />
           )}

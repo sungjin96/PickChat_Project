@@ -61,17 +61,14 @@ class Dashboard extends Component {
           classes={{ paper: classes.drawerPaper }}
           onClose={this.handleClose}
           open={isOpen}
-          variant={isMobile ? 'temporary' : 'persistent'}
-        >
+          variant={isMobile ? 'temporary' : 'persistent'}>
           <Sidebar className={classes.sidebar} />
         </Drawer>
         <main
           className={classNames(classes.content, {
             [classes.contentShift]: shiftContent
-          })}
-        >
+          })}>
           {children}
-          <Footer />
         </main>
       </Fragment>
     );
