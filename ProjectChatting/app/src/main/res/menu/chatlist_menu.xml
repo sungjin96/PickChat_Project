@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search"
+        android:title="검색"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="android.widget.SearchView"/>
+
+
+    <item
+        android:id="@+id/chat"
+        android:title="랜덤채팅"
+        android:icon="@drawable/chat_outline"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/order"
+        android:title="채팅정렬"
+        app:showAsAction="never">
+        <menu>
+            <group
+                android:title="채팅정렬"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/asc"
+                    android:title="최신순"/>
+                <item
+                    android:id="@+id/desc"
+                    android:title="오래된순"/>
+            </group>
+        </menu>
+
+    </item>
+    <item
+        android:id="@+id/delete"
+        android:title="채팅삭제"
+        app:showAsAction="never"/>
+
+</menu>
