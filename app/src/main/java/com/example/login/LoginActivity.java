@@ -39,19 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         btnCancel=findViewById(R.id.btnCancel);
         mAuth = FirebaseAuth.getInstance();
 
-        //passPushTokenToServer();
-        //사용자 등록
-//        btnRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                strEmail=edtEmail.getText().toString();
-//                strPassword=edtPassword.getText().toString();
-//                //registerUser(strEmail,strPassword);
-//                edtEmail.setText("");
-//                edtPassword.setText("");
-//            }
-//        });
-
         //사용자 로그인
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,31 +46,10 @@ public class LoginActivity extends AppCompatActivity {
                 strUser=edtUser.getText().toString();
                 strPassword=edtPassword.getText().toString();
                 loginUser(strUser);
-
             }
         });
-
     }
-    //firebase에 user값 넣기
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        FirebaseUser currentUser=mAuth.getCurrentUser();
-//    }
-    //사용자 등록
-//    public void registerUser(String strEmail,String strPassword){
-//        mAuth.createUserWithEmailAndPassword(strEmail,strPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if(task.isSuccessful()){
-//                    FirebaseUser user=mAuth.getCurrentUser();
-//                    Toast.makeText(LoginActivity.this, "createUserWithEmail.success", Toast.LENGTH_SHORT).show();
-//                }else {
-//                    Toast.makeText(LoginActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//    }
+
     //사용자 로그인
     private void loginUser(String user){
         Toast.makeText(this, "user="+strUser, Toast.LENGTH_SHORT).show();
@@ -91,36 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent=new Intent(LoginActivity.this,ChatActivity.class);
         intent.putExtra("user",user);
         startActivity(intent);
-//        mAuth.signInWithCustomToken(user).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if(task.isSuccessful()){
-//                    Toast.makeText(LoginActivity.this, "signInWithEmail:success", Toast.LENGTH_SHORT).show();
-//                    //FirebaseUser user=mAuth.getCurrentUser();
-//                    //updateProfile();
-//                    //Intent intent=new Intent(LoginActivity.this,ChatActivity.class);
-//                    //startActivity(intent);
-//                    finish();
-//                }else {
-//                    Toast.makeText(LoginActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//        mAuth.signInWithEmailAndPassword(user).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if(task.isSuccessful()){
-//                    Toast.makeText(LoginActivity.this, "signInWithEmail:success", Toast.LENGTH_SHORT).show();
-//                    FirebaseUser user=mAuth.getCurrentUser();
-//                    updateProfile();
-//                    Intent intent=new Intent(LoginActivity.this,ChatActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }else {
-//                    Toast.makeText(LoginActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+
     }
     //토큰 값 받기
     private void updateProfile(){

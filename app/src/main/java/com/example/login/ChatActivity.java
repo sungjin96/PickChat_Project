@@ -186,41 +186,6 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        //String userid=strUser.substring(0, strUser.indexOf("@"));
-
-        //FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-//        db=FirebaseDatabase.getInstance();
-//        ref=db.getReference("users/").child(userid);
-//        String fromUser=ref.getKey();
-//        String token=db.getReference("users/"+fromUser+"/"+ref.getKey()).toString();
-//        //String token="eZS3HmvDGvU:APA91bG8FZWLi3KMzWiJwpn0ogCZ9CVwE4RgCeCB0e3ZU2DyS4mvUWeLlwLo0389G1ujTK5o0Novy0UetwkdI4CzWkp5fo_U--OPwD83Qm0m3qSaR0_ZPjLGEOyRc8_jH28KvCHGfUEU";
-//        System.out.println("...............token??"+token);
-//        Gson gson=new Gson();
-//        NotificationVO vo=new NotificationVO();
-//        vo.setTo(fromUser);
-//        vo.notification.title=fromUser;
-//        vo.notification.text="님으로 부터 메세지가 도착했습니다.";
-//        System.out.println("................................."+vo.toString());
-//        RequestBody requestBody=RequestBody.create(MediaType.parse("application/json; charset=utf8"),gson.toJson(vo));
-//
-//        Request request=new Request.Builder()
-//                .header("Content-Type","application/json")
-//                .addHeader("Authorization","key=AIzaSyCOGljuFf47ROFYUougsZqozUOwt0NMeYM")
-//                .url("https://gcm-http.googleapis.com/gcm/send")
-//                .post(requestBody)
-//                .build();
-//        OkHttpClient okHttpClient=new OkHttpClient();
-//        okHttpClient.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//
-//            }
-//        });
     }
 
 

@@ -18,7 +18,7 @@
     <item
         android:title=""
         android:icon="@drawable/heart"
-        android:id="@+id/heart"
+        android:id="@+id/like"
         android:enabled="true"/>
     <item
         android:title=""
