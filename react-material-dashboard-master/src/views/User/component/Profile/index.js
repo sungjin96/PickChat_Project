@@ -8,7 +8,7 @@ import './style.css';
 const Profile = ({ id }) => {
   const [imgPath, setImgPath] = React.useState('');
   React.useEffect(() => {
-    Axios.get(`http://192.168.0.26/user/read/${id}`).then(result =>
+    Axios.get(`http://sungjin5891.cafe24.com/user/read/${id}`).then(result =>
       setImgPath(result.data.soloimg)
     );
   }, []);

@@ -33,13 +33,6 @@ class UsersToolbar extends Component {
       <div className={rootClassName}>
         <div className={classes.row}>
           <span className={classes.spacer} />
-          {selectedUsers.length > 0 && (
-            <IconButton
-              className={classes.deleteButton}
-              onClick={this.handleDeleteUsers}>
-              <DeleteIcon />
-            </IconButton>
-          )}
           <Button
             className={classes.importButton}
             size="small"
@@ -55,13 +48,6 @@ class UsersToolbar extends Component {
           <Button color="primary" size="small" variant="outlined">
             글쓰기
           </Button>
-        </div>
-        <div className={classes.row}>
-          <SearchInput
-            className={classes.searchInput}
-            placeholder="Search user"
-          />
-          <span className={classes.spacer} />
         </div>
       </div>
     );

@@ -1,32 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Chip from '@material-ui/core/Chip';
 import Btn from '../createModal/Btn';
-
-// Externals
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { withStyles } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
-// Material helpers
-import { withStyles, Button } from '@material-ui/core';
-
-// Material components
 import {
-  Avatar,
-  Checkbox,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-  Typography,
-  TablePagination
+  Typography
 } from '@material-ui/core';
-
-// Shared helpers
-import { getInitials } from 'helpers';
 
 // Shared components
 import { Portlet, PortletContent } from 'components';
@@ -35,14 +23,14 @@ import { Portlet, PortletContent } from 'components';
 import styles from './styles';
 import Axios from 'axios';
 
-const UsersTable = ({ classes, className, users }) => {
+const UsersTable = ({ classes, className }) => {
   const [state, setState] = React.useState({
     selectedUsers: [],
     rowsPerPage: 10,
     page: 0,
     client: []
   });
-
+  const input = useSelector(state => state.QuestionModule.input);
   React.useEffect(() => {
     Axios.get('http://sungjin5891.cafe24.com/question/list').then(data =>
       setState({ client: data.data })
@@ -67,47 +55,54 @@ const UsersTable = ({ classes, className, users }) => {
             </TableHead>
             <TableBody>
               {state.client !== undefined
-                ? state.client.map(user => (
-                    <TableRow className={classes.tableRow} hover key={user.qno}>
-                      <TableCell className={classes.tableCell}>
-                        <div className={classes.tableCellInner}>
-                          <Link to="#">
-                            <Typography
-                              className={classes.nameText}
-                              variant="body1"
-                              style={{ fontSize: '1rem' }}>
-                              {user.qwriter}
-                            </Typography>
-                          </Link>
-                        </div>
-                      </TableCell>
-                      <TableCell
-                        className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
-                        {user.qtitle}
-                      </TableCell>
-                      <TableCell
-                        className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
-                        {user.qcontent}
-                      </TableCell>
-                      <TableCell
-                        className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
-                        {user.qccontent}
-                      </TableCell>
-                      <TableCell
-                        className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
-                        {moment(user.qregdate).format('DD/MM/YYYY')}
-                      </TableCell>
-                      <TableCell
-                        className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
-                        <Btn qno={user.qno} />
-                      </TableCell>
-                    </TableRow>
-                  ))
+                ? state.client
+                    .filter(data => {
+                      return data.qtitle.indexOf(input) > -1;
+                    })
+                    .map(user => (
+                      <TableRow
+                        className={classes.tableRow}
+                        hover
+                        key={user.qno}>
+                        <TableCell className={classes.tableCell}>
+                          <div className={classes.tableCellInner}>
+                            <Link to="#">
+                              <Typography
+                                className={classes.nameText}
+                                variant="body1"
+                                style={{ fontSize: '1rem' }}>
+                                {user.qwriter}
+                              </Typography>
+                            </Link>
+                          </div>
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          {user.qtitle}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          {user.qcontent}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          {user.qccontent}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          {moment(user.qregdate).format('DD/MM/YYYY')}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          <Btn qno={user.qno} />
+                        </TableCell>
+                      </TableRow>
+                    ))
                 : ''}
             </TableBody>
           </Table>

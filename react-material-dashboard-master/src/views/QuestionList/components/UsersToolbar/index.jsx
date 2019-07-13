@@ -1,101 +1,52 @@
-import React, { Component } from 'react';
-
-// Externals
-import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from 'classnames';
+import { useDispatch } from 'react-redux';
 
-// Material helpers
+import Modal from '@material-ui/core/Modal';
 import { withStyles } from '@material-ui/core';
 
-// Material components
-import { Button, IconButton } from '@material-ui/core';
 import CreateModal from '../createModal';
-import Modal from '@material-ui/core/Modal';
 
-// Material icons
-import {
-  ArrowDownward as ArrowDownwardIcon,
-  ArrowUpward as ArrowUpwardIcon,
-  Delete as DeleteIcon
-} from '@material-ui/icons';
+import { SearchInput } from 'components';
 
-// Shared components
-import { DisplayMode, SearchInput } from 'components';
-
-// Component styles
 import styles from './styles';
 
-class UsersToolbar extends Component {
-  state = {
+const UsersToolbar = ({ classes, className, selectedUsers }) => {
+  const [state, setState] = React.useState({
     setOpen: false
-  };
-
-  handleOpen = () => {
-    this.setState({ setOpen: true });
-  };
-
-  handleClose = () => {
-    this.setState({ setOpen: false });
-  };
-
-  render() {
-    const { classes, className, selectedUsers } = this.props;
-
-    const rootClassName = classNames(classes.root, className);
-
-    return (
-      <div className={rootClassName}>
-        <div className={classes.row}>
-          <span className={classes.spacer} />
-          {selectedUsers.length > 0 && (
-            <IconButton
-              className={classes.deleteButton}
-              onClick={this.handleDeleteUsers}>
-              <DeleteIcon />
-            </IconButton>
-          )}
-          <Button
-            className={classes.importButton}
-            size="small"
-            variant="outlined">
-            수정
-          </Button>
-          <Button
-            className={classes.exportButton}
-            size="small"
-            variant="outlined">
-            삭제
-          </Button>
-          <Modal
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            open={this.state.setOpen}
-            onClose={this.handleClose}>
-            <div style={{}}>
-              <CreateModal />
-            </div>
-          </Modal>
-        </div>
-        <div className={classes.row}>
-          <SearchInput
-            className={classes.searchInput}
-            placeholder="Search user"
-          />
-          <span className={classes.spacer} />
-        </div>
+  });
+  const dispatch = useDispatch();
+  const rootClassName = classNames(classes.root, className);
+  return (
+    <div className={rootClassName}>
+      <div className={classes.row}>
+        <span className={classes.spacer} />
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={state.setOpen}>
+          <div style={{}}>
+            <CreateModal />
+          </div>
+        </Modal>
       </div>
-    );
-  }
-}
-
-UsersToolbar.propTypes = {
-  className: PropTypes.string,
-  classes: PropTypes.object.isRequired,
-  selectedUsers: PropTypes.array
-};
-
-UsersToolbar.defaultProps = {
-  selectedUsers: []
+      <div className={classes.row}>
+        <SearchInput
+          className={classes.searchInput}
+          placeholder="Search user"
+          onChange={e =>
+            dispatch({
+              type: 'SEARCH_INPUT',
+              payload: {
+                input: e.target.value
+              }
+            })
+          }
+        />
+        <span className={classes.spacer} />
+      </div>
+    </div>
+  );
 };
 
 export default withStyles(styles)(UsersToolbar);

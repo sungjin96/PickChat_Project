@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
 
@@ -33,97 +33,48 @@ import { Portlet, PortletContent } from 'components';
 // Component styles
 import styles from './styles';
 import Axios from 'axios';
+import { useSelector } from 'react-redux';
 
-class UsersTable extends Component {
-  state = {
-    selectedUsers: [],
-    rowsPerPage: 10,
-    page: 0,
+const UsersTable = ({ classes, className }) => {
+  const [state, setState] = useState({
     client: []
-  };
+  });
 
-  componentDidMount() {
+  const input = useSelector(state => state.PickModule.input, []);
+
+  useEffect(() => {
     Axios.get('http://sungjin5891.cafe24.com/board/bbslist').then(data =>
-      this.setState((this.state.client = data.data))
+      setState({ client: data.data })
     );
-  }
+  }, []);
 
-  handleSelectAll = event => {
-    const { users, onSelect } = this.props;
+  const rootClassName = classNames(classes.root, className);
 
-    let selectedUsers;
-
-    if (event.target.checked) {
-      selectedUsers = users.map(user => user.userid);
-    } else {
-      selectedUsers = [];
-    }
-
-    this.setState({ selectedUsers });
-
-    onSelect(selectedUsers);
-  };
-
-  handleSelectOne = (event, id) => {
-    const { onSelect } = this.props;
-    const { selectedUsers } = this.state;
-
-    const selectedIndex = selectedUsers.indexOf(id);
-    let newSelectedUsers = [];
-
-    if (selectedIndex === -1) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers, id);
-    } else if (selectedIndex === 0) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(1));
-    } else if (selectedIndex === selectedUsers.length - 1) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelectedUsers = newSelectedUsers.concat(
-        selectedUsers.slice(0, selectedIndex),
-        selectedUsers.slice(selectedIndex + 1)
-      );
-    }
-
-    this.setState({ selectedUsers: newSelectedUsers });
-
-    onSelect(newSelectedUsers);
-  };
-
-  handleChangePage = (event, page) => {
-    this.setState({ page });
-  };
-
-  handleChangeRowsPerPage = event => {
-    this.setState({ rowsPerPage: event.target.value });
-  };
-
-  render() {
-    const { classes, className, users } = this.props;
-    const { selectedUsers, page, client } = this.state;
-
-    const rootClassName = classNames(classes.root, className);
-    return (
-      <Portlet className={rootClassName}>
-        <PortletContent noPadding>
-          <PerfectScrollbar>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell align="left">작성자</TableCell>
-                  <TableCell align="left">제목</TableCell>
-                  <TableCell align="left">내용</TableCell>
-                  <TableCell align="left">태그</TableCell>
-                  <TableCell align="left">등록일</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {client !== undefined
-                  ? client.map(user => (
+  return (
+    <Portlet className={rootClassName}>
+      <PortletContent noPadding>
+        <PerfectScrollbar>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell align="left">작성자</TableCell>
+                <TableCell align="left">제목</TableCell>
+                <TableCell align="left">내용</TableCell>
+                <TableCell align="left">태그</TableCell>
+                <TableCell align="left">등록일</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {state.client !== undefined
+                ? state.client
+                    .filter(data => {
+                      return data.title.indexOf(input) > -1;
+                    })
+                    .map(user => (
                       <TableRow
                         className={classes.tableRow}
                         hover
-                        key={user.bno}
-                        selected={selectedUsers.indexOf(user.bno) !== -1}>
+                        key={user.bno}>
                         <TableCell className={classes.tableCell}>
                           <div className={classes.tableCellInner}>
                             <Avatar
@@ -171,28 +122,13 @@ class UsersTable extends Component {
                         </TableCell>
                       </TableRow>
                     ))
-                  : ''}
-              </TableBody>
-            </Table>
-          </PerfectScrollbar>
-        </PortletContent>
-      </Portlet>
-    );
-  }
-}
-
-UsersTable.propTypes = {
-  className: PropTypes.string,
-  classes: PropTypes.object.isRequired,
-  onSelect: PropTypes.func,
-  onShowDetails: PropTypes.func,
-  users: PropTypes.array.isRequired
-};
-
-UsersTable.defaultProps = {
-  users: [],
-  onSelect: () => {},
-  onShowDetails: () => {}
+                : ''}
+            </TableBody>
+          </Table>
+        </PerfectScrollbar>
+      </PortletContent>
+    </Portlet>
+  );
 };
 
 export default withStyles(styles)(UsersTable);
