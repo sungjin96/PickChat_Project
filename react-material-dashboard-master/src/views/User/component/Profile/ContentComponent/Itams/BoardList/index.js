@@ -4,13 +4,12 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
 const BoardList = ({ data }) => {
-  const [datas, setDatas] = React.useState([]);
   const [value, setVaule] = React.useState(3);
 
   const getList = () => {
     let bbs = [];
-    bbs = datas.slice(0, value);
-    return data.map(data => (
+    bbs = data.slice(0, value);
+    return bbs.map(data => (
       <Grid item xs={4} spacing={0}>
         <Cards
           key={data.bno}
@@ -21,9 +20,7 @@ const BoardList = ({ data }) => {
           writer={data.writer}
           img={data.imgpath}
           tag={data.tagword}
-          userid={data.userid}
-          lcount={241}
-          rcount={592}
+          soloimg={data.soloimg}
         />
       </Grid>
     ));

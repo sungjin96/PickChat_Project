@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
 import { useDispatch } from 'react-redux';
 
 // Externals
+=======
+>>>>>>> 55ab21cb36b1606dc00f3b357f2ed71453d89bfb
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
-// Material helpers
 import { withStyles } from '@material-ui/core';
 
 // Material components
@@ -35,8 +37,12 @@ const UsersTable = ({ classes, className }) => {
     client: []
   });
 
+<<<<<<< HEAD
 
   const dispatch = useDispatch();
+=======
+  const input = useSelector(state => state.NoticeModule.input, []);
+>>>>>>> 55ab21cb36b1606dc00f3b357f2ed71453d89bfb
 
   React.useEffect(() => {
     Axios.get('http://sungjin5891.cafe24.com/notice/list').then(data =>
@@ -62,6 +68,7 @@ const UsersTable = ({ classes, className }) => {
             </TableHead>
             <TableBody>
               {state.client !== undefined
+<<<<<<< HEAD
                 ? state.client.map(user => (
                     <TableRow className={classes.tableRow} hover key={user.nno}>
                       <TableCell className={classes.tableCell}>
@@ -101,6 +108,51 @@ const UsersTable = ({ classes, className }) => {
                       </TableCell>
                     </TableRow>
                   ))
+=======
+                ? state.client
+                    .filter(data => {
+                      return data.title.indexOf(input) > -1;
+                    })
+                    .map(user => (
+                      <TableRow
+                        className={classes.tableRow}
+                        hover
+                        key={user.nno}>
+                        <TableCell className={classes.tableCell}>
+                          <div className={classes.tableCellInner}>
+                            <Link to="#">
+                              <Typography
+                                className={classes.nameText}
+                                variant="body1"
+                                style={{ fontSize: '1rem' }}>
+                                {user.nno}
+                              </Typography>
+                            </Link>
+                          </div>
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          {user.title}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          {user.content}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          {moment(user.regdate).format('DD/MM/YYYY')}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          <DeleteBtn id={user.nno} />
+                        </TableCell>
+                      </TableRow>
+                    ))
+>>>>>>> 55ab21cb36b1606dc00f3b357f2ed71453d89bfb
                 : ''}
             </TableBody>
           </Table>

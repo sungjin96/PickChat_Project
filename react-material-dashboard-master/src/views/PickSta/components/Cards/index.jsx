@@ -41,13 +41,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Cards = ({ title, content, writer, tag, date, id, userid, img }) => {
+const Cards = ({ title, content, writer, tag, date, id, soloimg, img }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const [rcount, setRcount] = React.useState(0);
   const [lcount, setLcount] = React.useState(0);
-  const [simg, setSImg] = React.useState('');
   const [tags, setTags] = React.useState(tag === null ? '' : tag);
 
   React.useEffect(() => {
@@ -58,10 +57,6 @@ const Cards = ({ title, content, writer, tag, date, id, userid, img }) => {
     axios
       .get(`http://sungjin5891.cafe24.com/board/bbslikecount/${id}`)
       .then(data => setLcount(data.data));
-
-    axios
-      .get(`http://sungjin5891.cafe24.com/user/read/${userid}`)
-      .then(data => setSImg(data.data.soloimg));
   }, [id]);
 
   function handleExpandClick() {
@@ -72,9 +67,11 @@ const Cards = ({ title, content, writer, tag, date, id, userid, img }) => {
     <Card className={classes.card} style={{ margin: 'auto' }}>
       <CardHeader
         avatar={
-          <Avatar aria-label="Recipe" className={classes.avatar} src={simg}>
-            <img src={simg} alt="프사" />
-          </Avatar>
+          <Avatar
+            aria-label="Recipe"
+            className={classes.avatar}
+            src={soloimg}
+          />
         }
         title={title}
         subheader={`${writer} / ${date}`}
