@@ -19,5 +19,9 @@ public interface RemoteService {
     @GET("/user/list_user")
     Call<List<UserProfileVO>> listUser();
 
+    /*이미지 리스트*/
+    @GET("board/bbslist")
+    Call<ArrayList<BBSimgVO>> list();
+
 
 }
