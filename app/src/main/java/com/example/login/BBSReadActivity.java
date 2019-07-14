@@ -284,64 +284,64 @@ public class BBSReadActivity extends AppCompatActivity {
                 box.show();
                 break;
 //            /*신고하기*/
-//            case R.id.btnPolice:
-////                Toast.makeText(ReadActivity.this, test, Toast.LENGTH_SHORT).show();
-//                Context mContext = getApplicationContext();
-//                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-//                final View view = inflater.inflate(R.layout.bbs_hidden, (ViewGroup) findViewById(R.id.poppup));
-//                pTitel = view.findViewById(R.id.pTitel);
-//                pUserid = view.findViewById(R.id.pUserid);
-//                pTitel.setText(bbsVO.getTitle());
-//                pUserid.setText(bbsVO.getWriter());
-//                AlertDialog.Builder pbox = new AlertDialog.Builder(BBSReadActivity.this);
-//                pbox.setView(view);
-//                /*신고스피너 아이템*/
-//                Spinner spin = view.findViewById(R.id.spinner);
-//                final ArrayAdapter pAdapter = ArrayAdapter.createFromResource(BBSReadActivity.this,
-//                        R.array.policeContent, android.R.layout.simple_spinner_item);
-//                pAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-//                spin.setAdapter(pAdapter);
-//                spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                    @Override
-//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                        Toast.makeText(BBSReadActivity.this, "선택" + pAdapter.getItem(position), Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//                    @Override
-//                    public void onNothingSelected(AdapterView<?> parent) {
-//
-//                    }
-//                });
-//
-//                pbox.setNeutralButton("취소", null);
-//                pbox.setPositiveButton("신고", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        BBSReplyVO vo = new BBSReplyVO();
-//                        edtPoliceContent = view.findViewById(R.id.edtPoliceContent);
-//                        vo.setContent(edtPoliceContent.getText().toString());
-//                        RemoteService rs = retrofit.create(RemoteService.class);
-//                        Call<Void> call = rs.bbsPolice(vo);
-//                        call.enqueue(new Callback<Void>() {
-//                            @Override
-//                            public void onResponse(Call<Void> call, Response<Void> response) {
-//                                Toast.makeText(BBSReadActivity.this, "신고되였습니다.", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<Void> call, Throwable t) {
-//
-//                            }
-//                        });
-//                        finish();
-//
-//
-//                    }
-//                });
-//
-//                pbox.show();
-//                break;
+            case R.id.btnPolice:
+//                Toast.makeText(ReadActivity.this, test, Toast.LENGTH_SHORT).show();
+                Context mContext = getApplicationContext();
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+                final View view = inflater.inflate(R.layout.bbs_hidden, (ViewGroup) findViewById(R.id.poppup));
+                pTitel = view.findViewById(R.id.pTitel);
+                pUserid = view.findViewById(R.id.pUserid);
+                pTitel.setText(bbsVO.getTitle());
+                pUserid.setText(bbsVO.getWriter());
+                AlertDialog.Builder pbox = new AlertDialog.Builder(BBSReadActivity.this);
+                pbox.setView(view);
+                /*신고스피너 아이템*/
+                Spinner spin = view.findViewById(R.id.spinner);
+                final ArrayAdapter pAdapter = ArrayAdapter.createFromResource(BBSReadActivity.this,
+                        R.array.policeContent, android.R.layout.simple_spinner_item);
+                pAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+                spin.setAdapter(pAdapter);
+                spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        Toast.makeText(BBSReadActivity.this, "선택" + pAdapter.getItem(position), Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+                pbox.setNeutralButton("취소", null);
+                pbox.setPositiveButton("신고", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        BBSReplyVO vo = new BBSReplyVO();
+                        edtPoliceContent = view.findViewById(R.id.edtPoliceContent);
+                        vo.setContent(edtPoliceContent.getText().toString());
+                        RemoteService rs = retrofit.create(RemoteService.class);
+                        Call<Void> call = rs.bbsPolice(vo);
+                        call.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                Toast.makeText(BBSReadActivity.this, "신고되였습니다.", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+
+                            }
+                        });
+                        finish();
+
+
+                    }
+                });
+
+                pbox.show();
+                break;
 //
         }
 

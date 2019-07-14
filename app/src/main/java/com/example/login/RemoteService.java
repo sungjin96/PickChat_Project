@@ -49,6 +49,11 @@ public interface RemoteService {
     Call<Void> replyInsert(
             @Body() BBSReplyVO vo);
 
+    /*게시물 신고하기*/
+    @POST("board/police/insert/{bno}")
+    Call<Void> bbsPolice(
+            @Body() BBSReplyVO vo);
+
 
 
 
