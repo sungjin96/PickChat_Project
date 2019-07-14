@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="home">
+        <item>L01,서울특별시</item>
+        <item>L02,부산광역시</item>
+        <item>L03,대구광역시</item>
+        <item>L04,인천광역시</item>
+        <item>L05,광주광역시</item>
+        <item>L06,대전광역시</item>
+        <item>L07,울산광역시</item>
+        <item>L08,세종특별자치시</item>
+        <item>L09,경기도</item>
+        <item>L10,강원도</item>
+        <item>L11,충청북도</item>
+        <item>L12,충청남도</item>
+        <item>L13,전라북도</item>
+        <item>L14,전라남도</item>
+        <item>L15,경상북도</item>
+        <item>L16,경상남도</item>
+        <item>L17,제주도</item>
+    </string-array>
+
+</resources>
