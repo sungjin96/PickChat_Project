@@ -6,6 +6,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="채팅화면 입니다."/>
+        android:text="채팅 가능한 사람의 리스트 입니다."/>
+    <GridView
+        android:numColumns="1"
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

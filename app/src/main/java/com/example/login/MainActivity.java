@@ -13,7 +13,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bnaView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction tr = fm.beginTransaction();
                 switch (menuItem.getItemId()){
                     case R.id.home:
+                        getSupportActionBar().setTitle("메인화면");
                         HomeFragment homefragment=new HomeFragment();
                         if(fragment!=null) {
                             tr.replace(R.id.frame, homefragment, "home");
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         return true;
                     case R.id.bbs:
+                        getSupportActionBar().setTitle("게시판");
                         BbsFragment bbsfragment=new BbsFragment();
                         if(fragment!=null) {
                             tr.replace(R.id.frame, bbsfragment, "bbs");
@@ -51,8 +52,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                         return true;
                     case R.id.chat:
+                        getSupportActionBar().setTitle("채팅 가능 사람");
                         ChatFragment chatfragment=new ChatFragment();
                         if(fragment!=null) {
+
                             tr.replace(R.id.frame, chatfragment, "chat");
                             tr.commit();
                         }
@@ -76,8 +79,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
-
 }

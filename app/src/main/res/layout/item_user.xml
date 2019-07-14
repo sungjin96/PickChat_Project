@@ -46,5 +46,14 @@
             android:layout_below="@id/local"
             android:layout_margin="5sp"
             android:text="안녕하세요"/>
-
+        <TextView
+            android:id="@+id/btnchat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="채팅시작"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10sp"
+            android:background="#A09D9D"
+            />
 </RelativeLayout>
