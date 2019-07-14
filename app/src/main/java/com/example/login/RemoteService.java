@@ -54,6 +54,17 @@ public interface RemoteService {
     Call<Void> bbsPolice(
             @Body() BBSReplyVO vo);
 
+    /*좋아요클릭*/
+    @POST("board/bbslikeinsert")
+    Call<Void> lickInsert(
+            @Body() BBSimgVO vo);
+
+    @POST("board/bbslikedelete/{bno}/{liker}")
+    Call<Void> lickDelete(
+            @Path("bno") int bno,
+            @Path("liker") String liker
+    );
+
 
 
 

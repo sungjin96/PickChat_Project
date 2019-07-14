@@ -116,37 +116,37 @@ public class BBSReadActivity extends AppCompatActivity {
             }
         });
         /*좋아요 클릭*/
-//        readHeart.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                final BBSimgVO vo = new BBSimgVO();
-//                vo.setBno(bno);
-//                /*로그인한 사람 */
-//                vo.setLiker("01000020002");
-//                i = 1 - i;
-//                if (i != 0) {
-//                    Call<Void> calllick = rs.lickInsert(vo);
-//                    calllick.enqueue(new Callback<Void>() {
-//                        @Override
-//                        public void onResponse(Call<Void> call, Response<Void> response) {
-//                            Toast.makeText(ReadActivity.this, vo.getLiker() + "좋아요", Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<Void> call, Throwable t) {
-//                        }
-//                    });
-//                    readHeart.setImageResource(R.drawable.heart2);
-//                } else {
-//                    Log.v("번호", "===" + vo.getLiker());
-//                    Call<Void> callLD = rs.lickDelete(bno, vo.getLiker());
-//                    Toast.makeText(ReadActivity.this, vo.getLiker() + "취소", Toast.LENGTH_SHORT).show();
-//                    readHeart.setImageResource(R.drawable.heart);
-//                }
-//
-//            }
-//        });
+        readHeart.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final BBSimgVO vo = new BBSimgVO();
+                vo.setBno(bno);
+                /*로그인한 사람 */
+                vo.setLiker("01000020002");
+                i = 1 - i;
+                if (i != 0) {
+                    Call<Void> calllick = rs.lickInsert(vo);
+                    calllick.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            Toast.makeText(BBSReadActivity.this, vo.getLiker() + "좋아요", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                        }
+                    });
+                    readHeart.setImageResource(R.drawable.heart2);
+                } else {
+                    Log.v("번호", "===" + vo.getLiker());
+                    Call<Void> callLD = rs.lickDelete(bno, vo.getLiker());
+                    Toast.makeText(BBSReadActivity.this, vo.getLiker() + "취소", Toast.LENGTH_SHORT).show();
+                    readHeart.setImageResource(R.drawable.heart);
+                }
+
+            }
+        });
         /*댓글 클릭시 */
         imgContent.setOnClickListener(new View.OnClickListener() {
             @Override
