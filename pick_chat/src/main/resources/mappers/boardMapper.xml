@@ -7,14 +7,16 @@
 	</select>
 
 	<select id="bbslist" resultType="com.example.domain.BoardVO">
-		select b.*, l.soloimg from tbl_bbs b, userlist l
+		select b.*, l.soloimg from
+		tbl_bbs b, userlist l
 		where b.writer=l.usernickname
 		order by bno desc
 	</select>
 
 	<select id="bbsread" resultType="com.example.domain.BoardVO">
 		select * from tbl_bbs
-		where bno = #{bno}
+		where bno =
+		#{bno}
 	</select>
 
 	<select id="bbsimglist" resultType="com.example.domain.BoardVO">
@@ -28,7 +30,8 @@
 	</insert>
 
 	<update id="bbsupdate">
-		update tbl_bbs set title=#{title}, writer=#{writer}, content=#{content},
+		update tbl_bbs set title=#{title}, writer=#{writer},
+		content=#{content},
 		imgpath=#{imgpath}
 		where bno=#{bno}
 	</update>
@@ -42,10 +45,13 @@
 	</select>
 
 	<select id="userbbslist" resultType="com.example.domain.BoardVO">
-		select b.* from tbl_bbs b, tbl_puser p
-		where p.userid = #{userid} and b.writer = p.usernickname
+		select b.*, l.soloimg from
+		tbl_bbs b, tbl_puser p, userlist l
+		where p.userid = #{userid} and
+		b.writer = p.usernickname and b.writer = l.usernickname
 		order by bno desc
 	</select>
+
 	<!-- bbslike Start -->
 	<select id="bbslikeread" resultType="com.example.domain.BoardVO">
 		select * from tbl_bbslike
@@ -53,30 +59,36 @@
 	</select>
 
 	<select id="bbslikecount" resultType="int">
-		select count(*) from tbl_bbslike
+		select count(*) from
+		tbl_bbslike
 		where bno = #{bno}
 	</select>
 
 	<insert id="bbslikeinsert">
 		insert into tbl_bbslike(bno, liker)
-		values(#{bno}, #{liker})
+		values(#{bno},
+		#{liker})
 	</insert>
 
 	<delete id="bbslikedelete">
-		delete from tbl_bbslike where bno = #{bno} and liker = #{liker}
+		delete from tbl_bbslike where bno = #{bno} and liker
+		= #{liker}
 	</delete>
 
 	<!-- bbstag Start -->
 	<select id="bbstagread" resultType="com.example.domain.BoardVO">
-		select distinct bno from tbl_tag where tagword like
+		select distinct bno from
+		tbl_tag where tagword like
 		concat('%',#{tagword},'%');
 	</select>
 	<select id="bnotagread" resultType="String">
-		select tagword from tbl_tag where bno = #{bno};
+		select tagword from tbl_tag
+		where bno = #{bno};
 	</select>
 	<insert id="bbstaginsert">
 		insert into tbl_tag(bno, tagword)
-		values(#{bno}, #{tagword})
+		values(#{bno},
+		#{tagword})
 	</insert>
 
 </mapper>
