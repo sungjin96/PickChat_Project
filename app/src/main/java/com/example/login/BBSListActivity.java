@@ -66,8 +66,8 @@ public class BBSListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(BBSListActivity.this, "입력", LENGTH_LONG).show();
-//                Intent intent = new Intent(BBSListActivity.this, InsertActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(BBSListActivity.this, BBSInsertActivity.class);
+                startActivity(intent);
             }
         });
 
