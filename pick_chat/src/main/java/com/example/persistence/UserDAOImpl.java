@@ -88,4 +88,20 @@ public class UserDAOImpl implements UserDAO {
 		return session.selectOne(namespace + ".appointmentread", userid);
 	}
 
+	@Override
+	public void appointmentdelete(String userid) throws Exception {
+		session.delete(namespace + ".appointmentdelete", userid);
+
+	}
+
+	@Override
+	public void deleteBlockuser(int blockno) throws Exception {
+		session.delete(namespace + ".delete_blockuser", blockno);
+	}
+
+	@Override
+	public List<String> listEachlike(String userid) throws Exception {
+		return session.selectList(namespace + ".list_eachlike", userid);
+	}
+
 }

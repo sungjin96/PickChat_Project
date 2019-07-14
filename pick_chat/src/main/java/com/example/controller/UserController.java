@@ -146,4 +146,31 @@ public class UserController {
 		return dao.appointmentread(userid);
 	}
 
+	// 약속 삭제
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "appointmentdelete/{userid}", method = RequestMethod.DELETE)
+	public void appointmentdelete(@PathVariable String userid) throws Exception {
+		dao.appointmentdelete(userid);
+	}
+
+	// 한 명 차단
+	@CrossOrigin("*")
+	@RequestMapping(value = "delete_blockuser/{blockno}", method = RequestMethod.POST)
+	public void deleteBlockuser(@PathVariable int blockno) throws Exception {
+		dao.deleteBlockuser(blockno);
+	}
+
+	// 채팅 가능 한 사람의 리스트 프로필
+	@CrossOrigin("*")
+	@RequestMapping(value = "user_eachlike/{userid}", method = RequestMethod.GET)
+	public List<UserVO> userEachlike(@PathVariable String userid) throws Exception {
+		List<String> array = dao.listEachlike(userid);
+		ArrayList<UserVO> array2 = new ArrayList<>();
+		for (int i = 0; i < array.size(); i++) {
+			UserVO vo = dao.readUser(array.get(i));
+			array2.add(vo);
+		}
+		return array2;
+	}
+
 }

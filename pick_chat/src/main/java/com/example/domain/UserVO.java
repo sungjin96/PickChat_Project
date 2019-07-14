@@ -29,6 +29,33 @@ public class UserVO {
 	private String soloimg;
 	private String latitude;
 	private String longitude;
+	private String apaddress;
+	private String apdate;
+	private String aptime;
+
+	public String getApaddress() {
+		return apaddress;
+	}
+
+	public void setApaddress(String apaddress) {
+		this.apaddress = apaddress;
+	}
+
+	public String getApdate() {
+		return apdate;
+	}
+
+	public void setApdate(String apdate) {
+		this.apdate = apdate;
+	}
+
+	public String getAptime() {
+		return aptime;
+	}
+
+	public void setAptime(String aptime) {
+		this.aptime = aptime;
+	}
 
 	public String getLatitude() {
 		return latitude;
@@ -239,7 +266,8 @@ public class UserVO {
 				+ ", userage=" + userage + ", usernickname=" + usernickname + ", localcode=" + localcode
 				+ ", localname=" + localname + ", regdate=" + regdate + ", gendername=" + gendername + ", loginstatus="
 				+ loginstatus + ", userpoint=" + userpoint + ", gendercode=" + gendercode + ", reasonid=" + reasonid
-				+ ", soloimg=" + soloimg + ", latitude=" + latitude + ", longitude=" + longitude + "]";
+				+ ", soloimg=" + soloimg + ", latitude=" + latitude + ", longitude=" + longitude + ", apaddress="
+				+ apaddress + ", apdate=" + apdate + ", aptime=" + aptime + "]";
 	}
 
 }

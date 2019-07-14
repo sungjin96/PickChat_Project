@@ -44,4 +44,13 @@
     <select id="appointmentread" resultType="com.example.domain.UserVO">
     	select * from tbl_appointment where userid=#{userid}
     </select>
+    <delete id="appointmentdelete">
+        delete from tbl_appointment where userid=#{userid}
+    </delete>
+    <delete id="delete_blockuser">
+        delete from tbl_blockuser where blockno=#{blockno}
+    </delete>
+    <select id="list_eachlike" resultType="String">
+        select sender from tbl_likepeople where receiver = #{userid} and sender= ANY(select receiver from tbl_likepeople where sender = #{userid})
+    </select>
 </mapper>

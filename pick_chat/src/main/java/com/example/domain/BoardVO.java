@@ -17,9 +17,18 @@ public class BoardVO {
     private int tno;
     private int tagcode;
     private String[] tagword;
+    private String soloimg;
+    
+    public String getSoloimg() {
+		return soloimg;
+	}
 
-    public int getBno() {
-        return bno;
+	public void setSoloimg(String soloimg) {
+		this.soloimg = soloimg;
+	}
+
+	public int getBno() {
+        return bno; 
     }
 
     public void setBno(int bno) {

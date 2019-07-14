@@ -69,7 +69,7 @@ public class BoardController {
 		try {
 			service.bbsinsert(vo);
 		} catch (Exception e) {
-			System.out.println("�꽌鍮꾩뒪 �엯�젰 �삤瑜�" + e.toString());
+			System.out.println("bbsinsert error" + e.toString());
 		}
 	}
 
@@ -120,7 +120,7 @@ public class BoardController {
 				dao.bbstaginsert(vo.getBno(), tagword[i]);
 			}
 		} catch (Exception e) {
-			System.out.println("�깭洹� �씤�꽌�듃" + e.toString());
+			System.out.println("bbstaginsert error" + e.toString());
 		}
 	}
 }

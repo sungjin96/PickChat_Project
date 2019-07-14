@@ -22,8 +22,11 @@ public interface UserDAO {
 	public List<CategoryVO> listHobbyCategory()throws Exception;
 	public UserVO readUser(String userid);
 	public int checkid(String userid)throws Exception;
-	public int checknickname(String usernickname)throws Exception;
+	public int checknickname(String usernickname)throws Exception;	
 	
 	public UserVO appointmentread(String userid)throws Exception;
+	public void appointmentdelete(String userid)throws Exception;
 	
+	public void deleteBlockuser(int blockno)throws Exception;
+	public List<String> listEachlike(String userid)throws Exception;
 }
