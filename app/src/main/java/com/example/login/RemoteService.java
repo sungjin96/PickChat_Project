@@ -28,5 +28,11 @@ public interface RemoteService {
     Call<BBSimgVO> bbsRead(
             @Path("bno") int bno);
 
+    /*추가*/
+    @POST("board/bbsinsert/")
+    Call<Void> bbsinsert(
+            @Body() BBSimgVO vo,
+            @Part MultipartBody.Part imgpath);
+
 
 }

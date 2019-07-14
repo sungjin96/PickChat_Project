@@ -61,7 +61,7 @@ public class BBSReadActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bbs_layout);
+        setContentView(R.layout.read_layout);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         getSupportActionBar().setTitle("상세페이지");
         retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
@@ -92,22 +92,6 @@ public class BBSReadActivity extends AppCompatActivity {
         String imgPath = intent.getStringExtra("imgPath");
 
 
-//        사용자 정보
-
-//        Call<UserVO> callUser = rs.readUser("01000020002");
-//        callUser.enqueue(new Callback<UserVO>() {
-//            @Override
-//            public void onResponse(Call<UserVO> call, Response<UserVO> response) {
-//                userVO = response.body();
-//                Glide.with(ReadActivity.this).load(userVO.getSoloimg()).into(soloimg);
-//                usernickname.setText(userVO.getUsernickname());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<UserVO> call, Throwable t) {
-//                Log.d("오류", t.getMessage());
-//            }
-//        });
         /*상세페이지 */
         Call<BBSimgVO> call = rs.bbsRead(bno);
         call.enqueue(new Callback<BBSimgVO>() {
