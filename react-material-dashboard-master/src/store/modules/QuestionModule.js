@@ -16,7 +16,7 @@ const QuestionModule = (state = initialState, action) => {
       console.log(qno);
 
       Axios.patch(`http://sungjin5891.cafe24.com/question/update`, {
-        content,
+        qccontent: content,
         qno
       }).catch(err => console.log(err));
       return {};

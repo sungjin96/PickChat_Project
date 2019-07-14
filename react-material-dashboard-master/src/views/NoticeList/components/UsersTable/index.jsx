@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 // Externals
 import classNames from 'classnames';
@@ -33,6 +34,9 @@ const UsersTable = ({ classes, className }) => {
     page: 0,
     client: []
   });
+
+
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     Axios.get('http://sungjin5891.cafe24.com/notice/list').then(data =>
@@ -90,6 +94,9 @@ const UsersTable = ({ classes, className }) => {
                       <TableCell
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
+                          <button onClick={() => dispatch({type: 'DELETE', payload: {
+                            nno: user.nno
+                          }})}>test</button>
                         <DeleteBtn id={user.nno} />
                       </TableCell>
                     </TableRow>
