@@ -243,11 +243,11 @@ public class BBSReadActivity extends AppCompatActivity {
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        Intent intent = getIntent();
-//        final int bno = intent.getExtras().getInt("bno");
-//        switch (item.getItemId()) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+      Intent intent = getIntent();
+       final int bno = intent.getExtras().getInt("bno");
+       switch (item.getItemId()) {
 //            case R.id.btnUpdate:
 //                Intent UPintent = new Intent(BBSReadActivity.this, BBSUpdateActivity.class);
 //                UPintent.putExtra("bno", bno);
@@ -256,33 +256,33 @@ public class BBSReadActivity extends AppCompatActivity {
 //                startActivity(UPintent);
 //                break;
 //
-//            /*게시글 삭제*/
-//            case R.id.btnDelete:
-//                AlertDialog.Builder box = new AlertDialog.Builder(BBSReadActivity.this);
-//                box.setTitle("알림");
-//                box.setMessage("삭제하시겠습니까?");
-//                box.setNegativeButton("취소", null);
-//                box.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        Call<Void> call = rs.bbsDelete(bno);
-//                        call.enqueue(new Callback<Void>() {
-//                            @Override
-//                            public void onResponse(Call<Void> call, Response<Void> response) {
-//                                Toast.makeText(BBSReadActivity.this, "삭제되였습니다.", Toast.LENGTH_SHORT).show();
-//
-//                                finish();
-//
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<Void> call, Throwable t) {
-//                            }
-//                        });
-//                    }
-//                });
-//                box.show();
-//                break;
+            /*게시글 삭제*/
+            case R.id.btnDelete:
+                AlertDialog.Builder box = new AlertDialog.Builder(BBSReadActivity.this);
+                box.setTitle("알림");
+                box.setMessage("삭제하시겠습니까?");
+                box.setNegativeButton("취소", null);
+                box.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Call<Void> call = rs.bbsDelete(bno);
+                        call.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                Toast.makeText(BBSReadActivity.this, "삭제되였습니다.", Toast.LENGTH_SHORT).show();
+
+                                finish();
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                            }
+                        });
+                    }
+                });
+                box.show();
+                break;
 //            /*신고하기*/
 //            case R.id.btnPolice:
 ////                Toast.makeText(ReadActivity.this, test, Toast.LENGTH_SHORT).show();
@@ -343,9 +343,9 @@ public class BBSReadActivity extends AppCompatActivity {
 //                pbox.show();
 //                break;
 //
-//        }
-//
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 }

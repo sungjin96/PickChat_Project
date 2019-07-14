@@ -34,5 +34,9 @@ public interface RemoteService {
             @Body() BBSimgVO vo,
             @Part MultipartBody.Part imgpath);
 
+    /*게시물 삭제*/
+    @DELETE("board/bbsdelete/{bno}")
+    Call<Void> bbsDelete(
+            @Path("bno") int bno);
 
 }
