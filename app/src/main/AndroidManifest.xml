@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.login">
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UserProfile"></activity>
+        <activity android:name=".UserProfile" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,6 +44,19 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".HWJ_ProfileActivity" />
+        <activity android:name=".HWJ_ShareActivity" />
+        <activity android:name=".HWJ_NoticeActivity" />
+        <activity android:name=".HWJ_TOSActivity" />
+        <activity android:name=".HWJ_BlockActivity" />
+        <activity android:name=".HWJ_LikeActivity" />
+        <activity android:name=".HWJ_OtherActivity" />
+        <activity android:name=".HWJ_FAQActivity" />
+        <activity android:name=".HWJ_AccountActivity" />
+        <activity android:name=".HWJ_BlockListActivity" />
+        <activity android:name=".HWJ_AlarmActivity" />
+        <activity android:name=".HWJ_QuitActivity" />
     </application>
 
 </manifest>

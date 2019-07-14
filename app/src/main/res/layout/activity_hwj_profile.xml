@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/soloimg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/a">
+
+    <TextView
+        android:id="@+id/userfragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/purchase"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background_rounding_purple_edge_profile"
+        android:padding="20dp" />
+
+    <RelativeLayout
+        android:id="@+id/purchase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background_rounding_purple_edge_profile"
+        android:paddingBottom="10sp"
+        android:paddingTop="10sp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:drawableLeft="@drawable/icon_purchase"
+            android:text="포인트 구매"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

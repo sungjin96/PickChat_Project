@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HWJ_FAQActivity">
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/question">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/btn1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/background_edge"
+                android:padding="5sp">
+
+                <TextView
+                    android:id="@+id/title1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="픽챗 서비스 이용 방법을 알려주세요."
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/content1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title1"
+                    android:layout_marginTop="10sp"
+                    android:text="픽챗은 매일 회원님을 위한 맞춤 상대를 추천해드립니다. 채팅의 경우 랜덤채팅과 채팅을 원하는 상대에게 좋아요를 보낸 후 상대가 좋아요를 수락하면 서로 대화할 수 있습니다."
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/btnView1"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_down" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/background_edge"
+                android:padding="5sp">
+
+                <TextView
+                    android:id="@+id/title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/btnView2"
+                    android:layout_marginLeft="5sp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="지인들에게 제 프로필이 노출되지 않게 해주세요."
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/content2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title2"
+                    android:layout_marginTop="10sp"
+                    android:text="회원님의 소중한 프라이버시를 위해 다양한 방법으로 지인 차단 기능을 제공하고 있습니다. 우측 하단 [내 정보] - [주변 친구차단]에서 주소록 휴대전화번호를 차단할 수 있습니다. 또한, 앱 내에서 지인을 만날 경우 상대 프로필에서 상대를 차단하면 그 즉시 상대는 회원님을 볼 수 없습니다."
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/btnView2"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_down" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/background_edge"
+                android:padding="5sp">
+
+                <TextView
+                    android:id="@+id/title3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="목록에 있던 상대가 사라졌어요."
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/content3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title3"
+                    android:layout_marginTop="10sp"
+                    android:text="회원님의 소중한 프라이버시를 위해 다양한 방법으로 지인 차단 기능을 제공하고 있습니다. 우측 하단 [내 정보] - [주변 친구차단]에서 주소록 휴대전화번호를 차단할 수 있습니다. 또한, 앱 내에서 지인을 만날 경우 상대 프로필에서 상대를 차단하면 그 즉시 상대는 회원님을 볼 수 없습니다."
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/btnView3"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_down" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/background_edge"
+                android:padding="5sp">
+
+                <TextView
+                    android:id="@+id/title4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="앱 내 결제 외 다른 결제 방법이 있나요?"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/content4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title4"
+                    android:layout_marginTop="10sp"
+                    android:text="앱 내 결제 외 다른 결제 방법이 궁금하시면 글램 고객센터 메일(taeyong03188@google.com)로 문의주시면 답변 드리겠습니다."
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/btnView4"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_down" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/background_edge"
+                android:padding="5sp">
+
+                <TextView
+                    android:id="@+id/title5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="허위/도용 계정을 발견했어요."
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/content5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title5"
+                    android:layout_marginTop="10sp"
+                    android:text="허위/도용으로 보이는 계정의 닉네임과 증거가 될 수 있는 정보를 글램 고객센터 메일(taeyong03188@google.com)로 보내주시기 바랍니다. 확인 후 서비스 정책에 따라 즉시 조치하겠습니다."
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/btnView5"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_down" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/background_edge"
+                android:padding="5sp">
+
+                <TextView
+                    android:id="@+id/title6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="회원 가입이 되지 않아요."
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/content6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title6"
+                    android:layout_marginTop="10sp"
+                    android:text="픽챗은 허위/중복 계정의 가입을 방지하기 위해 1개의 번호에 1개의 계정만 가입을 허용하고 있습니다. 기존에 가입한 계정이 있다면 탈퇴 후 다시 가입을 시도해주시기 바랍니다."
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/btnView6"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_down" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/background_edge"
+                android:padding="5sp">
+
+                <TextView
+                    android:id="@+id/title7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="계정 탈퇴는 어떻게 하나요?"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/content7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title7"
+                    android:layout_marginTop="10sp"
+                    android:text="우측 하단 [내 정보]-[계정 설정]-[회원 탈퇴]를 누르면 계정 탈퇴를 할 수 있습니다."
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/btnView7"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_down" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/background_edge"
+                android:padding="5sp">
+
+                <TextView
+                    android:id="@+id/title8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:layout_toLeftOf="@id/btnView8"
+                    android:text="계정을 탈퇴하면 모든 정보가 함께 삭제되나요?"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/content8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title8"
+                    android:layout_marginTop="10sp"
+                    android:text="우측 하단 [내 정보]-[계정 설정]-[회원 탈퇴]를 누르면 계정 탈퇴를 할 수 있습니다."
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/btnView8"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_down" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/background_edge"
+                android:padding="5sp">
+
+                <TextView
+                    android:id="@+id/title9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="시스템 오류를 발견했어요."
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/content9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title9"
+                    android:layout_marginTop="10sp"
+                    android:text="서비스 이용에 불편을 드린 점 사과드립니다. 내 정보에서 문의하기로 메일을 보내주시거나 오류 화면을 갭처 후 상세 내용과 함께 글램 고객센터 메일(taeyong03188@google.com)"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/btnView9"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_down" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15sp"
+        android:background="@drawable/background_rounding_purple"
+        android:paddingBottom="10sp"
+        android:paddingTop="10sp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="28sp"
+                android:layout_height="28sp"
+                android:layout_marginRight="10sp"
+                android:src="@drawable/icon_question" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="문의하기"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
