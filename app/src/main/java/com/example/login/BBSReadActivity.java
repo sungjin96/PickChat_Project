@@ -148,35 +148,35 @@ public class BBSReadActivity extends AppCompatActivity {
 //            }
 //        });
         /*댓글 클릭시 */
-//        imgContent.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (y == 0) {
-//                    Call<List<BBSimgVO>> callReply = rs.replyList(bno);
-//                    callReply.enqueue(new Callback<List<BBSimgVO>>() {
-//                        @Override
-//                        public void onResponse(Call<List<BBSimgVO>> call, Response<List<BBSimgVO>> response) {
-////                            Log.v("아아아아아아아ㅏ아", "====" + bno);
-//                            Rarray = response.body();
-//                            LinearLayoutManager manager = new LinearLayoutManager(ReadActivity.this);
-//                            contentList.setLayoutManager(manager);
-//
-//                            adapter = new BBSContentAdapter(ReadActivity.this, Rarray);
-//                            contentList.setAdapter(adapter);
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<List<BBSimgVO>> call, Throwable t) {
-//                        }
-//                    });
-//                    contentList.setVisibility(View.VISIBLE);
-//                    y = -1;
-//                } else {
-//                    contentList.setVisibility(View.GONE);
-//                    y = 0;
-//                }
-//            }
-//        });
+        imgContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (y == 0) {
+                    Call<List<BBSimgVO>> callReply = rs.replyList(bno);
+                    callReply.enqueue(new Callback<List<BBSimgVO>>() {
+                        @Override
+                        public void onResponse(Call<List<BBSimgVO>> call, Response<List<BBSimgVO>> response) {
+//                            Log.v("아아아아아아아ㅏ아", "====" + bno);
+                            Rarray = response.body();
+                            LinearLayoutManager manager = new LinearLayoutManager(BBSReadActivity.this);
+                            contentList.setLayoutManager(manager);
+
+                            adapter = new BBSContentAdapter(BBSReadActivity.this, Rarray);
+                            contentList.setAdapter(adapter);
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<BBSimgVO>> call, Throwable t) {
+                        }
+                    });
+                    contentList.setVisibility(View.VISIBLE);
+                    y = -1;
+                } else {
+                    contentList.setVisibility(View.GONE);
+                    y = 0;
+                }
+            }
+        });
 
 
 
@@ -184,53 +184,53 @@ public class BBSReadActivity extends AppCompatActivity {
 
 
         /*댓글 보내기*/
-//        replySend.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(final View v) {
-//                final BBSReplyVO vo = new BBSReplyVO();
-//                vo.setBno(bno);
-//                vo.setContent(edtReply.getText().toString());
-//                /*로그인한 사람 */
-//                vo.setWriter(bbsVO.getLiker());
-//                Log.i("댓글", "======" + vo.getContent());
-//
-//                replySend.setOnKeyListener(new View.OnKeyListener() {
-//                    @Override
-//                    public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                        if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-//                            hidenkeyboard(replySend);
-//                            return true;
-//                        }
-//                        return false;
-//                    }
-//                    private void hidenkeyboard(ImageView et) {
-//                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                        imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
-//
-//                    }
-//
-//                });
-//
-//                BBSRemoteService rs = retrofit.create(BBSRemoteService.class);
-//                Call<Void> callSend = rs.replyInsert(vo);
-//                callSend.enqueue(new Callback<Void>() {
-//                    @Override
-//                    public void onResponse(Call<Void> call, Response<Void> response) {
-//
-//                        Toast.makeText(ReadActivity.this, "보내기완료", Toast.LENGTH_SHORT).show();
-//                        edtReply.setText("");
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<Void> call, Throwable t) {
-//
-//                    }
-//                });
-//
-//
-//            }
-//        });
+        replySend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                final BBSReplyVO vo = new BBSReplyVO();
+                vo.setBno(bno);
+                vo.setContent(edtReply.getText().toString());
+                /*로그인한 사람 */
+                vo.setWriter(bbsVO.getLiker());
+                Log.i("댓글", "======" + vo.getContent());
+
+                replySend.setOnKeyListener(new View.OnKeyListener() {
+                    @Override
+                    public boolean onKey(View v, int keyCode, KeyEvent event) {
+                        if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                            hidenkeyboard(replySend);
+                            return true;
+                        }
+                        return false;
+                    }
+                    private void hidenkeyboard(ImageView et) {
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
+
+                    }
+
+                });
+
+                RemoteService rs = retrofit.create(RemoteService.class);
+                Call<Void> callSend = rs.replyInsert(vo);
+                callSend.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                        Toast.makeText(BBSReadActivity.this, "보내기완료", Toast.LENGTH_SHORT).show();
+                        edtReply.setText("");
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+
+                    }
+                });
+
+
+            }
+        });
 
 
 

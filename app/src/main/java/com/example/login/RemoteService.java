@@ -14,7 +14,7 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface RemoteService {
-    public static final String BASE_URL="http://sungjin5891.cafe24.com/";
+    public static final String BASE_URL = "http://sungjin5891.cafe24.com/";
 
     @GET("/user/list_user")
     Call<List<UserProfileVO>> listUser();
@@ -38,5 +38,20 @@ public interface RemoteService {
     @DELETE("board/bbsdelete/{bno}")
     Call<Void> bbsDelete(
             @Path("bno") int bno);
+
+    /*  댓글리스트*/
+    @GET("board/reply/list/{bno}")
+    Call<List<BBSimgVO>> replyList(
+            @Path("bno") int bno);
+
+    /*댓글달기*/
+    @POST("board/reply/insert")
+    Call<Void> replyInsert(
+            @Body() BBSReplyVO vo);
+
+
+
+
+
 
 }
