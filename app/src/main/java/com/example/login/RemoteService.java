@@ -23,5 +23,10 @@ public interface RemoteService {
     @GET("board/bbslist")
     Call<ArrayList<BBSimgVO>> list();
 
+    /*상세페이지-해당게시글*/
+    @GET("board/bbsread/{bno}")
+    Call<BBSimgVO> bbsRead(
+            @Path("bno") int bno);
+
 
 }

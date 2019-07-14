@@ -85,18 +85,18 @@ public class BBSListActivity extends AppCompatActivity {
 
                 adapter = new BBSImageAdapter(BBSListActivity.this, (ArrayList<BBSimgVO>) array);
                 list.setAdapter(adapter);
-//                BBSItemClickSupport.addTo(list).setOnItemClickListener(new BBSItemClickSupport.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-//                        Intent intent = new Intent(BBSListActivity.this, ReadActivity.class);
-//                        intent.putExtra("bno", array.get(position).getBno());
-////                        intent.putExtra("imgPath", array.get(position).getImgpath());
-////                        Log.d("이미지패스", array.get(position).getImgpath());
-//                        startActivity(intent);
-//
-//
-//                    }
-//                });
+                BBSItemClickSupport.addTo(list).setOnItemClickListener(new BBSItemClickSupport.OnItemClickListener() {
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                        Intent intent = new Intent(BBSListActivity.this, BBSReadActivity.class);
+                        intent.putExtra("bno", array.get(position).getBno());
+//                        intent.putExtra("imgPath", array.get(position).getImgpath());
+//                        Log.d("이미지패스", array.get(position).getImgpath());
+                        startActivity(intent);
+
+
+                    }
+                });
             }
 
             @Override
