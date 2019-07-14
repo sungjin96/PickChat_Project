@@ -1,10 +1,10 @@
-.sub2pic {
-    background-image: url(../../../../assets/img/subpic2.jpg);    
-    width: 200%;
-    height: 52rem;
-    /* background-size: 100% 100vh;
-    filter:alpha(opacity=70);
+.mainlogo {
+    background-image: url(../../../../assets/img/MainLogo.png);    
+    width: 10%;
+    height: 10rem;
+    background-size: 100% 100vh;
+    /* filter:alpha(opacity=70);
     opacity: 1.0;
-    -moz-opacity:0.8; */
-    
+    -moz-opacity:0.8;
+     */
 }

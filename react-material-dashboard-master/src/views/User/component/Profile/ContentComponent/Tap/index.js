@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Tap = ({ id }) => {
+const Tap = ({id}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [bbss, setBbss] = React.useState('');
