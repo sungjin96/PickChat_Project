@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_margin="10sp"
-        android:backgroundTint="#A074FF"
+        android:backgroundTint="#ff006c"
         android:src="@drawable/icon_favorite"
         app:borderWidth="0dp" />
 
@@ -27,7 +27,7 @@
         android:layout_alignParentBottom="true"
         android:padding="20dp"
         android:layout_margin="20dp"
-        android:background="@drawable/background_rounding_purple_edge_profile"
+        android:background="@drawable/background_rounding_red_edge_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

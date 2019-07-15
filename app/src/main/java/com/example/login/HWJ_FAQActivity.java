@@ -232,7 +232,7 @@ public class HWJ_FAQActivity extends AppCompatActivity {
                     intent.setType("text/plain");
 
                     //문의하기 멘트
-                    intent.setData(Uri.parse("pickchat_help@gmail.com"));
+                    intent.setData(Uri.parse("pickchat_help@gmail.com")); //개발자 이메일 입력 부분
                     intent.putExtra(Intent.EXTRA_SUBJECT, "[문의] 고객센터에 문의합니다");
                     intent.putExtra(Intent.EXTRA_TEXT, "내용:\n\n\n------------------------------"
                             + "\n회원님의 빠른 문제 해결을 위해 관련 등록정보를 함께 발송합니다. 해당 정보는 선택사항입니다\n"

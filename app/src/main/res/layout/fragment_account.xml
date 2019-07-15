@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="164dp"
             android:layout_alignParentTop="true"
-            android:background="#A074FF" />
+            android:background="#ff006c" />
 
         <ImageView
             android:id="@+id/soloimg"
@@ -86,6 +86,15 @@
                 android:text="사는 지역" />
         </LinearLayout>
 
+        <TextView
+            android:layout_below="@id/user_name_sub"
+            android:id="@+id/userpoint"
+            android:text="유저포인트"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
             android:id="@+id/linear1"
             android:layout_width="match_parent"
@@ -102,7 +111,7 @@
                 android:layout_height="50sp"
                 android:layout_margin="10sp"
                 android:layout_weight="1"
-                android:background="@drawable/background_rounding_purple"
+                android:background="@drawable/background_rounding_red"
                 android:text="프로필"
                 android:textSize="20sp" />
 
@@ -112,7 +121,7 @@
                 android:layout_height="50sp"
                 android:layout_margin="10sp"
                 android:layout_weight="1"
-                android:background="@drawable/background_rounding_purple"
+                android:background="@drawable/background_rounding_red"
                 android:text="충전"
                 android:textSize="20sp" />
 
@@ -122,7 +131,7 @@
                 android:layout_height="50sp"
                 android:layout_margin="10sp"
                 android:layout_weight="1"
-                android:background="@drawable/background_rounding_purple"
+                android:background="@drawable/background_rounding_red"
                 android:text="친구소개"
                 android:textSize="20sp" />
         </LinearLayout>

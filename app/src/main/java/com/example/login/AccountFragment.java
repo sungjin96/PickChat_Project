@@ -29,7 +29,7 @@ public class AccountFragment extends Fragment {
     RemoteService rs;
     UserProfileVO vo;
     ImageView soloimg, alarm, friend_block, notice, terms_of_service, account, faq;
-    TextView usernickname, userid, username, userjob, userage, localname;
+    TextView usernickname, userid, username, userjob, userage, localname, userpoint;
     Button profile, charge, read_contact;
     Intent intent;
 
@@ -46,6 +46,7 @@ public class AccountFragment extends Fragment {
         userage = root.findViewById(R.id.userage);
         localname = root.findViewById(R.id.localname);
         soloimg = root.findViewById(R.id.soloimg);
+        userpoint = root.findViewById(R.id.userpoint);
 
         //사용자 프로필 사진 동그랗게
         soloimg.setBackground(new ShapeDrawable(new OvalShape()));
@@ -74,7 +75,7 @@ public class AccountFragment extends Fragment {
         charge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HWJ_BottomSheetDialog bottomSheetDialog = HWJ_BottomSheetDialog.getInstance();
+                HWJ_BottomSheetDialog bottomSheetDialog = HWJ_BottomSheetDialog.getInstance(vo.getUserpoint());
                 bottomSheetDialog.show(getFragmentManager(), "bottomSheet");
             }
         });
@@ -168,6 +169,7 @@ public class AccountFragment extends Fragment {
                 userjob.setText(vo.getUserjob().toString());
                 userage.setText(vo.getUserage().toString());
                 localname.setText(vo.getLocalname().toString());
+                userpoint.setText(vo.getUserpoint() + "p");
 
                 //이미지 적용
                 Picasso.with(getContext())

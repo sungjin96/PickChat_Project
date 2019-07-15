@@ -11,9 +11,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.login.RemoteService.BASE_URL;
+
 public class HWJ_QuitActivity extends AppCompatActivity {
     Button btn_point;
     TextView quit;
+    Retrofit retrofit;
+    RemoteService rs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +35,33 @@ public class HWJ_QuitActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_back);
         getSupportActionBar().setTitle("회원탈퇴");
 
-        //포인트 버튼 설정
+        //서버 연결
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        rs = retrofit.create(RemoteService.class);
+
+        //포인트 버튼 설정(+100p)
         btn_point = findViewById(R.id.btn_point);
         btn_point.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HWJ_QuitActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(intent);
-                Toast.makeText(HWJ_QuitActivity.this, "100p가 적립되었어요!", Toast.LENGTH_SHORT).show();
+                Call<Void> call = rs.updatePoint("01000020002", 100); //아이디 값 받아오는 구간
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        Toast.makeText(HWJ_QuitActivity.this, "100p가 적립되었어요!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(HWJ_QuitActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
             }
         });
 

@@ -25,6 +25,7 @@
             android:text="현재보유"/>
 
         <TextView
+            android:id="@+id/userpoint"
             android:layout_marginLeft="5sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +55,7 @@
                 android:layout_below="@id/img1"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="100개\n10000원" />
+                android:text="50개\n2500원" />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/charge2"
@@ -75,7 +76,7 @@
                 android:layout_below="@id/img2"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="200개\n20000원" />
+                android:text="100개\n5000원" />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/charge3"
@@ -96,7 +97,7 @@
                 android:layout_below="@id/img3"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="300개\n30000원" />
+                android:text="200개\n10000원" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -124,7 +125,7 @@
                 android:layout_below="@id/img4"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="500개\n50000원" />
+                android:text="500개\n25000원" />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/charge5"
@@ -145,7 +146,7 @@
                 android:layout_below="@id/img5"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="1000개\n100000원" />
+                android:text="1000개\n50000원" />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/charge6"
@@ -166,7 +167,7 @@
                 android:layout_below="@id/img6"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="3000개\n200000원" />
+                android:text="2000개\n100000원" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

@@ -24,7 +24,7 @@
             android:padding="5sp"
             android:layout_marginRight="10sp"
             android:layout_centerVertical="true"
-            android:background="@drawable/background_rounding_purple_edge"
+            android:background="@drawable/background_rounding_red_edge"
             android:layout_alignParentRight="true"
             android:text="모두차단"/>
     </RelativeLayout>

@@ -29,7 +29,7 @@ public class HWJ_ShareActivity extends AppCompatActivity {
         //액션바(뒤로가기 버튼) 설정
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_back);
-        getSupportActionBar().setTitle("친구초대");
+        getSupportActionBar().setTitle("친구소개");
 
         contact = findViewById(R.id.contact);
         contact.setOnClickListener(new View.OnClickListener() {

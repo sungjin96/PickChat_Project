@@ -65,7 +65,7 @@ public class HWJ_ProfileActivity extends AppCompatActivity {
         purchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HWJ_BottomSheetDialog bottomSheetDialog = HWJ_BottomSheetDialog.getInstance();
+                HWJ_BottomSheetDialog bottomSheetDialog = HWJ_BottomSheetDialog.getInstance(vo_profile.getUserpoint());
                 bottomSheetDialog.show(getSupportFragmentManager(), "bottomSheet");
             }
         });

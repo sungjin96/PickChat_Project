@@ -48,6 +48,7 @@ public class HWJ_Like1Fragment extends Fragment{
         return view;
     }
 
+    //나를 좋아요 한 사람 리스트
     @Override
     public void onResume() {
         super.onResume();

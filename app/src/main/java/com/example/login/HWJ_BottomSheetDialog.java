@@ -8,12 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
     RelativeLayout charge1, charge2, charge3, charge4, charge5, charge6;
+    TextView userpoint;
+    static int point;
 
-    public static HWJ_BottomSheetDialog getInstance() {
+    public static HWJ_BottomSheetDialog getInstance(int intPoint) {
+        point=intPoint;
         return new HWJ_BottomSheetDialog();
     }
 
@@ -21,6 +25,10 @@ public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_hwj_bottom_sheet_dialog, container, false);
+
+        userpoint = view.findViewById(R.id.userpoint);
+        userpoint.setText(point + "p");
+
         charge1 = view.findViewById(R.id.charge1);
         charge2 = view.findViewById(R.id.charge2);
         charge3 = view.findViewById(R.id.charge3);

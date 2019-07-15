@@ -379,7 +379,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="15sp"
-        android:background="@drawable/background_rounding_purple"
+        android:background="@drawable/background_rounding_red"
         android:paddingBottom="10sp"
         android:paddingTop="10sp">
 

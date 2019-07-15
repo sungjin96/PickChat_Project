@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/background_rounding_purple_edge"
+        android:background="@drawable/background_rounding_red_edge"
         android:text="흐엉엉"
         android:padding="10sp"
         android:textSize="15sp" />

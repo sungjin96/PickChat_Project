@@ -5,8 +5,10 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RemoteService {
     public static final String BASE_URL="http://sungjin5891.cafe24.com/";
@@ -54,5 +56,9 @@ public interface RemoteService {
     //차단친구목록 삭제
     @POST("user/delete_blockuser/{blockno}")
     Call<Void> deleteBlock(@Path("blockno") int blockno);
+
+    //포인트 업데이트
+    @PATCH("user/update_userpoint/{userid}/{userpoint}")
+    Call<Void> updatePoint(@Path("userid") String userid, @Path("userpoint") int userpoint);
 
 }

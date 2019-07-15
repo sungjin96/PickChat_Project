@@ -3,7 +3,7 @@
     android:id="@+id/blockuser"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#A074FF"
+    android:background="#ff006c"
     android:orientation="horizontal"
     android:layout_marginRight="5sp"
     android:layout_marginLeft="5sp"

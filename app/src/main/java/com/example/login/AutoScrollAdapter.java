@@ -41,7 +41,6 @@ public class AutoScrollAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        //System.out.println("사진 개수??????????????????"+data.size());
         return data.size();
     }
 

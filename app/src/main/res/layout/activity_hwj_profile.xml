@@ -19,7 +19,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/background_rounding_purple_edge_profile"
+        android:background="@drawable/background_rounding_red_edge_profile"
         android:padding="20dp" />
 
     <RelativeLayout
@@ -30,7 +30,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/background_rounding_purple_edge_profile"
+        android:background="@drawable/background_rounding_red_edge_profile"
         android:paddingBottom="10sp"
         android:paddingTop="10sp">
 

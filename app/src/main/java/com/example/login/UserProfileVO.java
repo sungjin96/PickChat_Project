@@ -14,6 +14,15 @@ public class UserProfileVO {
     private String localcode;
     private String gendername;
     private String gendercode;
+    private int userpoint;
+
+    public int getUserpoint() {
+        return userpoint;
+    }
+
+    public void setUserpoint(int userpoint) {
+        this.userpoint = userpoint;
+    }
 
     public int getImgshow() {
         return imgshow;
@@ -135,6 +144,7 @@ public class UserProfileVO {
                 ", localcode='" + localcode + '\'' +
                 ", gendername='" + gendername + '\'' +
                 ", gendercode='" + gendercode + '\'' +
+                ", userpoint=" + userpoint +
                 '}';
     }
 }

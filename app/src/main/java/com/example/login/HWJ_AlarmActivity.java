@@ -30,7 +30,7 @@ public class HWJ_AlarmActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     check1.setText("활성화");
-                    check1.setTextColor(Color.parseColor("#A074FF"));
+                    check1.setTextColor(Color.parseColor("#ff006c"));
                     switchView1.setChecked(true);
                 }else{
                     check1.setText("비활성화");
@@ -48,7 +48,7 @@ public class HWJ_AlarmActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     check2.setText("활성화");
-                    check2.setTextColor(Color.parseColor("#A074FF"));
+                    check2.setTextColor(Color.parseColor("#ff006c"));
                     switchView2.setChecked(true);
                 }else{
                     check2.setText("비활성화");

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     //홈버튼
                     case R.id.home:
-                        getSupportActionBar().setTitle("PickChat");
+                        getSupportActionBar().setTitle("메인화면");
 
                         HomeFragment homefragment=new HomeFragment();
                         if(fragment!=null) {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     //채팅버튼
                     case R.id.chat:
-                        getSupportActionBar().setTitle("채팅");
+                        getSupportActionBar().setTitle("채팅가능사람");
 
                         ChatFragment chatfragment=new ChatFragment();
                         if(fragment!=null) {
@@ -91,9 +91,5 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
     }
-
-
 }
