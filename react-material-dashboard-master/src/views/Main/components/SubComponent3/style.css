@@ -1,31 +1,5 @@
-.item1pic {
-    background-image: url(../../../../assets/img/search-01.jpg);    
-    width: 10%;
-    height: 10rem;
-    background-size: 100% 100vh;
-    float: left;  
-}
 
-.item2pic {
-    background-image: url(../../../../assets/img/TRUST-01.jpg);    
-    width: 10%;
-    height: 10rem;
-    background-size: 100% 100vh;  
-    float: left;  
-}
-
-.item3pic {
-    background-image: url(../../../../assets/img/LISTEN-01.jpg);    
-    width: 10%;
-    height: 10rem;
-    background-size: 100% 100vh;  
-    float: left;  
-}
-
-.item4pic {
-    background-image: url(../../../../assets/img/CHAT-01.jpg);    
-    width: 10%;
-    height: 10rem;
-    background-size: 100% 100vh;
-    float: left;  
-}
+/* 
+.img1:hover {
+    cursor: pointer;
+} */
