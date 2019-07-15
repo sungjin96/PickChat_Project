@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="height">
+        <item>k01,140~145</item>
+        <item>k02,146~150</item>
+        <item>k03,151~155</item>
+        <item>k04,156~160</item>
+        <item>k05,161~165</item>
+        <item>k06,166~170</item>
+        <item>k07,171~175</item>
+        <item>k08,176~180</item>
+        <item>k09,181~185</item>
+        <item>k10,186~190</item>
+
+
+
+
+
+
+
+
+
+    </string-array>
+
+</resources>
