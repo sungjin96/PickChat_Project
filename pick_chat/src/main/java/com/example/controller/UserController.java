@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.domain.BlockuserVO;
 import com.example.domain.CategoryVO;
 import com.example.domain.HobbyVO;
 import com.example.domain.LikeTypeVO;
@@ -158,6 +159,13 @@ public class UserController {
 	@RequestMapping(value = "delete_blockuser/{blockno}", method = RequestMethod.POST)
 	public void deleteBlockuser(@PathVariable int blockno) throws Exception {
 		dao.deleteBlockuser(blockno);
+	}
+
+	// 차단 유저리스트
+	@CrossOrigin("*")
+	@RequestMapping(value = "list_blockuser/{blocker}", method = RequestMethod.GET)
+	public List<BlockuserVO> listblockuser(@PathVariable String blocker) throws Exception {
+		return dao.listBlockUser(blocker);
 	}
 
 	// 채팅 가능 한 사람의 리스트 프로필

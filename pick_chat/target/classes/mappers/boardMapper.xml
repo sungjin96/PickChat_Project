@@ -66,13 +66,11 @@
 
 	<insert id="bbslikeinsert">
 		insert into tbl_bbslike(bno, liker)
-		values(#{bno},
-		#{liker})
+		values(#{bno}, #{liker})
 	</insert>
 
 	<delete id="bbslikedelete">
-		delete from tbl_bbslike where bno = #{bno} and liker
-		= #{liker}
+		delete from tbl_bbslike where bno = #{bno} and liker = #{liker}
 	</delete>
 
 	<!-- bbstag Start -->

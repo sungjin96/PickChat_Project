@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.BlockuserVO;
 import com.example.domain.CategoryVO;
 import com.example.domain.HobbyVO;
 import com.example.domain.LikeTypeVO;
@@ -97,6 +98,11 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void deleteBlockuser(int blockno) throws Exception {
 		session.delete(namespace + ".delete_blockuser", blockno);
+	}
+	
+	@Override
+	public List<BlockuserVO> listBlockUser(String blocker) throws Exception {
+		return session.selectList(namespace + ".list_blockuser", blocker);
 	}
 
 	@Override

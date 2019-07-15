@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.domain.BlockuserVO;
 import com.example.domain.LikepeopleVO;
 import com.example.domain.UserVO;
 import com.example.persistence.InsertDAO;
@@ -118,5 +119,10 @@ public class InsertController {
 			System.out.println("약속잡기 입력 오류" + e.toString());
 		}
 	}
-
+	//차단유저입력
+	  @CrossOrigin("*")
+	  @RequestMapping(value="insert_blockuser", method = RequestMethod.POST)
+	  public void insertBlockUser(@RequestBody BlockuserVO vo)throws Exception{   
+	    idao.insertBlockuser(vo);
+	  }
 }

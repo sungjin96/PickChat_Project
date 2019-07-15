@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Faq from '../../../../data/Faq';
+import Faq from '../../../../data/Faq.js';
 
 // Externals
 import classNames from 'classnames';

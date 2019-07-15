@@ -7,17 +7,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.BlockuserVO;
 import com.example.domain.UserVO;
 
 @Repository
 public class InsertDAOImpl implements InsertDAO {
 
-    @Autowired
+	@Autowired
 	SqlSession session;
 
-    private static final String namespace2 = "insertMapper";
-    
-    @Override
+	private static final String namespace2 = "insertMapper";
+
+	@Override
 	public void insertPuser(UserVO vo) throws Exception {
 		session.insert(namespace2 + ".insert_puser", vo);
 	}
@@ -34,8 +35,6 @@ public class InsertDAOImpl implements InsertDAO {
 		map.put("typeid", typeid);
 		session.insert(namespace2 + ".insert_liketype", map);
 	}
-
-	
 
 	@Override
 	public void insertUserinfo(UserVO vo) throws Exception {
@@ -80,13 +79,18 @@ public class InsertDAOImpl implements InsertDAO {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("sender", sender);
 		map.put("receiver", receiver);
-		session.insert(namespace2+".insert_likepeople",map);
+		session.insert(namespace2 + ".insert_likepeople", map);
 	}
 
 	@Override
 	public void appointmentinsert(UserVO vo) throws Exception {
 		session.insert(namespace2 + ".insert_appointment", vo);
-		
+
+	}
+
+	@Override
+	public void insertBlockuser(BlockuserVO vo) throws Exception {
+		session.insert(namespace2 + ".insert_blockuser", vo);
 	}
 
 }

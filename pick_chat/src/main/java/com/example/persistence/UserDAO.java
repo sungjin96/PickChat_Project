@@ -2,6 +2,7 @@ package com.example.persistence;
 
 import java.util.List;
 
+import com.example.domain.BlockuserVO;
 import com.example.domain.CategoryVO;
 import com.example.domain.HobbyVO;
 import com.example.domain.LikeTypeVO;
@@ -28,5 +29,6 @@ public interface UserDAO {
 	public void appointmentdelete(String userid)throws Exception;
 	
 	public void deleteBlockuser(int blockno)throws Exception;
+	public List<BlockuserVO> listBlockUser(String blocker)throws Exception;
 	public List<String> listEachlike(String userid)throws Exception;
 }

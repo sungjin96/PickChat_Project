@@ -1,5 +1,6 @@
 package com.example.persistence;
 
+import com.example.domain.BlockuserVO;
 import com.example.domain.UserVO;
 
 public interface InsertDAO {
@@ -13,4 +14,5 @@ public interface InsertDAO {
 	public void insertUserVoice(String userid, String voicepath)throws Exception;
 	public void insertLikePeople(String sender,String receiver)throws Exception;
 	public void appointmentinsert(UserVO vo)throws Exception;
+	public void insertBlockuser(BlockuserVO vo)throws Exception;
 }

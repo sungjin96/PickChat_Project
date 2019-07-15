@@ -39,7 +39,7 @@
 	<context:component-scan
 		base-package="com.example.controller" />
 	<resources location="/img/*"
-		mapping="C:\Users\kosmo7-24\Desktop\김태용 자료\PickChat\userimg" />
+		mapping="/home/hosting_users/sungjin5891/img" />
 	<resources location="/img/" mapping="/img/*" />
 
 </beans:beans>
