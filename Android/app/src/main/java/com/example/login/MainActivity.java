@@ -1,5 +1,6 @@
 package com.example.login;
 
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences= getSharedPreferences("userid",MODE_PRIVATE);
+        String userid = sharedPreferences.getString("userid","");
+        Toast.makeText(this, userid+"??????", Toast.LENGTH_SHORT).show();
 
         bnaView=findViewById(R.id.bnaView);
 

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="350sp">
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/image_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
+
+        android:layout_margin="20sp"
         android:scaleType="fitXY"
-        />
+        app:riv_corner_radius_top_right="15dp"
+        app:riv_corner_radius_top_left="15dp"
+        app:riv_corner_radius_bottom_left="15dp"
+        app:riv_corner_radius_bottom_right="15dp"/>
 </LinearLayout>

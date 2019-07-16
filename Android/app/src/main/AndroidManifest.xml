@@ -3,7 +3,7 @@
     package="com.example.login">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,7 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".HWJ_LikeActivity"></activity>
+        <activity android:name=".HWJ_BottomSheetDialog" />
+        <activity android:name=".HWJ_ProfileActivity" />
+        <activity android:name=".HWJ_QuitActivity" />
+        <activity android:name=".HWJ_ShareActivity" />
+        <activity android:name=".HWJ_TOSActivity" />
         <activity android:name=".UserProfile" />
+        <activity android:name=".HWJ_OtherActivity" />
         <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,15 +57,16 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".DetailsActivity" />
         <activity android:name=".TypeActivity" />
-        <activity android:name=".HobbyActivity"></activity>
+        <activity android:name=".HobbyActivity" />
+
         <provider
-            android:authorities="${applicationId}.provider"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
     </application>
 

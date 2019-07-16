@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/heart"
+    android:padding="10sp"
+    android:layout_marginRight="15sp"
+    android:layout_marginLeft="15sp"
+    android:layout_marginTop="5sp"
+    android:id="@+id/btnAll">
+
+    <ImageView
+        android:id="@+id/notice"
+        android:layout_width="28sp"
+        android:layout_height="28sp"
+        android:singleLine="true"
+        android:src="@drawable/heart"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_toRightOf="@id/notice"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="소개팅앱 이용 방법"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notice"
+        android:layout_marginTop="10sp"
+        android:text="돈을 많이 사용하여 호감도를 많이 표현할 수록 많은 이성들에게 대쉬를 받을 수 있습니다 힘내세요 여러분"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/btnView"
+        android:layout_width="25sp"
+        android:layout_height="25sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/heart" />
+</RelativeLayout>

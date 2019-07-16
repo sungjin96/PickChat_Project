@@ -1,6 +1,7 @@
 package com.example.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         btnCancel=findViewById(R.id.btnCancel);
         mAuth = FirebaseAuth.getInstance();
 
+
         //사용자 로그인
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,17 +48,22 @@ public class LoginActivity extends AppCompatActivity {
                 strUser=edtUser.getText().toString();
                 strPassword=edtPassword.getText().toString();
                 loginUser(strUser);
+
             }
         });
     }
 
     //사용자 로그인
     private void loginUser(String user){
-        Toast.makeText(this, "user="+strUser, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "user="+strUser, Toast.LENGTH_SHORT).show();
         updateProfile();
         Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-        intent.putExtra("user",user);
+        //intent.putExtra("user",user);
         startActivity(intent);
+        SharedPreferences sharedPreferences = getSharedPreferences("userid", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("userid", strUser);
+        editor.commit();
 
     }
     //토큰 값 받기
