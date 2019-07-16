@@ -73,7 +73,7 @@ const UsersTable = ({ classes, className }) => {
                               <Typography
                                 className={classes.nameText}
                                 variant="body1"
-                                style={{ fontSize: '1rem' }}>
+                                style={{ fontSize: '0.9rem' }}>
                                 {user.qwriter}
                               </Typography>
                             </Link>
@@ -81,32 +81,32 @@ const UsersTable = ({ classes, className }) => {
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {user.qtitle}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {user.qcontent}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {user.qccontent}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {moment(user.qregdate).format('DD/MM/YYYY')}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           <Btn qno={user.qno} />
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           <DeleteBtn id={user.nno} />
                         </TableCell>
                       </TableRow>

@@ -126,7 +126,7 @@ class UsersTable extends Component {
                         selected={selectedUsers.indexOf(user.bno) !== -1}>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '0.9rem', fontWeight:'bold' }}>
+                          style={{ fontSize: '0.9rem'}}>
                           {user.title}
                         </TableCell>
                         <TableCell
