@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import NoticeModalContainer from '../../../../containers/NoticeModalContainer';
 
-const createModal = () => {
+const Style = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1)
+  },
+  dense: {
+    marginTop: theme.spacing(2)
+  },
+  menu: {
+    width: 200
+  }
+}));
+
+const CreateModal = ({ onInsert }) => {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
   return (
     <div
       style={{
@@ -13,9 +36,39 @@ const createModal = () => {
         width: '60rem',
         height: '50rem'
       }}>
-      createModal
+      <div
+        style={{
+          width: '90%',
+          textAlign: 'center',
+          height: '20%',
+          margin: 'auto'
+        }}>
+        신고사항 입력
+      </div>
+      <TextField
+        label="제목"
+        multiline
+        rows="2"
+        margin="normal"
+        variant="outlined"
+        style={{ width: '98%' }}
+        value={title}
+        onChange={e => setTitle(e.target.value)}
+      />
+      <TextField
+        label="내용"
+        multiline
+        rows="2"
+        margin="normal"
+        variant="outlined"
+        style={{ width: '98%' }}
+        value={content}
+        onChange={e => setContent(e.target.value)}
+      />
+
+      <NoticeModalContainer title={title} content={content} />
     </div>
   );
 };
 
-export default createModal;
+export default CreateModal;

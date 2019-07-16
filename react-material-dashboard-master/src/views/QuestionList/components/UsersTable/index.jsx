@@ -6,6 +6,7 @@ import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { withStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
 
 import {
   Table,
@@ -51,6 +52,8 @@ const UsersTable = ({ classes, className }) => {
                 <TableCell align="left">내용</TableCell>
                 <TableCell align="left">답글</TableCell>
                 <TableCell align="left">등록일</TableCell>
+                <TableCell align="left">답글달기</TableCell>
+                <TableCell align="left">삭제</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -100,6 +103,11 @@ const UsersTable = ({ classes, className }) => {
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
                           <Btn qno={user.qno} />
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          <DeleteBtn id={user.nno} />
                         </TableCell>
                       </TableRow>
                     ))

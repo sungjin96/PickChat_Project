@@ -1,20 +1,23 @@
 import React from 'react';
 import CreateModal from '../../views/NoticeList/components/createModal';
+import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 const NoticeModalContainer = ({ title, content }) => {
   const dispatch = useDispatch();
 
   return (
-    <button
+    <center>
+    <Button
       onClick={() =>
         dispatch({
           type: 'INSERT',
           payload: { title: title, content: content }
         })
       }>
-      Insert
-    </button>
+      공지추가
+    </Button>
+    </center>
   );
 };
 

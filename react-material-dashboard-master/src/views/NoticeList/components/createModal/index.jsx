@@ -33,38 +33,41 @@ const CreateModal = ({ onInsert }) => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: '60rem',
-        height: '50rem'
+        width: '40rem',
+        height: '30rem'
       }}>
+        <br/><br/>
       <div
         style={{
-          width: '90%',
+          width: '100%',
           textAlign: 'center',
-          height: '20%',
+          height: '10%',
           margin: 'auto'
         }}>
         공지사항 입력
       </div>
+      <center>
       <TextField
         label="제목"
         multiline
-        rows="2"
+        rows="3"
         margin="normal"
         variant="outlined"
-        style={{ width: '98%' }}
+        style={{ width: '90%' }}
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <TextField
         label="내용"
         multiline
-        rows="2"
+        rows="7"
         margin="normal"
         variant="outlined"
-        style={{ width: '98%' }}
+        style={{ width: '90%' }}
         value={content}
         onChange={e => setContent(e.target.value)}
       />
+      </center>
 
       <NoticeModalContainer title={title} content={content} />
     </div>
