@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
+import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
 
 // Externals
 import classNames from 'classnames';
@@ -62,6 +63,7 @@ const UsersTable = ({ classes, className }) => {
                 <TableCell align="left">내용</TableCell>
                 <TableCell align="left">태그</TableCell>
                 <TableCell align="left">등록일</TableCell>
+                <TableCell align="left">삭제</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -119,6 +121,11 @@ const UsersTable = ({ classes, className }) => {
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
                           {moment(user.regdate).format('DD/MM/YYYY')}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          <DeleteBtn id={user.nno} />
                         </TableCell>
                       </TableRow>
                     ))

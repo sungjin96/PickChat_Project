@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Faq from '../../../../data/Faq';
+import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
 
 // Externals
 import classNames from 'classnames';
@@ -112,6 +113,7 @@ class UsersTable extends Component {
                   <TableCell align="left">제목</TableCell>
                   <TableCell align="left">내용</TableCell>
                   <TableCell align="left">등록일</TableCell>
+                  <TableCell align="left">삭제</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -124,18 +126,23 @@ class UsersTable extends Component {
                         selected={selectedUsers.indexOf(user.bno) !== -1}>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem', fontWeight:'bold' }}>
                           {user.title}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {user.content}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {moment(user.regdate).format('DD/MM/YYYY')}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          <DeleteBtn id={user.nno} />
                         </TableCell>
                       </TableRow>
                     ))
