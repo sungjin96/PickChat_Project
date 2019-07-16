@@ -1,0 +1,10 @@
+.sub1pic {
+    background-image: url(../../../../assets/img/phone1.png);    
+    width: 30%;
+    height: 30rem;
+    background-size: 100% 100vh;
+    filter:alpha(opacity=70);
+    opacity: 1.0;
+    -moz-opacity:0.8;
+    
+}

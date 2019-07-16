@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F3F2F5"
+    tools:context=".JoinActivity"
+    android:padding="10sp">
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="100sp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/tedori1">
+            <TextView
+                android:id="@+id/txtAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  전체동의"
+                android:textSize="17sp"
+                android:textColor="#000000" />
+            <CheckBox
+                android:id="@+id/allcheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/tedori1"
+            android:layout_marginTop="40sp">
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. 픽쳇은 만 19세 이상이 이용가능합니다"
+                android:textSize="17sp"
+                android:textColor="#000000"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  (필수)"
+                android:textSize="13sp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/txt1"
+                android:layout_centerVertical="true"/>
+            <CheckBox
+                android:id="@+id/btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/tedori">
+
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. 픽쳇 이용 약관 동의"
+                android:textSize="17sp"
+                android:textColor="#000000"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  (필수)"
+                android:textSize="13sp"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/txt2"
+                android:layout_centerVertical="true"/>
+
+            <CheckBox
+                android:id="@+id/btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/tedori">
+            <TextView
+                android:id="@+id/txt3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. 개인정보 수집 및 이용에 대한 동의 "
+                android:textSize="17sp"
+                android:textColor="#000000" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  (필수)"
+                android:textSize="13sp"
+                android:textColor="#000000"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/txt3"/>
+
+            <CheckBox
+                android:id="@+id/btn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/tedori">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. 위치기반서비스 이용에 대한 동의 "
+                android:textSize="17sp"
+                android:textColor="#000000" />
+            <CheckBox
+                android:id="@+id/btn4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/tedori">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5. 마케팅 정보제공 알람 수신 동의 "
+                android:textSize="17sp"
+                android:textColor="#000000" />
+            <CheckBox
+                android:id="@+id/btn5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/aa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="필수 항복 모두 동의 후 이용하실수 있습니다"
+        android:textColor="#9f1a1a"
+        android:gravity="center"
+        android:layout_above="@id/btnnext"
+        android:layout_marginBottom="5dp"/>
+    <Button
+        android:id="@+id/btnnext"
+        android:background="@drawable/button"
+        android:text="동의하고 가입 진행"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>
