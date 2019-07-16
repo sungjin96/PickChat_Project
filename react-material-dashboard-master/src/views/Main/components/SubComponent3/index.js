@@ -13,14 +13,14 @@ const SubComponent = ({ content, content2 }) => {
             <br></br><br></br><br></br>
             <div>
                 <span><img className='img1' src={img1} alt='이미지가 없을때 뜨는 메세지' style={{width:'110px', height:'100px'}}></img></span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span><img className='img1' src={img2} alt='이미지가 없을때 뜨는 메세지' style={{width:'110px', height:'100px'}}></img></span>
             </div>
             <br/><br/><br/>
            
             <div>
                 <span><img className='img1' src={img3} alt='이미지가 없을때 뜨는 메세지' style={{width:'110px', height:'100px'}}></img></span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span><img className='img1' src={img4} alt='이미지가 없을때 뜨는 메세지' style={{width:'110px', height:'100px'}}></img></span>
             </div>
         </div>

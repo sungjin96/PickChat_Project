@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
+import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
 
 // Externals
 import classNames from 'classnames';
@@ -113,6 +114,7 @@ class UsersTable extends Component {
                   <TableCell align="left">신고 글</TableCell>
                   <TableCell align="left">신고 내용</TableCell>
                   <TableCell align="left">reasonid</TableCell>
+                  <TableCell align="left">삭제</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -155,6 +157,11 @@ class UsersTable extends Component {
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
                           {user.reasonid}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          <DeleteBtn id={user.nno} />
                         </TableCell>
                       </TableRow>
                     ))

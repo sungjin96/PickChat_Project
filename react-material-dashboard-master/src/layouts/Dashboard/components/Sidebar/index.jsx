@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import img1 from '../../../../assets/img/MainLogo.png';
-import img2 from '../../../../assets/img/PickChatWord.png';
+import img2 from '../../../../assets/img/home.png';
 
 
 // Externals
@@ -49,7 +49,7 @@ class Sidebar extends Component {
           <Link className={classes.logoLink} to="/">            
             <img
               // className={classes.logoImage}
-              className='img2' src={img2} alt='이미지가 없을때 뜨는 메세지' style={{width:'100px', height:'25px'}}/>
+              className='img2' src={img2} alt='이미지가 없을때 뜨는 메세지' style={{width:'70px', height:'25px'}}/>
           </Link>
         </div>
         <Divider className={classes.logoDivider} />

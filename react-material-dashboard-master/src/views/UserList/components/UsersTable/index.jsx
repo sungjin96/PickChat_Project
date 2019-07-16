@@ -5,6 +5,7 @@ import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { withStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
 
 // Material components
 import {
@@ -56,6 +57,7 @@ const UsersTable = ({ classes, className }) => {
                 <TableCell align="left">성별</TableCell>
                 <TableCell align="left">나이</TableCell>
                 <TableCell align="left">등록일</TableCell>
+                <TableCell align="left">삭제</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -105,6 +107,11 @@ const UsersTable = ({ classes, className }) => {
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
                           {moment(user.regdate).format('DD/MM/YYYY')}
+                        </TableCell>
+                        <TableCell
+                          className={classes.tableCell}
+                          style={{ fontSize: '1rem' }}>
+                          <DeleteBtn id={user.nno} />
                         </TableCell>
                       </TableRow>
                     ))
