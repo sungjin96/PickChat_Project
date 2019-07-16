@@ -41,89 +41,91 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Cards = ({ title, content, writer, tag, date, id, soloimg, img }) => {
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+const Cards = React.memo(
+  ({ title, content, writer, tag, date, id, soloimg, img }) => {
+    const classes = useStyles();
+    const [expanded, setExpanded] = React.useState(false);
 
-  const [rcount, setRcount] = React.useState(0);
-  const [lcount, setLcount] = React.useState(0);
-  const [tags, setTags] = React.useState(tag === null ? '' : tag);
+    const [rcount, setRcount] = React.useState(0);
+    const [lcount, setLcount] = React.useState(0);
+    const [tags, setTags] = React.useState(tag === null ? '' : tag);
+    console.log(img);
+    React.useEffect(() => {
+      axios
+        .get(`http://sungjin5891.cafe24.com/board/reply/count/${id}`)
+        .then(data => setRcount(data.data));
 
-  React.useEffect(() => {
-    axios
-      .get(`http://sungjin5891.cafe24.com/board/reply/count/${id}`)
-      .then(data => setRcount(data.data));
+      axios
+        .get(`http://sungjin5891.cafe24.com/board/bbslikecount/${id}`)
+        .then(data => setLcount(data.data));
+    }, [id]);
 
-    axios
-      .get(`http://sungjin5891.cafe24.com/board/bbslikecount/${id}`)
-      .then(data => setLcount(data.data));
-  }, [id]);
+    function handleExpandClick() {
+      setExpanded(!expanded);
+    }
 
-  function handleExpandClick() {
-    setExpanded(!expanded);
-  }
-
-  return (
-    <Card className={classes.card} style={{ margin: 'auto' }}>
-      <CardHeader
-        avatar={
-          <Avatar
-            aria-label="Recipe"
-            className={classes.avatar}
-            src={soloimg}
-          />
-        }
-        title={title}
-        subheader={`${writer} / ${date}`}
-      />
-      <CardMedia className={classes.media} image={img} title="Paella dish" />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {tags.length !== 0 ? (
-            tags.map(data => <Button color="secondary">#{data}</Button>)
-          ) : (
-            <br />
-          )}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="Add to favorites">
-          <Badge
-            color="primary"
-            badgeContent={lcount}
-            max={10000}
-            showZero
-            className={classes.margin}>
-            <FavoriteIcon />
-          </Badge>
-        </IconButton>
-        <IconButton aria-label="Share">
-          <Badge
-            color="primary"
-            badgeContent={rcount}
-            max={10000}
-            showZero
-            className={classes.margin}>
-            <ChatBubbleOutline />
-          </Badge>
-        </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="Show more">
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+    return (
+      <Card className={classes.card} style={{ margin: 'auto' }}>
+        <CardHeader
+          avatar={
+            <Avatar
+              aria-label="Recipe"
+              className={classes.avatar}
+              src={soloimg}
+            />
+          }
+          title={title}
+          subheader={`${writer} / ${date}`}
+        />
+        <CardMedia className={classes.media} image={img} title="Paella dish" />
         <CardContent>
-          <Typography paragraph>{content}</Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {tags.length !== 0 ? (
+              tags.map(data => <Button color="secondary">#{data}</Button>)
+            ) : (
+              <br />
+            )}
+          </Typography>
         </CardContent>
-      </Collapse>
-    </Card>
-  );
-};
+        <CardActions disableSpacing>
+          <IconButton aria-label="Add to favorites">
+            <Badge
+              color="primary"
+              badgeContent={lcount}
+              max={10000}
+              showZero
+              className={classes.margin}>
+              <FavoriteIcon />
+            </Badge>
+          </IconButton>
+          <IconButton aria-label="Share">
+            <Badge
+              color="primary"
+              badgeContent={rcount}
+              max={10000}
+              showZero
+              className={classes.margin}>
+              <ChatBubbleOutline />
+            </Badge>
+          </IconButton>
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="Show more">
+            <ExpandMoreIcon />
+          </IconButton>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>{content}</Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+    );
+  }
+);
 
 export default Cards;

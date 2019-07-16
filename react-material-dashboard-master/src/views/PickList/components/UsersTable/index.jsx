@@ -34,7 +34,7 @@ import { Portlet, PortletContent } from 'components';
 // Component styles
 import styles from './styles';
 import Axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const UsersTable = ({ classes, className }) => {
   const [state, setState] = useState({
@@ -42,12 +42,13 @@ const UsersTable = ({ classes, className }) => {
   });
 
   const input = useSelector(state => state.PickModule.input, []);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     Axios.get('http://sungjin5891.cafe24.com/board/bbslist').then(data =>
       setState({ client: data.data })
     );
-  }, []);
+  }, [state.client]);
 
   const rootClassName = classNames(classes.root, className);
 
@@ -125,7 +126,17 @@ const UsersTable = ({ classes, className }) => {
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          <DeleteBtn id={user.nno} />
+                          <Button
+                            onClick={() =>
+                              dispatch({
+                                type: 'REMOVE',
+                                payload: {
+                                  bno: user.bno
+                                }
+                              })
+                            }>
+                            DELETE
+                          </Button>
                         </TableCell>
                       </TableRow>
                     ))
