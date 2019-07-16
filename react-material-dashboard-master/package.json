@@ -38,6 +38,7 @@
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.8.6",
+    "react-images-upload": "^1.2.7",
     "react-perfect-scrollbar": "^1.4.4",
     "react-player": "^1.11.1",
     "react-redux": "^7.1.0",

@@ -1,10 +1,14 @@
 import Axios from 'axios';
 
 const SEARCH_INPUT = 'Pick/SEARCH_INPUT';
+const INSERT = 'Pick/INSERT';
 
 export const searchInput = input => ({
   type: SEARCH_INPUT,
   input
+});
+export const insert = () => ({
+  type: INSERT
 });
 
 const initialState = {
@@ -18,6 +22,9 @@ const QuestionModule = (state = initialState, action) => {
         ...state,
         input: action.payload.input
       };
+    case 'INSERT':
+      Axios.post();
+      return {};
     default:
       return state;
   }

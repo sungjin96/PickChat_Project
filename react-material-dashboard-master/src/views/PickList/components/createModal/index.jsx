@@ -1,4 +1,5 @@
 import React from 'react';
+import Insert from './Insert';
 
 const createModal = () => {
   return (
@@ -13,7 +14,7 @@ const createModal = () => {
         width: '60rem',
         height: '50rem'
       }}>
-      createModal
+      <Insert />
     </div>
   );
 };
