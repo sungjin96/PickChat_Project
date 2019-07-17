@@ -12,12 +12,9 @@ const QuestionModule = (state = initialState, action) => {
   switch (action.type) {
     case 'COMMENT':
       const { content, qno } = action.payload;
-
-      console.log(qno);
-
       Axios.patch(`http://sungjin5891.cafe24.com/question/update`, {
-        content,
-        qno
+        qccontent:content,
+         qno
       }).catch(err => console.log(err));
       return {};
     default:

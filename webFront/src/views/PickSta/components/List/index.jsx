@@ -30,7 +30,7 @@ const List = () => {
           writer={data.writer}
           img={data.imgpath}
           tag={data.tagword}
-          userid={data.userid}
+          soloimg={data.soloimg}
           lcount={241}
           rcount={592}
         />

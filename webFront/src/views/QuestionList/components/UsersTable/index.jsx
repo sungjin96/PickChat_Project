@@ -71,14 +71,12 @@ const UsersTable = ({ classes, className, users }) => {
                     <TableRow className={classes.tableRow} hover key={user.qno}>
                       <TableCell className={classes.tableCell}>
                         <div className={classes.tableCellInner}>
-                          <Link to="#">
-                            <Typography
-                              className={classes.nameText}
-                              variant="body1"
-                              style={{ fontSize: '1rem' }}>
-                              {user.qwriter}
-                            </Typography>
-                          </Link>
+                          <Typography
+                            className={classes.nameText}
+                            variant="body1"
+                            style={{ fontSize: '1rem' }}>
+                            {user.qwriter}
+                          </Typography>
                         </div>
                       </TableCell>
                       <TableCell
