@@ -31,7 +31,6 @@ import { useSelector } from 'react-redux';
 
 const UsersTable = ({ classes, className }) => {
   const [state, setState] = React.useState({
-    page: 0,
     client: []
   });
 
