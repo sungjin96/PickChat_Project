@@ -17,7 +17,7 @@ const initialState = {
 
 const PickModule = (state = initialState, action) => {
   switch (action.type) {
-    case 'DELETE':
+    case DELETE:
       const { id } = action.payload;
       axios
         .delete(`http://sungjin5891.cafe24.com/board/bbsdelete/${id}`)

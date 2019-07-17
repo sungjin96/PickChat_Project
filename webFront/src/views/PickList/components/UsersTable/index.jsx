@@ -66,14 +66,12 @@ const UsersTable = ({ classes, className, users }) => {
                               user.writer !== null ? user.writer : ''
                             )}
                           </Avatar>
-                          <Link to="#">
-                            <Typography
-                              className={classes.nameText}
-                              variant="body1"
-                              style={{ fontSize: '1rem' }}>
-                              {user.writer}
-                            </Typography>
-                          </Link>
+                          <Typography
+                            className={classes.nameText}
+                            variant="body1"
+                            style={{ fontSize: '1rem' }}>
+                            {user.writer}
+                          </Typography>
                         </div>
                       </TableCell>
                       <TableCell
@@ -108,7 +106,7 @@ const UsersTable = ({ classes, className, users }) => {
                         <Button
                           onClick={() =>
                             dispatch({
-                              type: 'DELETE',
+                              type: 'Pick/DELETE',
                               payload: { id: user.bno }
                             })
                           }>
