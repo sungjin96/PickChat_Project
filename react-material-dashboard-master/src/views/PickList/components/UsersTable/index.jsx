@@ -91,7 +91,7 @@ const UsersTable = ({ classes, className }) => {
                               <Typography
                                 className={classes.nameText}
                                 variant="body1"
-                                style={{ fontSize: '1rem' }}>
+                                style={{ fontSize: '0.9rem' }}>
                                 {user.writer}
                               </Typography>
                             </Link>
@@ -99,17 +99,17 @@ const UsersTable = ({ classes, className }) => {
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {user.title}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {user.content}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {user.tagword.map((data, index) => (
                             <Chip
                               key={index}
@@ -120,12 +120,12 @@ const UsersTable = ({ classes, className }) => {
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {moment(user.regdate).format('DD/MM/YYYY')}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           <Button
                             onClick={() =>
                               dispatch({

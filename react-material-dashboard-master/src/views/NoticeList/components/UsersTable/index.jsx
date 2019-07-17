@@ -75,7 +75,7 @@ const UsersTable = ({ classes, className }) => {
                               <Typography
                                 className={classes.nameText}
                                 variant="body1"
-                                style={{ fontSize: '1rem' }}>
+                                style={{ fontSize: '0.9rem' }}>
                                 {user.nno}
                               </Typography>
                             </Link>
@@ -83,22 +83,22 @@ const UsersTable = ({ classes, className }) => {
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {user.title}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {user.content}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           {moment(user.regdate).format('DD/MM/YYYY')}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '0.9rem' }}>
                           <DeleteBtn id={user.nno} />
                         </TableCell>
                       </TableRow>
