@@ -26,13 +26,8 @@ import {
 } from '@material-ui/core';
 
 import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
-
-// Shared helpers
-import { getInitials } from 'helpers';
-
-// Shared components
 import { Portlet, PortletContent } from 'components';
-
+import { useDispatch } from 'react-redux';
 // Component styles
 import styles from './styles';
 import Axios from 'axios';
@@ -44,6 +39,8 @@ const UsersTable = ({ classes, className, users }) => {
     page: 0,
     client: []
   });
+
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     Axios.get('http://sungjin5891.cafe24.com/question/list').then(data =>
@@ -60,7 +57,6 @@ const UsersTable = ({ classes, className, users }) => {
           <Table>
             <TableHead>
               <TableRow>
-                
                 <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   아이디
                 </TableCell>
@@ -126,7 +122,17 @@ const UsersTable = ({ classes, className, users }) => {
                       <TableCell
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
-                        <DeleteBtn id={user.nno} />
+                        <Button
+                          onClick={() =>
+                            dispatch({
+                              type: 'Question/REMOVE',
+                              payload: {
+                                id: user.qno
+                              }
+                            })
+                          }>
+                          DELETE
+                        </Button>
                       </TableCell>
                     </TableRow>
                   ))

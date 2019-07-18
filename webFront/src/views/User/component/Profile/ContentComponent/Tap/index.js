@@ -91,7 +91,7 @@ const Tap = ({ id }) => {
   }, []);
 
   return (
-    <div>
+    <div style={{ marginBottom: '10rem' }}>
       <AntTabs
         value={value}
         onChange={handleChange}
