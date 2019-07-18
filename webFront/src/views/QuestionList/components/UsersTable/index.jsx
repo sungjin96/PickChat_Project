@@ -60,6 +60,7 @@ const UsersTable = ({ classes, className, users }) => {
           <Table>
             <TableHead>
               <TableRow>
+<<<<<<< HEAD
                 <TableCell align="left">아이디</TableCell>
                 <TableCell align="left">제목</TableCell>
                 <TableCell align="left">내용</TableCell>
@@ -67,6 +68,23 @@ const UsersTable = ({ classes, className, users }) => {
                 <TableCell align="left">등록일</TableCell>
                 <TableCell align="left">답글등록</TableCell>
                 <TableCell align="left">삭제</TableCell>
+=======
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  아이디
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  제목
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  내용
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  답글
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  등록일
+                </TableCell>
+>>>>>>> f50f6d38b4f81ccaede0cee72cfbeebe8b97f799
               </TableRow>
             </TableHead>
             <TableBody>
