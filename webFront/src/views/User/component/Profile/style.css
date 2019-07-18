@@ -1,0 +1,19 @@
+.img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+
+.imgwrap {
+  width: 15rem;
+  height: 15rem;
+  float: left;
+  padding: 2.5rem;
+}
+
+.profileContent {
+  float: left;
+  width: 40rem;
+  height: 100%;
+  margin: auto 0;
+}
