@@ -108,11 +108,21 @@ class UsersTable extends Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell align="left">번호</TableCell>
-                  <TableCell align="left">신고자</TableCell>
-                  <TableCell align="left">신고 글</TableCell>
-                  <TableCell align="left">신고 내용</TableCell>
-                  <TableCell align="left">reasonid</TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    번호
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    신고자
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    신고 글
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    신고 내용
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    reasonid
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

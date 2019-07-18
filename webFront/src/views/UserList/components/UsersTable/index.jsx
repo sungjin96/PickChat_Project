@@ -107,11 +107,21 @@ class UsersTable extends Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell align="left">이름</TableCell>
-                  <TableCell align="left">아이디</TableCell>
-                  <TableCell align="left">성별</TableCell>
-                  <TableCell align="left">나이</TableCell>
-                  <TableCell align="left">등록일</TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    이름
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    아이디
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    성별
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    나이
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    등록일
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

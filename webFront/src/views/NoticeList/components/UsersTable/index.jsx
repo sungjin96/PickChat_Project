@@ -43,11 +43,21 @@ const UsersTable = React.memo(({ classes, className }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="left">번호</TableCell>
-                <TableCell align="left">제목</TableCell>
-                <TableCell align="left">내용</TableCell>
-                <TableCell align="left">등록일</TableCell>
-                <TableCell align="left">삭제</TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  번호
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  제목
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  내용
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  등록일
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  삭제
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

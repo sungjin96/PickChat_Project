@@ -26,9 +26,15 @@ const UsersTable = ({ classes, className, users }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="left">제목</TableCell>
-                <TableCell align="left">내용</TableCell>
-                <TableCell align="left">등록일</TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  제목
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  내용
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  등록일
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
