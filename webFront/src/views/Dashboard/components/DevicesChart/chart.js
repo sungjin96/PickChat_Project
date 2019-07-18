@@ -5,18 +5,14 @@ import palette from 'theme/palette';
 export const data = {
   datasets: [
     {
-      data: [63, 15, 22],
-      backgroundColor: [
-        palette.primary.main,
-        palette.danger.main,
-        palette.warning.main
-      ],
+      data: [63, 15],
+      backgroundColor: [palette.primary.main, palette.danger.main],
       borderWidth: 8,
       borderColor: palette.common.white,
       hoverBorderColor: palette.common.white
     }
   ],
-  labels: ['Desktop', 'Tablet', 'Mobile']
+  labels: ['남자', '여자']
 };
 
 // Chart options

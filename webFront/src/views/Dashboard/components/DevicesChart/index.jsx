@@ -1,113 +1,99 @@
-import React, { Component } from 'react';
-
-// Externals
+import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
-
-// Material helpers
+import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core';
-
-// Material components
-import { IconButton, Typography } from '@material-ui/core';
-
-// Material icons
 import {
   LaptopMac as LaptopMacIcon,
-  PhoneIphone as PhoneIphoneIcon,
-  Refresh as RefreshIcon,
   TabletMac as TabletMacIcon
 } from '@material-ui/icons';
-
-// Shared components
 import {
   Portlet,
   PortletHeader,
   PortletLabel,
-  PortletToolbar,
   PortletContent
 } from 'components';
-
-// Palette
 import palette from 'theme/palette';
-
-// Chart configuration
-import { data, options } from './chart';
-
-// Component styles
+import { options } from './chart';
 import styles from './styles';
+import Axios from 'axios';
 
-class DevicesChart extends Component {
-  render() {
-    const { classes, className, ...rest } = this.props;
+const DevicesChart = ({ classes, className, ...rest }) => {
+  const rootClassName = classNames(classes.root, className);
+  const [users, setUsers] = React.useState([]);
+  const [counter, setCounter] = React.useState({
+    total: 0,
+    mCounter: 0,
+    wCounter: 0
+  });
 
-    const rootClassName = classNames(classes.root, className);
+  const Counter = () => {
+    React.useEffect(() => {
+      Axios.get('http://sungjin5891.cafe24.com/user/list_user').then(data => {
+        setUsers(data.data);
+        setCounter({
+          ...counter,
+          total: data.data.length
+        });
+      });
+    }, []);
 
-    return (
-      <Portlet
-        {...rest}
-        className={rootClassName}
-      >
-        <PortletHeader noDivider>
-          <PortletLabel title="Users by device" />
-          <PortletToolbar>
-            <IconButton
-              className={classes.refreshButton}
-              onClick={this.handleRefresh}
-              variant="text"
-            >
-              <RefreshIcon />
-            </IconButton>
-          </PortletToolbar>
-        </PortletHeader>
-        <PortletContent>
-          <div className={classes.chartWrapper}>
-            <Doughnut
-              data={data}
-              options={options}
-            />
+    React.useEffect(() => {
+      const m = users.filter(data => data.gendername === '남');
+      const w = users.filter(data => data.gendername === '여');
+
+      setCounter({
+        ...counter,
+        mCounter: m.length,
+        wCounter: w.length
+      });
+    }, [counter.total]);
+
+    return [counter.mCounter, counter.wCounter];
+  };
+
+  return (
+    <Portlet {...rest} className={rootClassName}>
+      <PortletHeader noDivider>
+        <PortletLabel title="성별 비율" />
+      </PortletHeader>
+      <PortletContent>
+        <div className={classes.chartWrapper}>
+          <Doughnut
+            data={{
+              datasets: [
+                {
+                  data: Counter(),
+                  backgroundColor: [palette.primary.main, palette.danger.main],
+                  borderWidth: 8,
+                  borderColor: palette.common.white,
+                  hoverBorderColor: palette.common.white
+                }
+              ],
+              labels: ['남자', '여자']
+            }}
+            options={options}
+          />
+        </div>
+        <div className={classes.stats}>
+          <div className={classes.device}>
+            <LaptopMacIcon className={classes.deviceIcon} />
+            <Typography variant="body1">남자</Typography>
+            <Typography style={{ color: palette.primary.main }} variant="h2">
+              {Math.round((counter.mCounter / counter.total) * 100)}%
+            </Typography>
           </div>
-          <div className={classes.stats}>
-            <div className={classes.device}>
-              <LaptopMacIcon className={classes.deviceIcon} />
-              <Typography variant="body1">Desktop</Typography>
-              <Typography
-                style={{ color: palette.primary.main }}
-                variant="h2"
-              >
-                63%
-              </Typography>
-            </div>
-            <div className={classes.device}>
-              <TabletMacIcon className={classes.deviceIcon} />
-              <Typography variant="body1">Tablet</Typography>
-              <Typography
-                style={{ color: palette.danger.main }}
-                variant="h2"
-              >
-                15%
-              </Typography>
-            </div>
-            <div className={classes.device}>
-              <PhoneIphoneIcon className={classes.deviceIcon} />
-              <Typography variant="body1">Mobile</Typography>
-              <Typography
-                style={{ color: palette.warning.main }}
-                variant="h2"
-              >
-                23%
-              </Typography>
-            </div>
+          <div className={classes.device}>
+            <TabletMacIcon className={classes.deviceIcon} />
+            <Typography variant="body1">여자</Typography>
+            <Typography style={{ color: palette.danger.main }} variant="h2">
+              {Math.round((counter.wCounter / counter.total) * 100)}%
+            </Typography>
           </div>
-        </PortletContent>
-      </Portlet>
-    );
-  }
-}
-
-DevicesChart.propTypes = {
-  className: PropTypes.string,
-  classes: PropTypes.object.isRequired
+        </div>
+      </PortletContent>
+    </Portlet>
+  );
 };
 
 export default withStyles(styles)(DevicesChart);
