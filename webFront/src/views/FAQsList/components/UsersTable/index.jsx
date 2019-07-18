@@ -11,6 +11,9 @@ import {
   TableHead,
   TableRow
 } from '@material-ui/core';
+
+import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
+
 import { Portlet, PortletContent } from 'components';
 import styles from './styles';
 import { useSelector } from 'react-redux';
@@ -29,6 +32,7 @@ const UsersTable = ({ classes, className, users }) => {
                 <TableCell align="left">제목</TableCell>
                 <TableCell align="left">내용</TableCell>
                 <TableCell align="left">등록일</TableCell>
+                <TableCell align="left">삭제</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -51,6 +55,11 @@ const UsersTable = ({ classes, className, users }) => {
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
                         {moment(user.regdate).format('DD/MM/YYYY')}
+                      </TableCell>
+                      <TableCell
+                        className={classes.tableCell}
+                        style={{ fontSize: '1rem' }}>
+                        <DeleteBtn id={user.nno} />
                       </TableCell>
                     </TableRow>
                   ))

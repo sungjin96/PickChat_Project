@@ -38,7 +38,7 @@ const UsersToolbar = ({ classes, className, selectedUsers }) => {
             <DeleteIcon />
           </IconButton>
         )}
-        <Button
+        {/* <Button
           className={classes.importButton}
           size="small"
           variant="outlined">
@@ -49,7 +49,7 @@ const UsersToolbar = ({ classes, className, selectedUsers }) => {
           size="small"
           variant="outlined">
           삭제
-        </Button>
+        </Button> */}
         <Button color="primary" size="small" variant="outlined">
           글쓰기
         </Button>

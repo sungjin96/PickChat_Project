@@ -18,9 +18,7 @@ const Btn = React.memo(({ qno }) => {
   return (
     <div>
       <Button
-        color="primary"
         size="small"
-        variant="outlined"
         onClick={handleOpen}>
         COMMENT
       </Button>

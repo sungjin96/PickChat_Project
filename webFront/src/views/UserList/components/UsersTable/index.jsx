@@ -21,6 +21,8 @@ import {
   Typography
 } from '@material-ui/core';
 
+import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
+
 // Shared helpers
 import { getInitials } from 'helpers';
 
@@ -112,6 +114,7 @@ class UsersTable extends Component {
                   <TableCell align="left">성별</TableCell>
                   <TableCell align="left">나이</TableCell>
                   <TableCell align="left">등록일</TableCell>
+                  <TableCell align="left">삭제</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -159,6 +162,11 @@ class UsersTable extends Component {
                           style={{ fontSize: '1rem' }}>
                           {moment(user.regdate).format('DD/MM/YYYY')}
                         </TableCell>
+                        <TableCell
+                        className={classes.tableCell}
+                        style={{ fontSize: '1rem' }}>
+                        <DeleteBtn id={user.nno} />
+                      </TableCell>
                       </TableRow>
                     ))
                   : ''}

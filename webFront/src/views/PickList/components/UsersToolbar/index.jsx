@@ -54,13 +54,13 @@ class UsersToolbar extends Component {
               <DeleteIcon />
             </IconButton>
           )}
-          <Button
+          {/* <Button
             color="primary"
             size="small"
             variant="outlined"
             onClick={this.handleOpen}>
             글쓰기
-          </Button>
+          </Button> */}
           <Modal
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"

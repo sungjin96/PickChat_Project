@@ -25,6 +25,8 @@ import {
   TablePagination
 } from '@material-ui/core';
 
+import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
+
 // Shared helpers
 import { getInitials } from 'helpers';
 
@@ -63,6 +65,8 @@ const UsersTable = ({ classes, className, users }) => {
                 <TableCell align="left">내용</TableCell>
                 <TableCell align="left">답글</TableCell>
                 <TableCell align="left">등록일</TableCell>
+                <TableCell align="left">답글등록</TableCell>
+                <TableCell align="left">삭제</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -103,6 +107,11 @@ const UsersTable = ({ classes, className, users }) => {
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
                         <Btn qno={user.qno} />
+                      </TableCell>
+                      <TableCell
+                        className={classes.tableCell}
+                        style={{ fontSize: '1rem' }}>
+                        <DeleteBtn id={user.nno} />
                       </TableCell>
                     </TableRow>
                   ))
