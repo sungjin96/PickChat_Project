@@ -28,7 +28,7 @@ const UsersTable = ({ classes, className }) => {
   const dispatch = useDispatch()
 
   React.useEffect(() => {
-    Axios.get('http://sungjin5891.cafe24.com/boardpolice/list').then(data =>
+    Axios.get('http://sungjin5891.cafe24.com/board/police/list').then(data =>
     setState((state.client = data.data))
   );
   })
@@ -79,7 +79,6 @@ const UsersTable = ({ classes, className }) => {
                           style={{ fontSize: '1rem' }}>
                           {user.bno}
                         </TableCell>
-
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
@@ -88,7 +87,7 @@ const UsersTable = ({ classes, className }) => {
                         <TableCell
                           className={classes.tableCell}
                           style={{ fontSize: '1rem' }}>
-                          {user.reasonid}
+                          {user.rpcontent}
                         </TableCell>
                         <TableCell
                       className={classes.tableCell}
