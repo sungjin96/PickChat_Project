@@ -3,6 +3,7 @@ package com.example.login;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -27,11 +28,16 @@ public class HWJ_QuitActivity extends AppCompatActivity {
     TextView quit;
     Retrofit retrofit;
     RemoteService rs;
+    String strUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hwj_quit);
+
+        //로그인부터 유저값 받아오기
+        SharedPreferences sharedPreferences= getSharedPreferences("userid",MODE_PRIVATE);
+        strUser = sharedPreferences.getString("userid","");
 
         //상태바 아이콘색상변경
         View view = getWindow().getDecorView();
@@ -63,7 +69,7 @@ public class HWJ_QuitActivity extends AppCompatActivity {
         btn_point.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<Void> call = rs.updatePoint("01000020002", 100); //아이디 값 받아오는 구간
+                Call<Void> call = rs.updatePoint(strUser, 100); //아이디 값 받아오는 구간
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {

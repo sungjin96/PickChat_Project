@@ -1,5 +1,6 @@
 package com.example.login;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -27,11 +28,15 @@ public class HWJ_BlockListActivity extends AppCompatActivity {
     RemoteService rs;
     List<HWJ_BlockVO> array;
     HWJ_BlockListAdapter blAdapter;
+    String strUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hwj_block_list);
+
+        SharedPreferences sharedPreferences= getSharedPreferences("userid",MODE_PRIVATE);
+        strUser = sharedPreferences.getString("userid","");
 
         //상태바 아이콘색상변경
         View view = getWindow().getDecorView();
@@ -69,7 +74,7 @@ public class HWJ_BlockListActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        Call<List<HWJ_BlockVO>> call = rs.listBlock("01000020002"); //아이디 값 받아오는 구간
+        Call<List<HWJ_BlockVO>> call = rs.listBlock(strUser); //아이디 값 받아오는 구간
         call.enqueue(new Callback<List<HWJ_BlockVO>>() {
             @Override
             public void onResponse(Call<List<HWJ_BlockVO>> call, Response<List<HWJ_BlockVO>> response) {

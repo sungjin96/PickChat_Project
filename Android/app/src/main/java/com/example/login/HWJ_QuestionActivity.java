@@ -21,7 +21,8 @@ public class HWJ_QuestionActivity extends AppCompatActivity {
     TextView qwriter, send;
     Retrofit retrofit;
     RemoteService rs;
-    String strUser;
+    String strUser, usernickname;
+    UserProfileVO uservo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +33,37 @@ public class HWJ_QuestionActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences= getSharedPreferences("userid",MODE_PRIVATE);
         strUser = sharedPreferences.getString("userid","");
 
-        System.out.println(strUser);
-
         //아이디값 받아오기
         qtitle = findViewById(R.id.qtitle);
         qcontent = findViewById(R.id.qcontent);
         qwriter = findViewById(R.id.qwriter);
         send = findViewById(R.id.send);
 
-        //작성자 닉네임 세팅
-        qwriter.setText("ㅇㅇㅇ웅엉ㅇㅇ웅엉");
-
         //서버 연결
+        uservo = new UserProfileVO();
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         rs = retrofit.create(RemoteService.class);
+
+        //유저 정보 불러오기
+        Call<UserProfileVO> call=rs.listProfile(strUser);
+        call.enqueue(new Callback<UserProfileVO>() {
+            @Override
+            public void onResponse(Call<UserProfileVO> call, Response<UserProfileVO> response) {
+                uservo = response.body();
+                usernickname = uservo.getUsernickname();
+
+                //작성자 닉네임 세팅
+                qwriter.setText(usernickname);
+            }
+
+            @Override
+            public void onFailure(Call<UserProfileVO> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
 
         //입력된 정보 insert
         send.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +75,7 @@ public class HWJ_QuestionActivity extends AppCompatActivity {
                 String strQwriter = qwriter.getText().toString();
 
                 HWJ_QuestionListVO vo = new HWJ_QuestionListVO();
+                vo.setUserid(strUser);
                 vo.setQtitle(strQtitle);
                 vo.setQcontent(strQcontent);
                 vo.setQwriter(strQwriter);

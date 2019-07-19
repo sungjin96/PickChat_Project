@@ -2,8 +2,17 @@ package com.example.login;
 
 public class ChatVO {
     private String content;
-    private String userid;
+    private String email;
     private String wdate;
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getContent() {
         return content;
@@ -13,12 +22,12 @@ public class ChatVO {
         this.content = content;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getWdate() {
@@ -29,15 +38,12 @@ public class ChatVO {
         this.wdate = wdate;
     }
 
-
-
     @Override
     public String toString() {
         return "ChatVO{" +
                 "content='" + content + '\'' +
-                ", userid='" + userid + '\'' +
+                ", email='" + email + '\'' +
                 ", wdate='" + wdate + '\'' +
-
                 '}';
     }
 }

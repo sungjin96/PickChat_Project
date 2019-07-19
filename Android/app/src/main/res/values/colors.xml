@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFF</color>
-    <color name="colorPrimaryDark">#FFF</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#FF006C</color>
     <color name="button">#FF006C</color>
     <color name="gg">#000000</color>
@@ -11,4 +11,5 @@
     <color name="button_pick">#68A09A</color>
     <color name="button_vedio">#DAD084</color>
     <color name="button_access">#d19bc9</color>
+    <color name="dialog">#BF99C5</color>
 </resources>

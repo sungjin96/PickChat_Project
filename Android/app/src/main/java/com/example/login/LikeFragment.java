@@ -8,8 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,24 +25,19 @@ public class LikeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root=inflater.inflate(R.layout.fragment_like,container,false);
-
+        View root = inflater.inflate(R.layout.fragment_like, container, false);
         return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        //액션바(뒤로가기 버튼) 설정
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_back);
-//        getSupportActionBar().setTitle("좋아요");
 
         //탭 설정
         tab = view.findViewById(R.id.tab);
         tab.addTab(tab.newTab().setText(""));
         tab.addTab(tab.newTab().setText(""));
-        tab.getTabAt(0).setIcon(R.drawable.heart);
-        tab.getTabAt(1).setIcon(R.drawable.heart);
+        tab.getTabAt(0).setText(Html.fromHtml("<font color='#878789'>나를 좋아한 사람</font>"));
+        tab.getTabAt(1).setText(Html.fromHtml("<font color='#878789'>내가 좋아한 사람</font>"));
 
         pager = view.findViewById(R.id.pager);
         fragments = new ArrayList<Fragment>();
@@ -87,15 +82,5 @@ public class LikeFragment extends Fragment {
             return fragments.size();
         }
     }
-
-    //뒤로가기 버튼 활성화
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()){
-//            case android.R.id.home :
-//                finish();
-//        }
-//        return true;
-//    }
-    }
+}
 

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,12 +16,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     Context context;
     ArrayList<ChatVO> array;
-    String userid;
+    String strEmail;
 
-    public ChatAdapter(Context context, ArrayList<ChatVO> array,String userid) {
+    public ChatAdapter(Context context, ArrayList<ChatVO> array,String strEmail) {
         this.context = context;
         this.array = array;
-        this.userid=userid;
+        this.strEmail=strEmail;
     }
     @NonNull
     @Override
@@ -35,8 +34,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         LinearLayout.LayoutParams prmContent=(LinearLayout.LayoutParams)viewHolder.content.getLayoutParams();
         LinearLayout.LayoutParams prmDate=(LinearLayout.LayoutParams)viewHolder.wdate.getLayoutParams();
-
-        if(userid==array.get(i).getUserid()){
+        if(strEmail==array.get(i).getEmail()){
             prmContent.gravity= Gravity.RIGHT;
             prmDate.gravity=Gravity.RIGHT;
         }else {
@@ -56,7 +54,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView content, wdate,writer;
+        TextView content, wdate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

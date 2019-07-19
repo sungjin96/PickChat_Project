@@ -3,6 +3,7 @@ package com.example.login;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -39,11 +40,15 @@ public class HWJ_BlockActivity extends AppCompatActivity {
     RemoteService rs;
     TextView blockAll;
     MyAdapter adapter;
+    String strUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hwj_block);
+
+        SharedPreferences sharedPreferences= getSharedPreferences("userid",MODE_PRIVATE);
+        strUser = sharedPreferences.getString("userid","");
 
         //상태바 아이콘색상변경
         View view = getWindow().getDecorView();
@@ -101,7 +106,7 @@ public class HWJ_BlockActivity extends AppCompatActivity {
 
             //vo에 주소록 값 넣기
             HWJ_BlockVO vo = new HWJ_BlockVO();
-            vo.setBlocker("01000020002"); //유저아이디 받는곳
+            vo.setBlocker(strUser); //유저아이디 받는곳
             vo.setBlockno(intId);
             vo.setBlockedname(cursor.getString(intName));
             vo.setBlocked(number.replace("-",""));

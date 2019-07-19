@@ -72,8 +72,6 @@ public class HWJ_ProfileActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences= getSharedPreferences("userid",MODE_PRIVATE);
         userid = sharedPreferences.getString("userid","");
 
-        //userid = "01000020002";
-
         //아이디값 찾기
         soloimg = findViewById(R.id.soloimg);
         favorite = findViewById(R.id.favorite);

@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HWJ_QuestionListActivity"></activity>
+        <activity android:name=".MapsActivity2"></activity>
+        <activity android:name=".JHJ_MapsActivity" />
+        <activity android:name=".JHJ_ChatRoomActivity" />
+        <activity android:name=".HWJ_QuestionListActivity" />
         <activity android:name=".HWJ_QuestionActivity" />
         <activity android:name=".BBSUpdateActivity" />
         <activity android:name=".BBSReadActivity" />
@@ -83,6 +87,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

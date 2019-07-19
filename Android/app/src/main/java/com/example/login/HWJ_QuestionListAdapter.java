@@ -32,12 +32,12 @@ public class HWJ_QuestionListAdapter extends RecyclerView.Adapter<HWJ_QuestionLi
         viewHolder.qcontent.setText(array.get(i).getQcontent());
         viewHolder.qccontent.setText(array.get(i).getQccontent());
 
-        if(viewHolder.qccontent != null){
-            viewHolder.qccontent.setVisibility(View.VISIBLE);
-            viewHolder.state.setText("답변완료");
-        }else{
+        if(array.get(i).getQccontent() == null){
             viewHolder.qccontent.setVisibility(View.GONE);
             viewHolder.state.setText("답변중");
+        }else{
+            viewHolder.qccontent.setVisibility(View.VISIBLE);
+            viewHolder.state.setText("답변완료");
         }
     }
 

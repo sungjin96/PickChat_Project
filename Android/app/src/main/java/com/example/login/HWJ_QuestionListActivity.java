@@ -1,5 +1,6 @@
 package com.example.login;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ public class HWJ_QuestionListActivity extends AppCompatActivity {
     RemoteService rs;
     List<HWJ_QuestionListVO> array;
     HWJ_QuestionListAdapter qAdapter;
+    String strUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,12 @@ public class HWJ_QuestionListActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_back);
         getSupportActionBar().setTitle("공지사항");
 
+        //로그인부터 유저값 받아오기
+        SharedPreferences sharedPreferences= getSharedPreferences("userid",MODE_PRIVATE);
+        strUser = sharedPreferences.getString("userid","");
+
         //문의사항 리스트 출력
         array = new ArrayList<HWJ_QuestionListVO>();
-
         list = findViewById(R.id.list);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         list.setLayoutManager(manager);
@@ -53,7 +58,7 @@ public class HWJ_QuestionListActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
 
-        Call<List<HWJ_QuestionListVO>> call = rs.listQuestion("01000020002"); //유저 아이디 받아오는 곳
+        Call<List<HWJ_QuestionListVO>> call = rs.listQuestion(strUser); //유저 아이디 받아오는 곳
         call.enqueue(new Callback<List<HWJ_QuestionListVO>>() {
             @Override
             public void onResponse(Call<List<HWJ_QuestionListVO>> call, Response<List<HWJ_QuestionListVO>> response) {

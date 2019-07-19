@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "529524008604-58srj0bjcf50sdfgvrndu0rpqjr0jcnt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.login",
+            "certificate_hash": "0a079222904c6fb032656c4ca7445d249e3e48cf"
+          }
+        },
+        {
           "client_id": "529524008604-deinaaja7kj86s2rva7i937brv370tu6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -28,6 +36,43 @@
           "android_info": {
             "package_name": "com.example.login",
             "certificate_hash": "110ed75c345cff9583865603dd9768ec25b3091d"
+          }
+        },
+        {
+          "client_id": "529524008604-38i1djh692cfpls45juv902env94cdro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK2kM14mBtHXexUL_3fcw-5bI8AFXfOHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529524008604-38i1djh692cfpls45juv902env94cdro.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529524008604:android:0b7d74a50d35ef69",
+        "android_client_info": {
+          "package_name": "food.com.example.projectchatting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529524008604-nlcssk9h8daaktmlckvba50ljiing2no.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "food.com.example.projectchatting",
+            "certificate_hash": "0a079222904c6fb032656c4ca7445d249e3e48cf"
           }
         },
         {

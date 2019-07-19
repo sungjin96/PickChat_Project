@@ -88,12 +88,12 @@ public class BbsFragment extends Fragment {
                         imageAdapter = new BBSImageAdapter(getContext(), (ArrayList<BBSVO>) arraylist);
                         recyclerView.setAdapter(imageAdapter);
                         Log.i("게시글수", "======" + arraylist.size());
-//                if (arraylist.size() <= 0) {
-//                    AlertDialog.Builder box = new AlertDialog.Builder(getContext());
-//                    box.setTitle("알림");
-//                    box.setMessage("게시물이 없습니다.");
-//                    box.show();
-//                }
+                        if (arraylist.size() <= 0) {
+                            AlertDialog.Builder box = new AlertDialog.Builder(getContext());
+                            box.setTitle("알림");
+                            box.setMessage("게시물이 없습니다.");
+                            box.show();
+                        }
                     }
 
                     @Override

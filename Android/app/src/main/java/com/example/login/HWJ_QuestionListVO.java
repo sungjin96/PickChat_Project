@@ -11,6 +11,7 @@ public class HWJ_QuestionListVO {
     private Date qregdate;
     private String qccontent;
     private Date qcregdate;
+    private String userid;
 
     @Override
     public String toString() {
@@ -23,7 +24,16 @@ public class HWJ_QuestionListVO {
                 ", qregdate=" + qregdate +
                 ", qccontent='" + qccontent + '\'' +
                 ", qcregdate=" + qcregdate +
+                ", userid='" + userid + '\'' +
                 '}';
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public int getQno() {

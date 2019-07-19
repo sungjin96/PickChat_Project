@@ -3,7 +3,7 @@ package com.example.login;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class UserProfileVO implements Parcelable {
+public class UserProfileVO {
     private int imgshow;
     private String soloimg;
     private String userid;
@@ -18,38 +18,36 @@ public class UserProfileVO implements Parcelable {
     private String gendername;
     private String gendercode;
     private int userpoint;
+    private String token;
 
-    protected  UserProfileVO(){
-
+    @Override
+    public String toString() {
+        return "UserProfileVO{" +
+                "imgshow=" + imgshow +
+                ", soloimg='" + soloimg + '\'' +
+                ", userid='" + userid + '\'' +
+                ", userheight='" + userheight + '\'' +
+                ", username='" + username + '\'' +
+                ", userjob='" + userjob + '\'' +
+                ", usercomment='" + usercomment + '\'' +
+                ", userage='" + userage + '\'' +
+                ", usernickname='" + usernickname + '\'' +
+                ", localname='" + localname + '\'' +
+                ", localcode='" + localcode + '\'' +
+                ", gendername='" + gendername + '\'' +
+                ", gendercode='" + gendercode + '\'' +
+                ", userpoint=" + userpoint +
+                ", token='" + token + '\'' +
+                '}';
     }
-    protected UserProfileVO(Parcel in) {
-        imgshow = in.readInt();
-        soloimg = in.readString();
-        userid = in.readString();
-        userheight = in.readString();
-        username = in.readString();
-        userjob = in.readString();
-        usercomment = in.readString();
-        userage = in.readString();
-        usernickname = in.readString();
-        localname = in.readString();
-        localcode = in.readString();
-        gendername = in.readString();
-        gendercode = in.readString();
-        userpoint = in.readInt();
+
+    public String getToken() {
+        return token;
     }
 
-    public static final Creator<UserProfileVO> CREATOR = new Creator<UserProfileVO>() {
-        @Override
-        public UserProfileVO createFromParcel(Parcel in) {
-            return new UserProfileVO(in);
-        }
-
-        @Override
-        public UserProfileVO[] newArray(int size) {
-            return new UserProfileVO[size];
-        }
-    };
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public int getUserpoint() {
         return userpoint;
@@ -163,46 +161,5 @@ public class UserProfileVO implements Parcelable {
         this.gendercode = gendercode;
     }
 
-    @Override
-    public String toString() {
-        return "UserProfileVO{" +
-                "imgshow=" + imgshow +
-                ", soloimg='" + soloimg + '\'' +
-                ", userid='" + userid + '\'' +
-                ", userheight='" + userheight + '\'' +
-                ", username='" + username + '\'' +
-                ", userjob='" + userjob + '\'' +
-                ", usercomment='" + usercomment + '\'' +
-                ", userage='" + userage + '\'' +
-                ", usernickname='" + usernickname + '\'' +
-                ", localname='" + localname + '\'' +
-                ", localcode='" + localcode + '\'' +
-                ", gendername='" + gendername + '\'' +
-                ", gendercode='" + gendercode + '\'' +
-                ", userpoint=" + userpoint +
-                '}';
-    }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(imgshow);
-        dest.writeString(soloimg);
-        dest.writeString(userid);
-        dest.writeString(userheight);
-        dest.writeString(username);
-        dest.writeString(userjob);
-        dest.writeString(usercomment);
-        dest.writeString(userage);
-        dest.writeString(usernickname);
-        dest.writeString(localname);
-        dest.writeString(localcode);
-        dest.writeString(gendername);
-        dest.writeString(gendercode);
-        dest.writeInt(userpoint);
-    }
 }

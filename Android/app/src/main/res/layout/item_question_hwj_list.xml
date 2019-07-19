@@ -24,8 +24,7 @@
         android:layout_marginTop="5dp"
         android:background="#808080"
         android:textColor="#FFFFFF"
-        android:visibility="gone"
-        android:text=""/>
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/state"

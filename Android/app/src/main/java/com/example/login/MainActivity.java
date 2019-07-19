@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserProfileVO> call, Response<UserProfileVO> response) {
                 vo = response.body();
-                System.out.println("vo에 있는 닉네임!!!"+vo.toString());
 
             }
 
@@ -116,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         showcustom();
                         HomeFragment homefragment=new HomeFragment();
-                        //homefragment.setArguments(bundle);
                         if(fragment!=null) {
                             tr.replace(R.id.frame, homefragment, "home");
                             tr.commit();
@@ -125,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.bbs:
                         showcustom();
                         BbsFragment bbsfragment=new BbsFragment();
-                        //bbsfragment.setArguments(bundle);
                         if(fragment!=null) {
                             tr.replace(R.id.frame, bbsfragment, "bbs");
                             tr.commit();
@@ -134,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.chat:
                         showcustom();
                         ChatFragment chatfragment=new ChatFragment();
-                        //chatfragment.setArguments(bundle);
                         if(fragment!=null) {
                             tr.replace(R.id.frame, chatfragment, "chat");
                             tr.commit();
@@ -142,9 +138,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.like:
                         showcustom();
-
                         LikeFragment likefragment=new LikeFragment();
-                        //likefragment.setArguments(bundle);
                         if(fragment!=null) {
                             tr.replace(R.id.frame, likefragment, "like");
                             tr.commit();

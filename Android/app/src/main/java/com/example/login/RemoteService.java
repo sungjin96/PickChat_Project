@@ -120,6 +120,23 @@ public interface RemoteService {
     @GET("api")
     Call<ResponseBody> faceapi();
 
+    @POST("user/appointmentinsert/{youId}")
+    Call<Void> insert(@Body JHJ_AppointmentVO vo,
+                      @Path("youId") String youId);
+
+    @GET("user/appointmentread/{userid}")
+    Call<JHJ_AppointmentVO> read(@Path("userid") String userid);
+
+    @PATCH("user/setusertoken")
+    Call<Void> tokenUpdate(@Body UserProfileVO vo);
+
+    //유저 좋아요 입력
+    @POST("user/insert_likepeople")
+    Call<Void> insertLike(@Body LikePeopleVO vo);
+
+    //내가 좋아요 한 사람들 id값(좋아요 중복방지)
+    @GET("user/list_likesender/{userid}")
+    Call<List<LikePeopleVO>> likepeoplelist(@Path("userid")String userid);
     /*=======================게시판 시작================================*/
 
     /*이미지 리스트*/
@@ -218,6 +235,7 @@ public interface RemoteService {
 //    @GET("/board/bbstagread/{tagword}")
 //    Call<List<BBSVO>> bbsTagRead(
 //            @Path("tagword") String tagword);
+
 
     /*=======================게시판 끝================================*/
 
