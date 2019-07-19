@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
@@ -22,10 +23,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -51,8 +54,8 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int CALL_GALLERY = 1;
     ImageView image1, image2;
     Retrofit retrofit;
-    String img, code,img1, username,userid;
-    Uri uriImage,uriImage2;
+    String img, code, img1, username, userid;
+    Uri uriImage, uriImage2;
     Bitmap bitmap;
     RemoteService rs;
     List<User_listVO> array;
@@ -60,11 +63,11 @@ public class ProfileActivity extends AppCompatActivity {
     int indexSelect = 0;
     int num = 0;
     RadioGroup Radio;
-    TextView localcode, passtext, passTestText, userjob, nicknameText, nicknameText1;
+    TextView localcode, passtext, passTestText, userjob, nicknameText, nicknameText1, btncheck1,btncheck2,btncheck3;
     EditText userheight;
-    Button insertbtn,btnCheck;
+    Button insertbtn, btnCheck;
     RadioButton gendercode1, gendercode2;
-    EditText  userpassword,
+    EditText userpassword,
             usernickname, userage, usercomment, userpasswordtest;
     boolean GenderisChecked;
     String[] lcode;
@@ -77,7 +80,10 @@ public class ProfileActivity extends AppCompatActivity {
     String[] jname;
     String[] all;
 
-    File file,file1;
+    File file, file1;
+    String apiresult;
+    boolean facecheck=false;
+    ProgressBar progressbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,12 +93,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         vo = new User_listVO();
 
-        Intent intent=getIntent();
-        //userid= intent.getStringExtra("userid");
-        SharedPreferences sharedPreferences= getSharedPreferences("userid",MODE_PRIVATE);
-        userid = sharedPreferences.getString("userid","");
-        username=intent.getStringExtra("username");
+        //이름, 전화번호(아이디값) 받아오기
+        Intent intent = getIntent();
+        SharedPreferences sharedPreferences = getSharedPreferences("userid", MODE_PRIVATE);
+        userid = sharedPreferences.getString("userid", "");
+        username = intent.getStringExtra("username");
 
+        //각각 위치 찾기
+        progressbar=findViewById(R.id.progcircle);
         userpassword = findViewById(R.id.userpassword);
         usernickname = findViewById(R.id.usernickname);
         userage = findViewById(R.id.userage);
@@ -101,62 +109,77 @@ public class ProfileActivity extends AppCompatActivity {
         usercomment = findViewById(R.id.usercomment);
         gendercode1 = findViewById(R.id.gendercode1);
         gendercode2 = findViewById(R.id.gendercode2);
-        btnCheck=findViewById(R.id.btnCheck);
-
+        btnCheck = findViewById(R.id.btnCheck);
         Radio = findViewById(R.id.Radio);
         passtext = findViewById(R.id.passtext);
         userpasswordtest = findViewById(R.id.userpasswordtest);
         passTestText = findViewById(R.id.passTestText);
         nicknameText = findViewById(R.id.nicknameText);
         nicknameText1 = findViewById(R.id.nicknameText1);
-
-
         image1 = findViewById(R.id.image1);
         image2 = findViewById(R.id.image2);
         localcode = findViewById(R.id.localcode);
 
-
+        ////////////////////////////////////서버 접속
         retrofit = new Retrofit.Builder().
                 baseUrl(BASE_URL).
                 addConverterFactory(GsonConverterFactory.create())
                 .build();
         rs = retrofit.create(RemoteService.class);
 
-        /*사진추가하고 확인 버튼 클릭시*/
+        ///////////////////////////////얼굴인식 결과확인
         btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RequestBody mFile = RequestBody.create(MediaType.parse("file/*"), file);
-                final MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("uploadfile", file.getName(), mFile);
-                RequestBody mFile1 = RequestBody.create(MediaType.parse("file/*"), file1);
-                final MultipartBody.Part fileToUpload1 = MultipartBody.Part.createFormData("uploadfile1", file1.getName(), mFile1);
-
-                Call<ResponseBody> image = rs.uploadImg(fileToUpload,fileToUpload1);
-                image.enqueue(new Callback<ResponseBody>() {
+                progressbar.setVisibility(View.VISIBLE);
+                Call<ResponseBody> call=rs.faceapi();
+                call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        //response가 성공했을떄 결과vo로????????????????????????????, 경로 실패
-                        String location="";
-                        System.out.println("성공?????????????????????????");
                         try {
-                            location = "http://sungjin5891.cafe24.com/img/";
-                            System.out.println("location.................."+location.toString());
-                            vo.setImgpath(location);
+                            progressbar.setVisibility(View.INVISIBLE);
+                            apiresult = response.body().string();
+                            //System.out.println("얼굴인식 결과는?????????????????????????" + apiresult);
+                        }catch (Exception e){
+                            System.out.println("얼굴인식 에러............"+e.toString());
                         }
-                        catch(Exception e){
-                            e.printStackTrace();
+                        if(apiresult.equals("0")){
+                            //성공
+                            //Toast.makeText(ProfileActivity.this, "성공", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder box=new AlertDialog.Builder(ProfileActivity.this);
+                            box.setTitle("인증 성공 입니다.");
+                            box.setNegativeButton("확인",null);
+                            box.show();
+                            facecheck=true;
+                        }else if(apiresult.equals("-1")){
+                            //에러
+                            //Toast.makeText(ProfileActivity.this, "에러", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder box=new AlertDialog.Builder(ProfileActivity.this);
+                            box.setTitle("인물 사진이 아닙니다.");
+                            box.setNegativeButton("확인",null);
+                            box.show();
+                            facecheck=false;
+                        }else{
+                            //얼굴이 다름
+                            //Toast.makeText(ProfileActivity.this, "얼굴이 다름", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder box=new AlertDialog.Builder(ProfileActivity.this);
+                            box.setTitle("인증 실패");
+                            box.setMessage("본인 사진을 등록해주세요");
+                            box.setNegativeButton("확인",null);
+                            box.show();
+                            facecheck=false;
                         }
                     }
-                  @Override
+                    @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.d("error",t.getMessage());
+                        System.out.println("에러메시지?????????????????"+t.toString());
                     }
                 });
             }
         });
 
 
-        //지역 선택
+        //////////////////////지역 선택
         localcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,9 +190,7 @@ public class ProfileActivity extends AppCompatActivity {
                     String[] g = all[i].split(",");
                     lcode[i] = g[0];
                     lname[i] = g[1];
-
                 }
-
                 new AlertDialog.Builder(ProfileActivity.this)
                         .setTitle("지역을 선택해주세요.")
                         .setSingleChoiceItems(lname, indexSelect,
@@ -178,7 +199,6 @@ public class ProfileActivity extends AppCompatActivity {
                                         indexSelect = which;
                                     }
                                 })
-
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
@@ -192,43 +212,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        //키선택
-//        userheight.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String[] all2 = ProfileActivity.this.getResources().getStringArray(R.array.height);
-//                hcode = new String[all2.length];
-//                hname = new String[all2.length];
-//                for (int i = 0; i < all2.length; i++) {
-//                    String[] g = all2[i].split(",");
-//                    hcode[i] = g[0];
-//                    hname[i] = g[1];
-//                }
-//                ;
-//                new AlertDialog.Builder(ProfileActivity.this)
-//                        .setTitle("키를 선택해주세요.")
-//                        .setSingleChoiceItems(hname, indexSelect,
-//                                new DialogInterface.OnClickListener() {
-//                                    public void onClick(DialogInterface dialog, int which) {
-//                                        indexSelect = which;
-//                                    }
-//                                })
-//
-//                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                TextView text = (TextView) findViewById(R.id.userheight);
-//                                text.setText("" + hname[indexSelect]);
-//
-//                            }
-//                        })
-//                        .setNegativeButton("취소", null)
-//                        .show();
-//
-//
-//            }
-//        });
 
-        //직업선택
+        ////////////////////////////////////직업선택
         userjob.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -241,7 +226,6 @@ public class ProfileActivity extends AppCompatActivity {
                     jcode[i] = g[0];
                     jname[i] = g[1];
                 }
-                ;
                 new AlertDialog.Builder(ProfileActivity.this)
                         .setTitle("직업을 선택해주세요.")
                         .setSingleChoiceItems(jname, indexSelect,
@@ -263,7 +247,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        //닉네임중복체크
+        /////////////////////////////닉네임중복체크
         usernickname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -283,40 +267,31 @@ public class ProfileActivity extends AppCompatActivity {
                             return;
                         } else {
                             check = Integer.parseInt(response.body().toString());
-                            // System.out.println("check..................." + check + usernickname.getText().toString());
                         }
-
                         if (check == 0) {
                             nicknameText1.setVisibility(View.VISIBLE);
                             nicknameText.setVisibility(View.GONE);
-                            Toast.makeText(ProfileActivity.this,"회원가입 가능한 닉네임 입니다",Toast.LENGTH_SHORT).show();
                         } else {
                             nicknameText1.setVisibility(View.GONE);
                             nicknameText.setVisibility(View.VISIBLE);
-                            Toast.makeText(ProfileActivity.this, "이미 사용중인 닉네임 입니다.", Toast.LENGTH_SHORT).show();
                         }
-
                     }
-
                     @Override
                     public void onFailure(Call<Integer> call, Throwable t) {
                     }
                 });
 
             }
-
             @Override
             public void afterTextChanged(Editable s) {
             }
         });
-
-
         int degree = getExifOrientation(img);
         bitmap = BitmapFactory.decodeFile(img);
         bitmap = getRotatedBitmap(bitmap, degree);
         permissionCheck();
 
-        //라디오 버튼 남여
+        /////////////////////////////////////라디오 버튼 남여
         Radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -331,7 +306,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        //비밀번호 체크
+        /////////////////////////////////////////비밀번호 체크
         userpassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -351,7 +326,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        //비밀번호재입력 체크
+        ///////////////////////////////////////비밀번호재입력 체크
         userpasswordtest.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -365,14 +340,13 @@ public class ProfileActivity extends AppCompatActivity {
                     passTestText.setVisibility(View.VISIBLE);
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
             }
         });
 
 
-        //정보 입력 후 저장
+        //////////////////////////////////////정보 입력 후 저장
         insertbtn = findViewById(R.id.insertbtn);
         insertbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -380,7 +354,7 @@ public class ProfileActivity extends AppCompatActivity {
                 final String strUserpassword = userpassword.getText().toString();
                 final String strUsernickname = usernickname.getText().toString();
                 final int strUserage = Integer.parseInt(userage.getText().toString());
-                final int strUserheight=Integer.parseInt(userheight.getText().toString());
+                final int strUserheight = Integer.parseInt(userheight.getText().toString());
                 final String strUserjob = userjob.getText().toString();
                 final String strUsercomment = usercomment.getText().toString();
 
@@ -401,43 +375,46 @@ public class ProfileActivity extends AppCompatActivity {
                 vo.setLocalcode(strLocalcode);
                 vo.setUserid(userid);
                 vo.setUsername(username);
-
-                System.out.println("....................." + vo.toString());
-
-                Call<Void> call = rs.userinsert(vo);
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        System.out.println(vo.toString());
-                        onPostResume();
-                    }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Log.d("오류", t.getMessage());
-                    }
-                });
-                Intent intent = new Intent(ProfileActivity.this, DetailsActivity.class);
-                startActivity(intent);
+                //System.out.println("회원가입 정보.................."+vo.toString());
+                ////////////////////////////////////////////////////회원 정보 입력(회원가입)
+                /////////////////////빈 칸 이거나 사진 인증이 실패하면 가입 못 함
+                if(facecheck) {
+                    Call<Void> call = rs.userinsert(vo);
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            Intent intent = new Intent(ProfileActivity.this, DetailsActivity.class);
+                            startActivity(intent);
+                        }
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Log.d("오류", t.getMessage());
+                        }
+                    });
+                }else {
+                    AlertDialog.Builder box=new AlertDialog.Builder(ProfileActivity.this);
+                    box.setTitle("가입 실패");
+                    box.setMessage("본인 인증을 완료해 주세요");
+                    box.show();
+                }
             }
 
 
         });
     }
 
-//사진
+    /////////////////////////////////////////////사진촬영
     public void mClick(View view) {
         switch (view.getId()) {
-            case R.id.image:
             case R.id.image1:
                 AlertDialog.Builder box = new AlertDialog.Builder(ProfileActivity.this);
-                box.setTitle("이미지 선택 방법을 결정하세요!");
+                box.setTitle("실물 인증용 사진입니다.");
                 box.setPositiveButton("사진촬영", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         num = 0;
-                        img = Environment.getExternalStorageDirectory().getAbsolutePath() + "/attachimage.jpg";
-                        file=new File(img);
+                        img = Environment.getExternalStorageDirectory().getAbsolutePath() + "/checkimg.png";
+                        file = new File(img);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {  // API 24 이상 일경우..
                             uriImage = FileProvider.getUriForFile(ProfileActivity.this,
                                     getApplicationContext().getPackageName() + ".provider", file);
@@ -447,7 +424,6 @@ public class ProfileActivity extends AppCompatActivity {
                             uriImage = Uri.fromFile(file);
                         }
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, uriImage);
-                        System.out.println("카메라 이미지 경로............"+uriImage);
                         startActivityForResult(intent, CALL_CAMERA);
                     }
                 });
@@ -456,12 +432,13 @@ public class ProfileActivity extends AppCompatActivity {
             case R.id.image2:
                 box = new AlertDialog.Builder(ProfileActivity.this);
                 num = 1;
-                box.setTitle("이미지 선택 방법을 결정하세요!");
+                box.setTitle("프로필용 사진입니다.");
+                box.setMessage("이미지 선택 방법을 결정하세요");
                 box.setPositiveButton("사진촬영", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        img1 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/attachimage2.jpg";
-                        file1=new File(img1);
+                        img1 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/attachimage3.png";
+                        file1 = new File(img1);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {  // API 24 이상 일경우..
                             uriImage2 = FileProvider.getUriForFile(ProfileActivity.this,
                                     getApplicationContext().getPackageName() + ".provider", file1);
@@ -477,6 +454,17 @@ public class ProfileActivity extends AppCompatActivity {
                 box.setNeutralButton("앨범선택", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        img1 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/attachimage2.png";
+                        file1 = new File(img1);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {  // API 24 이상 일경우..
+                            uriImage2 = FileProvider.getUriForFile(ProfileActivity.this,
+                                    getApplicationContext().getPackageName() + ".provider", file1);
+                        }
+                        // API 24 미만 일경우..
+                        else {
+                            uriImage2 = Uri.fromFile(file1);
+                        }
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, uriImage2);
                         startActivityForResult(intent, CALL_GALLERY);
                     }
                 });
@@ -486,15 +474,14 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+//////////////////////////////사진 붙일 때 돌아가지 않게하기
     private int getExifOrientation(String file) {
         ExifInterface exif = null;
-
         try {
             exif = new ExifInterface(file);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         if (exif != null) {
             int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                     ExifInterface.ORIENTATION_NORMAL);
@@ -514,7 +501,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         return 0;
     }
-
     private Bitmap getRotatedBitmap(Bitmap bitmap, int degree) {
         if (degree != 0 && bitmap != null) {
             Matrix matrix = new Matrix();
@@ -532,7 +518,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         return bitmap;
     }
-//화면에 사진 출력
+    ///////////////////////////////////////////////////////화면에 사진 출력&서버에 사진 업로드시키기
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
@@ -542,6 +528,28 @@ public class ProfileActivity extends AppCompatActivity {
                     } else {
                         image2.setImageBitmap(getRotatedBitmap(BitmapFactory.decodeFile(img1), getExifOrientation(img1)));
                     }
+                    final RequestBody mFile = RequestBody.create(MediaType.parse("image/*"), file);
+                    final MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("uploadfile", file.getName(), mFile);
+                    //인증용 사진 업로드
+                    final Call<ResponseBody> image = rs.uploadImg(fileToUpload);
+                    image.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            try {
+                                String result = response.body().string();
+                                String[] arr = {result};
+                                vo.setImgpath(arr);
+                                //System.out.println("사진 경로는???????/from 카메라"+arr+"///"+vo.getImgpath()[0]);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Log.d("error", t.getMessage());
+                        }
+                    });
                     break;
                 case CALL_GALLERY:
                     try {
@@ -550,24 +558,46 @@ public class ProfileActivity extends AppCompatActivity {
                         cursor.moveToFirst();
                         img1 = cursor.getString(cursor.getColumnIndex(projection[0]));
                         cursor.close();
-                         image2.setImageBitmap(MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData()));
+                        Bitmap bit =getRotatedBitmap(BitmapFactory.decodeFile(img1), getExifOrientation(img1));
+                        image2.setImageBitmap(MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData()));
                         image2.setImageBitmap(getRotatedBitmap(BitmapFactory.decodeFile(img1), getExifOrientation(img1)));
-                        System.out.println("갤러리 이미지 경로..................."+img1);
+                        image2.setImageBitmap(bit);
+                        file1=new File(img1);
+                        final RequestBody mFile1 = RequestBody.create(MediaType.parse("image/*"), file1);
+                        final MultipartBody.Part fileToUpload1 = MultipartBody.Part.createFormData("uploadfile", file1.getName(), mFile1);
+                        //프로필용 사진 업로드
+                        final Call<ResponseBody> image2 = rs.uploadImg(fileToUpload1);
+                        image2.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                try {
+                                    String result = response.body().string();
+                                    String[] arr = {result};
+                                    vo.setImgpath(arr);
+                                    //System.out.println("사진 경로는???????/from 갤러리"+arr+"///"+arr[0]);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                Log.d("error", t.getMessage());
+                            }
+                        });
                     } catch (Exception e) {
                     }
-                    break;
 
+                    break;
             }
         }
     }
 
 
 
-
+////////////////////퍼미션체크
     public void permissionCheck() {
         if (ActivityCompat.checkSelfPermission(ProfileActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
         }
     }
 }
-

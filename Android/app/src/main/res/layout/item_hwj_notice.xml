@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/heart"
+    android:background="@drawable/background_edge"
     android:padding="10sp"
     android:layout_marginRight="15sp"
     android:layout_marginLeft="15sp"
@@ -14,7 +14,7 @@
         android:layout_width="28sp"
         android:layout_height="28sp"
         android:singleLine="true"
-        android:src="@drawable/heart"/>
+        android:src="@drawable/icon_notice"/>
 
     <TextView
         android:id="@+id/title"
@@ -43,5 +43,5 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/heart" />
+        android:src="@drawable/icon_down" />
 </RelativeLayout>

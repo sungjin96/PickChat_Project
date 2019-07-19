@@ -12,7 +12,7 @@ public interface NaverService {
     public static final String NAVER_URL= "https://api-sens.ncloud.com/v1/sms/";
 
 
-    @POST("services/ncp:sms:kr:255695395285:shinki/messages")
+    @POST("services/ncp:sms:kr:256312159523:pickchat/messages")
     Call<ResponseBody> sendSMS(@HeaderMap HashMap<String, String> header, @Body naverVO body);
 
 

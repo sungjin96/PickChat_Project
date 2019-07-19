@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff006c"
     tools:context=".HWJ_QuitActivity">
 
     <TextView
@@ -24,8 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="300sp"
         android:gravity="top"
-        android:background="@drawable/heart"
-        android:hint="픽챗을 사용하면서 불편한 점을 꼭 적어주세요."/>
+        android:background="@drawable/background_rounding_red_edge"
+        android:hint="픽챗을 사용하면서 불편한 점을 꼭 적어주세요."
+        android:textColorHint="#464646"/>
 
     <Button
         android:id="@+id/btn_point"
@@ -37,8 +37,9 @@
         android:layout_marginTop="30sp"
         android:layout_below="@id/edt_txt"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/heart"
+        android:background="@drawable/background_rounding_red"
         android:textSize="20sp"
+        android:textColor="#FFF"
         android:text="포인트 받고 돌아가기(100p)"/>
 
     <RelativeLayout
@@ -54,13 +55,13 @@
             android:layout_centerVertical="true"
             android:text="탈퇴하기"
             android:textSize="15sp"
-            android:textColor="#808080"
+            android:textColor="#464646"
             />
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/heart"
+            android:src="@drawable/icon_right"
             android:layout_toRightOf="@id/quit"/>
     </RelativeLayout>
 </RelativeLayout>

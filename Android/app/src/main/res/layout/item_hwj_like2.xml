@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/btnAll"
+<RelativeLayout android:id="@+id/btnAll"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="5sp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/outline"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/soloimg"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:src="@drawable/heart"/>
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/a"
+        app:riv_oval="true"
+        android:scaleType="fitXY"/>
 
     <LinearLayout
         android:layout_toRightOf="@id/soloimg"

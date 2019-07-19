@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <color name="colorPrimary">#FF006C</color>
-    <color name="colorPrimaryDark">#FF006C</color>
+    <color name="colorPrimary">#FFF</color>
+    <color name="colorPrimaryDark">#FFF</color>
     <color name="colorAccent">#FF006C</color>
     <color name="button">#FF006C</color>
     <color name="gg">#000000</color>
+    <color name="button_gallrey">#81B346</color>
+    <color name="button_camera">#8492DD</color>
+    <color name="button_mic">#F36A62</color>
+    <color name="button_pick">#68A09A</color>
+    <color name="button_vedio">#DAD084</color>
+    <color name="button_access">#d19bc9</color>
 </resources>

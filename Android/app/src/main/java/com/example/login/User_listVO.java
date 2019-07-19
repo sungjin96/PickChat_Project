@@ -1,7 +1,6 @@
 package com.example.login;
 
 public class User_listVO {
-
     private String userid;
     private String username;
     private String userpassword;
@@ -13,13 +12,13 @@ public class User_listVO {
     private int userheight;
     private String usercomment;
     private int imgshow;
-    private String imgpath;
+    private String[] imgpath;
 
-    public String getImgpath() {
+    public String[] getImgpath() {
         return imgpath;
     }
 
-    public void setImgpath(String imgpath) {
+    public void setImgpath(String[] imgpath) {
         this.imgpath = imgpath;
     }
 
@@ -127,7 +126,7 @@ public class User_listVO {
                 ", userheight='" + userheight + '\'' +
                 ", usercomment='" + usercomment + '\'' +
                 ", imgshow=" + imgshow +
-                ", imgpath='" + imgpath + '\'' +
+                ", imgpath='" + imgpath[0] + '\'' +
                 '}';
     }
 }

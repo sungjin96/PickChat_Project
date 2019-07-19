@@ -1,5 +1,7 @@
 package com.example.login;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,12 +9,13 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 
 public class HWJ_LikeActivity extends AppCompatActivity {
-
     TabLayout tab;
     ViewPager pager;
     PagerAdapter adapter;
@@ -21,19 +24,32 @@ public class HWJ_LikeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hwj__like);
+        setContentView(R.layout.activity_hwj_like);
+
+        //상태바 아이콘색상변경
+        View view = getWindow().getDecorView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (view != null) {
+                // 23 버전 이상일 때 상태바 하얀 색상에 회색 아이콘 색상을 설정
+                view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                getWindow().setStatusBarColor(Color.parseColor("#f2f2f2"));
+            }
+        }else if (Build.VERSION.SDK_INT >= 21) {
+            // 21 버전 이상일 때
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
 
         //액션바(뒤로가기 버튼) 설정
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_back);
-        getSupportActionBar().setTitle("좋아요");
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#878789'>좋아요 </font>"));
 
         //탭 설정
         tab = findViewById(R.id.tab);
         tab.addTab(tab.newTab().setText(""));
         tab.addTab(tab.newTab().setText(""));
-        tab.getTabAt(0).setIcon(R.drawable.heart);
-        tab.getTabAt(1).setIcon(R.drawable.heart);
+        tab.getTabAt(0).setText(Html.fromHtml("<font color='#878789'>나를 좋아한 사람</font>"));
+        tab.getTabAt(1).setText(Html.fromHtml("<font color='#878789'>내가 좋아한 사람</font>"));
 
         pager = findViewById(R.id.pager);
         fragments = new ArrayList<Fragment>();

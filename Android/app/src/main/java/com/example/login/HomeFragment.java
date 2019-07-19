@@ -1,6 +1,7 @@
 package com.example.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +39,7 @@ import static com.example.login.RemoteService.BASE_URL;
 public class HomeFragment extends Fragment {
     Retrofit retrofit;
     RemoteService rs;
-    GridView list;
+    ListView list;
     List<UserProfileVO> users;
     MyAdapter myadapter;
 
@@ -48,7 +50,6 @@ public class HomeFragment extends Fragment {
     }
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root=inflater.inflate(R.layout.fragment_home,container,false);
-
         return root;
     }
     @Override
@@ -114,8 +115,8 @@ public class HomeFragment extends Fragment {
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView =getLayoutInflater().inflate(R.layout.item_user,parent,false);
-
+                convertView = getLayoutInflater().inflate(R.layout.item_user, parent, false);
+            }
                 ImageView img=convertView.findViewById(R.id.img);
                 TextView name=convertView.findViewById(R.id.name);
                 TextView age=convertView.findViewById(R.id.age);
@@ -125,6 +126,19 @@ public class HomeFragment extends Fragment {
                 name.setText(array.get(position).getUsername());
                 age.setText(String.valueOf(array.get(position).getUserage()));
                 local.setText(array.get(position).getLocalname());
+                System.out.println(array.toString());
+
+                //개인 리스트 클릭했을때 프로필로 넘어가기
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(getContext(),HWJ_OtherActivity.class);
+                        intent.putExtra("id",array.get(position).getUserid());
+                        startActivity(intent);
+                    }
+                });
+
+
                 Thread thread=new Thread(){
                     @Override
                     public void run() {
@@ -152,7 +166,7 @@ public class HomeFragment extends Fragment {
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
-            }
+
 
             return convertView;
         }

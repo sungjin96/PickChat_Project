@@ -23,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.example.login.RemoteService.BASE_URL;
 
 public class DetailsActivity extends AppCompatActivity {
+    //내 매력 입력
     Retrofit retrofit;
     RemoteService rs;
     List<type_categoryVO> type_category;
@@ -80,7 +81,7 @@ public class DetailsActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                          System.out.println(".............입력완료"+vo.toString());
-                        onPostResume();
+                        //onPostResume();
                     }
 
                     @Override

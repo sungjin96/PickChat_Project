@@ -16,31 +16,24 @@ import retrofit2.http.Query;
 
 public interface RemoteService {
     public static final String BASE_URL="http://sungjin5891.cafe24.com/";
-
+//    public static final String BASE_URL="http://192.168.0.26/";
+    @GET("user/login")
+    Call<Integer> logincheck(@Query("userid")String userid,@Query("userpass")String userpass);
     //유저리스트
     @GET("user/list_user")
     Call<List<UserProfileVO>> listUser();
 
-    //프로필 리스트
+    //한 명 프로필 리스트
     @GET("user/read/{userid}")
     Call<UserProfileVO> listProfile(@Path("userid") String userid);
 
-    //이상형/매력 호출
+    //이상형/매력 리스트
     @GET("user/list_category")
     Call<List<type_categoryVO>> listCategory();
 
-    //취미호출
+    //취미 리스트
     @GET("user/list_hobbycategory")
     Call<List<hobby_categoryVO>> listhobby();
-
-    //회원내용 저장
-    @POST("user/insert_puser")
-    Call<Void> userinsert(@Body User_listVO vo);
-
-    //매력
-    @POST("user/insert_mytype")
-    Call<Void> typeinsert(@Body TypeInsertVO vo);
-
 
     //중복체크
     @GET("user/checknickname/{usernickname}")
@@ -50,15 +43,11 @@ public interface RemoteService {
     @GET("user/checkid/{userid}")
     Call<Integer> checkid(@Path("userid") String userid);
 
-    @GET("user")
-    Call<List<naverVO>> listuser();
-
-    @GET("insert.jsp")
-    Call<Void> insertUser(@Query("id") String id, @Query("name") String name, @Query("password") String password);
-
-    @Multipart
-    @POST("upload1")
-    Call<ResponseBody> uploadImg(@Part MultipartBody.Part uploadfile,@Part MultipartBody.Part uploadfile1);
+//    @GET("user")
+//    Call<List<naverVO>> listuser();
+//
+//    @GET("insert.jsp")
+//    Call<Void> insertUser(@Query("id") String id, @Query("name") String name, @Query("password") String password);
 
     //유저 매력 리스트
     @GET("user/list_mytype/{userid}")
@@ -80,17 +69,38 @@ public interface RemoteService {
     @GET("user/user_receiver_profile/{userid}")
     Call<List<HWJ_LikeVO>> listWhoLike(@Path("userid") String userid);
 
-    //내가 좋아요 한 사람
-    @GET("user/user_sender_profile/{userid}")
-    Call<List<HWJ_LikeVO>> listILike(@Path("userid") String userid);
-
-    //주변친구차단 삽입
-    @POST("user/insert_blockuser")
-    Call<Void> insertBlock(@Body HWJ_BlockVO vo);
-
     //차단친구목록 리스트
     @GET("user/list_blockuser/{blocker}")
     Call<List<HWJ_BlockVO>> listBlock(@Path("blocker") String blocker);
+
+    //내가 좋아요 한 사람 리스트
+    @GET("user/user_sender_profile/{userid}")
+    Call<List<HWJ_LikeVO>> listILike(@Path("userid") String userid);
+
+    //주변친구차단 입력
+    @POST("user/insert_blockuser")
+    Call<Void> insertBlock(@Body HWJ_BlockVO vo);
+
+    //회원가입 (기본정보)
+    @POST("user/insert_puser")
+    Call<Void> userinsert(@Body User_listVO vo);
+
+    //내 매력 입력
+    @POST("user/insert_mytype")
+    Call<Void> typeinsert(@Body TypeInsertVO vo);
+
+    //이상형 입력
+    @POST("user/insert_liketype")
+    Call<Void> liketypeinsert(@Body TypeInsertVO vo);
+
+    //취미 입력
+    @POST("user/insert_userhobby")
+    Call<Void> hobbyinsert(@Body TypeInsertVO vo);
+
+    //사진업로드
+    @Multipart
+    @POST("upload1")
+    Call<ResponseBody> uploadImg(@Part MultipartBody.Part uploadfile);
 
     //차단친구목록 삭제
     @POST("user/delete_blockuser/{blockno}")
@@ -99,5 +109,14 @@ public interface RemoteService {
     //포인트 업데이트
     @PATCH("user/update_userpoint/{userid}/{userpoint}")
     Call<Void> updatePoint(@Path("userid") String userid, @Path("userpoint") int userpoint);
+
+    //서로 좋아요 한 사람 리스트
+    @GET("user/user_eachlike/{userid}")
+    Call<List<UserProfileVO>> eachlikeUser(@Path("userid")String userid);
+
+    //api호출
+    @GET("api")
+    Call<ResponseBody> faceapi();
+
 
 }

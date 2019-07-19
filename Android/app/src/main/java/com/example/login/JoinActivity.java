@@ -36,7 +36,6 @@ public class JoinActivity extends AppCompatActivity {
                             btn3.setChecked(true);
                             btn4.setChecked(true);
                             btn5.setChecked(true);
-
                         } else {
                             btn1.setChecked(false);
                             btn2.setChecked(false);
@@ -44,7 +43,6 @@ public class JoinActivity extends AppCompatActivity {
                             btn4.setChecked(false);
                             btn5.setChecked(false);
                         }
-
                 }
             }
         });
@@ -55,11 +53,9 @@ public class JoinActivity extends AppCompatActivity {
                     Intent intent = new Intent(JoinActivity.this, PhoneActivity.class);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(JoinActivity.this,"필수 항복을 체크해 주세요",Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(JoinActivity.this,"필수 항목을 체크해 주세요",Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
 }

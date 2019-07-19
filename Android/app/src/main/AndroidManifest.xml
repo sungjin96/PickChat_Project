@@ -5,6 +5,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -14,8 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HWJ_LikeActivity"></activity>
-        <activity android:name=".HWJ_BottomSheetDialog" />
+        <activity android:name=".HWJ_NoticeActivity"/>
+        <activity android:name=".HWJ_AccountActivity" />
+        <activity android:name=".HWJ_AlarmActivity" />
+        <activity android:name=".HWJ_BlockActivity" />
+        <activity android:name=".HWJ_BlockListActivity" />
+        <activity android:name=".HWJ_FAQActivity" />
+        <activity android:name=".HWJ_LikeActivity" />
         <activity android:name=".HWJ_ProfileActivity" />
         <activity android:name=".HWJ_QuitActivity" />
         <activity android:name=".HWJ_ShareActivity" />

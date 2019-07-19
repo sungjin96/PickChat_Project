@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.login"
-        minSdkVersion 17
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -44,6 +44,7 @@ dependencies {
         exclude module: 'support-v4'
     }
     implementation 'de.hdodenhof:circleimageview:2.0.0'
+    implementation 'com.github.bootpay:client_android_java:2.143'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200sp"
-        android:src="@drawable/heart" />
+        android:layout_centerVertical="true"
+        android:src="@drawable/main_pickchat" />
 
     <Button
         android:id="@+id/contact"
@@ -23,8 +23,9 @@
         android:layout_marginLeft="30sp"
         android:layout_marginRight="30sp"
         android:layout_marginTop="200sp"
-        android:background="@drawable/heart"
+        android:background="@drawable/background_rounding_red"
         android:text="PickChat 공유하기"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#FFF"/>
 
 </RelativeLayout>

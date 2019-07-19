@@ -39,10 +39,10 @@ public class HWJ_NoticeAdapter extends RecyclerView.Adapter<HWJ_NoticeAdapter.Vi
             public void onClick(View v) {
                 if(holder.content.getVisibility()!=View.VISIBLE){
                     holder.content.setVisibility(View.VISIBLE);
-                    holder.btnView.setImageResource(R.drawable.heart);
+                    holder.btnView.setImageResource(R.drawable.icon_top);
                 }else{
                     holder.content.setVisibility(View.GONE);
-                    holder.btnView.setImageResource(R.drawable.heart);
+                    holder.btnView.setImageResource(R.drawable.icon_down);
                 }
             }
         });

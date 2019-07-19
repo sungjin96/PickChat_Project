@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class TypeInsertVO {
     private Integer[] typeid;
-    private int[] hobbyid;
+    private Integer[] hobbyid;
     private String userid;
 
     public Integer[] getTypeid() {
@@ -15,11 +15,11 @@ public class TypeInsertVO {
         this.typeid = typeid;
     }
 
-    public int[] getHobbyid() {
+    public Integer[] getHobbyid() {
         return hobbyid;
     }
 
-    public void setHobbyid(int[] hobbyid) {
+    public void setHobbyid(Integer[] hobbyid) {
         this.hobbyid = hobbyid;
     }
 

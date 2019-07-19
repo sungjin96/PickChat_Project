@@ -4,7 +4,7 @@
     android:id="@+id/soloimg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/heart">
+    android:background="@drawable/a">
 
     <TextView
         android:id="@+id/userfragment"
@@ -19,7 +19,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="10sp"
         android:backgroundTint="#ff006c"
-        android:src="@drawable/heart"
+        android:src="@drawable/icon_favorite"
         app:borderWidth="0dp" />
 
     <FrameLayout
@@ -27,7 +27,7 @@
         android:layout_alignParentBottom="true"
         android:padding="20dp"
         android:layout_margin="20dp"
-        android:background="@drawable/heart"
+        android:background="@drawable/background_rounding_red_edge_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

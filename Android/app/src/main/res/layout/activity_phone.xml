@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,6 +26,7 @@
             android:hint="실명을 입력하세요"/>
         <EditText
             android:id="@+id/txtnum"
+            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="전화번호를 입력하세요"/>
@@ -84,6 +90,7 @@
                 android:layout_width="0px"
                 android:layout_weight="4"
                 android:id="@+id/confirmnum"
+                android:inputType="numberDecimal"
                 android:layout_height="wrap_content"
                 android:hint="인증번호를 적어주세요"/>
             <Button
@@ -99,9 +106,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="다음"
-            android:visibility="visible"
             android:textColor="#FFFFFF"
             android:background="@drawable/button"
             android:layout_marginTop="25dp"/>
     </LinearLayout>
 </RelativeLayout>
+</ScrollView>

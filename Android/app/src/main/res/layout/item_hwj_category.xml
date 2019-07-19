@@ -5,12 +5,16 @@
 
     <TextView
         android:id="@+id/category"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/heart"
+        android:background="@drawable/background_rounding_red_edge"
         android:text="흐엉엉"
-        android:padding="10sp"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        android:textStyle="bold"
         android:textSize="15sp" />
 
 </RelativeLayout>

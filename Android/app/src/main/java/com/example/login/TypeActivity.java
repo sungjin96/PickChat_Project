@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.example.login.RemoteService.BASE_URL;
 
 public class TypeActivity extends AppCompatActivity {
-
+    //이상형 입력
     Retrofit retrofit;
     RemoteService rs;
     List<type_categoryVO> type_category;
@@ -33,6 +33,7 @@ public class TypeActivity extends AppCompatActivity {
     Button btnnext;
     TypeInsertVO vo;
     String userid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +50,11 @@ public class TypeActivity extends AppCompatActivity {
 
         listlist.setLayoutManager(staggeredGridLayoutManager);
 
-
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         rs = retrofit.create(RemoteService.class);
-
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,14 +75,13 @@ public class TypeActivity extends AppCompatActivity {
 
                 vo.setTypeid(tempint);
                 vo.setUserid(userid);
-                Call<Void> call = rs.typeinsert(vo);
+                Call<Void> call = rs.liketypeinsert(vo);
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         // System.out.println(vo.toString());
-                        onPostResume();
+                        //onPostResume();
                     }
-
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
                         Log.d("오류", t.getMessage());
@@ -93,10 +91,8 @@ public class TypeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
     }
+
     @Override
     protected void onPostResume() {
         Call<List<type_categoryVO>> call = rs.listCategory();
@@ -110,7 +106,6 @@ public class TypeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<type_categoryVO>> call, Throwable t) {
-
             }
         });
         super.onPostResume();

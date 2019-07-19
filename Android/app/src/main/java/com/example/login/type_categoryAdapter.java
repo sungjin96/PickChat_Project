@@ -61,8 +61,6 @@ public class type_categoryAdapter extends RecyclerView.Adapter<type_categoryAdap
 //                    context.startActivity(intent);
 //
 //                }
-
-
             }
         });
     }

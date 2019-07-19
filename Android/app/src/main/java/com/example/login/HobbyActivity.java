@@ -24,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.example.login.RemoteService.BASE_URL;
 
 public class HobbyActivity extends AppCompatActivity {
+    //취미 입력
     Retrofit retrofit;
     RemoteService rs;
     List<hobby_categoryVO> hobby_category;
@@ -44,6 +45,7 @@ public class HobbyActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences= getSharedPreferences("userid",MODE_PRIVATE);
         userid = sharedPreferences.getString("userid","");
+
         StaggeredGridLayoutManager staggeredGridLayoutManager
                 = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
 
@@ -74,15 +76,15 @@ public class HobbyActivity extends AppCompatActivity {
                     System.out.println(tempint[i]);
                 }
 
-                vo.setTypeid(tempint);
+                vo.setHobbyid(tempint);
                 vo.setUserid(userid);
-                Call<Void> call = rs.typeinsert(vo);
+
+                Call<Void> call = rs.hobbyinsert(vo);
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Toast.makeText(HobbyActivity.this, "d입력완료", Toast.LENGTH_SHORT).show();
-                         System.out.println(vo.toString());
-                        onPostResume();
+                        //Toast.makeText(HobbyActivity.this, "입력완료", Toast.LENGTH_SHORT).show();
+                        //onPostResume();
                     }
 
                     @Override
@@ -90,8 +92,9 @@ public class HobbyActivity extends AppCompatActivity {
                         Log.d("오류", t.getMessage());
                     }
                 });
-//                Intent intent=new Intent(HobbyActivity.this,MainActivity.class);
-//                startActivity(intent);
+                Intent intent=new Intent(HobbyActivity.this,MainActivity.class);
+                intent.putExtra("join",true);
+                startActivity(intent);
             }
         });
     }

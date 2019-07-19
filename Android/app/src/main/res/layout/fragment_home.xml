@@ -20,11 +20,10 @@
             android:textSize="20sp"
             android:padding="10sp"
             />
-        <GridView
-            android:numColumns="1"
+
+        <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            ></GridView>
+            android:layout_height="match_parent"></ListView>
     </LinearLayout>
 </LinearLayout>
