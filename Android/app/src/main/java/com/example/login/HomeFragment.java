@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment {
     ListView list;
     List<UserProfileVO> users;
     MyAdapter myadapter;
-
+    Bundle bundle;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +57,12 @@ public class HomeFragment extends Fragment {
         list = view.findViewById(R.id.list);
         retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         rs = retrofit.create(RemoteService.class);
+        //번들로vo받을 때
+        //bundle = getArguments();
+        //UserProfileVO bundlevo = bundle.getParcelable("vo");
+        //String nickname=bundle.getString("nickname");
+
+
         Call<List<UserProfileVO>> call = rs.listUser();
         call.enqueue(new Callback<List<UserProfileVO>>() {
             @Override
@@ -123,10 +129,9 @@ public class HomeFragment extends Fragment {
                 TextView local=convertView.findViewById(R.id.local);
                 TextView comment=convertView.findViewById(R.id.comment);
 
-                name.setText(array.get(position).getUsername());
+                name.setText(array.get(position).getUsernickname());
                 age.setText(String.valueOf(array.get(position).getUserage()));
                 local.setText(array.get(position).getLocalname());
-                System.out.println(array.toString());
 
                 //개인 리스트 클릭했을때 프로필로 넘어가기
                 convertView.setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/qtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="제목"/>
+    <TextView
+        android:id="@+id/qcontent"
+        android:layout_below="@id/qtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="내용"/>
+    <TextView
+        android:id="@+id/qccontent"
+        android:layout_below="@id/qcontent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#808080"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        android:text=""/>
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="답변중"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"/>
+
+</RelativeLayout>

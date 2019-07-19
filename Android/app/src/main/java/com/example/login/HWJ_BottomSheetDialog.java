@@ -1,5 +1,6 @@
 package com.example.login;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -30,6 +31,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.login.RemoteService.BASE_URL;
 
 public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
@@ -38,6 +40,7 @@ public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements 
     static int point;
     Retrofit retrofit;
     RemoteService rs;
+    String strUser;
 
     //부트페이
     private int stuck = 10;
@@ -51,6 +54,10 @@ public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_hwj_bottom_sheet_dialog, container, false);
+
+        //로그인부터 유저값 받아오기
+        SharedPreferences sharedPreferences= this.getActivity().getSharedPreferences("userid",MODE_PRIVATE);
+        strUser = sharedPreferences.getString("userid","");
 
         userpoint = view.findViewById(R.id.userpoint);
         userpoint.setText(point + "p");
@@ -110,11 +117,25 @@ public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements 
                         .onDone(new DoneListener() { // 결제완료시 호출, 아이템 지급 등 데이터 동기화 로직을 수행합니다
                             @Override
                             public void onDone(@Nullable String message) {
-                                Call<Void> call = rs.updatePoint("01000020002", 50); //아이디 값 받아오는 구간
+                                Call<Void> call = rs.updatePoint(strUser, 50); //아이디 값 받아오는 구간
                                 call.enqueue(new Callback<Void>() {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
-                                        Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                        if(response.isSuccessful()){
+                                            //결제금액 총결산
+                                            Call<Void> call2 = rs.insertProfit(strUser, 2500); //아이디 값 받아오는 구간
+                                            call2.enqueue(new Callback<Void>() {
+                                                @Override
+                                                public void onResponse(Call<Void> call2, Response<Void> response) {
+                                                    Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<Void> call2, Throwable t) {
+                                                    t.printStackTrace();
+                                                }
+                                            });
+                                        }
                                     }
 
                                     @Override
@@ -122,7 +143,6 @@ public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements 
                                         t.printStackTrace();
                                     }
                                 });
-
                                 Log.d("done", message);
                             }
                         })
@@ -177,11 +197,25 @@ public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements 
                         .onDone(new DoneListener() { // 결제완료시 호출, 아이템 지급 등 데이터 동기화 로직을 수행합니다
                             @Override
                             public void onDone(@Nullable String message) {
-                                Call<Void> call = rs.updatePoint("01000020002", 100); //아이디 값 받아오는 구간
+                                Call<Void> call = rs.updatePoint(strUser, 100); //아이디 값 받아오는 구간
                                 call.enqueue(new Callback<Void>() {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
-                                        Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                        if(response.isSuccessful()){
+                                            //결제금액 총결산
+                                            Call<Void> call2 = rs.insertProfit(strUser, 2500); //아이디 값 받아오는 구간
+                                            call2.enqueue(new Callback<Void>() {
+                                                @Override
+                                                public void onResponse(Call<Void> call2, Response<Void> response) {
+                                                    Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<Void> call2, Throwable t) {
+                                                    t.printStackTrace();
+                                                }
+                                            });
+                                        }
                                     }
 
                                     @Override
@@ -244,11 +278,25 @@ public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements 
                         .onDone(new DoneListener() { // 결제완료시 호출, 아이템 지급 등 데이터 동기화 로직을 수행합니다
                             @Override
                             public void onDone(@Nullable String message) {
-                                Call<Void> call = rs.updatePoint("01000020002", 200); //아이디 값 받아오는 구간
+                                Call<Void> call = rs.updatePoint(strUser, 200); //아이디 값 받아오는 구간
                                 call.enqueue(new Callback<Void>() {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
-                                        Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                        if(response.isSuccessful()){
+                                            //결제금액 총결산
+                                            Call<Void> call2 = rs.insertProfit(strUser, 2500); //아이디 값 받아오는 구간
+                                            call2.enqueue(new Callback<Void>() {
+                                                @Override
+                                                public void onResponse(Call<Void> call2, Response<Void> response) {
+                                                    Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<Void> call2, Throwable t) {
+                                                    t.printStackTrace();
+                                                }
+                                            });
+                                        }
                                     }
 
                                     @Override
@@ -311,11 +359,25 @@ public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements 
                         .onDone(new DoneListener() { // 결제완료시 호출, 아이템 지급 등 데이터 동기화 로직을 수행합니다
                             @Override
                             public void onDone(@Nullable String message) {
-                                Call<Void> call = rs.updatePoint("01000020002", 500); //아이디 값 받아오는 구간
+                                Call<Void> call = rs.updatePoint(strUser, 500); //아이디 값 받아오는 구간
                                 call.enqueue(new Callback<Void>() {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
-                                        Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                        if(response.isSuccessful()){
+                                            //결제금액 총결산
+                                            Call<Void> call2 = rs.insertProfit(strUser, 2500); //아이디 값 받아오는 구간
+                                            call2.enqueue(new Callback<Void>() {
+                                                @Override
+                                                public void onResponse(Call<Void> call2, Response<Void> response) {
+                                                    Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<Void> call2, Throwable t) {
+                                                    t.printStackTrace();
+                                                }
+                                            });
+                                        }
                                     }
 
                                     @Override
@@ -378,11 +440,25 @@ public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements 
                         .onDone(new DoneListener() { // 결제완료시 호출, 아이템 지급 등 데이터 동기화 로직을 수행합니다
                             @Override
                             public void onDone(@Nullable String message) {
-                                Call<Void> call = rs.updatePoint("01000020002", 1000); //아이디 값 받아오는 구간
+                                Call<Void> call = rs.updatePoint(strUser, 1000); //아이디 값 받아오는 구간
                                 call.enqueue(new Callback<Void>() {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
-                                        Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                        if(response.isSuccessful()){
+                                            //결제금액 총결산
+                                            Call<Void> call2 = rs.insertProfit(strUser, 2500); //아이디 값 받아오는 구간
+                                            call2.enqueue(new Callback<Void>() {
+                                                @Override
+                                                public void onResponse(Call<Void> call2, Response<Void> response) {
+                                                    Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<Void> call2, Throwable t) {
+                                                    t.printStackTrace();
+                                                }
+                                            });
+                                        }
                                     }
 
                                     @Override
@@ -445,11 +521,25 @@ public class HWJ_BottomSheetDialog extends BottomSheetDialogFragment implements 
                         .onDone(new DoneListener() { // 결제완료시 호출, 아이템 지급 등 데이터 동기화 로직을 수행합니다
                             @Override
                             public void onDone(@Nullable String message) {
-                                Call<Void> call = rs.updatePoint("01000020002", 2000); //아이디 값 받아오는 구간
+                                Call<Void> call = rs.updatePoint(strUser, 2000); //아이디 값 받아오는 구간
                                 call.enqueue(new Callback<Void>() {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
-                                        Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                        if(response.isSuccessful()){
+                                            //결제금액 총결산
+                                            Call<Void> call2 = rs.insertProfit(strUser, 2500); //아이디 값 받아오는 구간
+                                            call2.enqueue(new Callback<Void>() {
+                                                @Override
+                                                public void onResponse(Call<Void> call2, Response<Void> response) {
+                                                    Toast.makeText(getContext(), "충전 완료", Toast.LENGTH_SHORT).show();
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<Void> call2, Throwable t) {
+                                                    t.printStackTrace();
+                                                }
+                                            });
+                                        }
                                     }
 
                                     @Override

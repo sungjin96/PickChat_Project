@@ -83,7 +83,7 @@ public class ProfileActivity extends AppCompatActivity {
     File file, file1;
     String apiresult;
     boolean facecheck=false;
-    ProgressBar progressbar;
+    ProgressBar progcircle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
         username = intent.getStringExtra("username");
 
         //각각 위치 찾기
-        progressbar=findViewById(R.id.progcircle);
+        progcircle=findViewById(R.id.progcircle);
         userpassword = findViewById(R.id.userpassword);
         usernickname = findViewById(R.id.usernickname);
         userage = findViewById(R.id.userage);
@@ -131,13 +131,13 @@ public class ProfileActivity extends AppCompatActivity {
         btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressbar.setVisibility(View.VISIBLE);
+                progcircle.setVisibility(View.VISIBLE);
                 Call<ResponseBody> call=rs.faceapi();
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         try {
-                            progressbar.setVisibility(View.INVISIBLE);
+                            progcircle.setVisibility(View.GONE);
                             apiresult = response.body().string();
                             //System.out.println("얼굴인식 결과는?????????????????????????" + apiresult);
                         }catch (Exception e){

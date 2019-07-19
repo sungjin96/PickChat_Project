@@ -1,6 +1,9 @@
 package com.example.login;
 
-public class UserProfileVO {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class UserProfileVO implements Parcelable {
     private int imgshow;
     private String soloimg;
     private String userid;
@@ -15,6 +18,38 @@ public class UserProfileVO {
     private String gendername;
     private String gendercode;
     private int userpoint;
+
+    protected  UserProfileVO(){
+
+    }
+    protected UserProfileVO(Parcel in) {
+        imgshow = in.readInt();
+        soloimg = in.readString();
+        userid = in.readString();
+        userheight = in.readString();
+        username = in.readString();
+        userjob = in.readString();
+        usercomment = in.readString();
+        userage = in.readString();
+        usernickname = in.readString();
+        localname = in.readString();
+        localcode = in.readString();
+        gendername = in.readString();
+        gendercode = in.readString();
+        userpoint = in.readInt();
+    }
+
+    public static final Creator<UserProfileVO> CREATOR = new Creator<UserProfileVO>() {
+        @Override
+        public UserProfileVO createFromParcel(Parcel in) {
+            return new UserProfileVO(in);
+        }
+
+        @Override
+        public UserProfileVO[] newArray(int size) {
+            return new UserProfileVO[size];
+        }
+    };
 
     public int getUserpoint() {
         return userpoint;
@@ -146,5 +181,28 @@ public class UserProfileVO {
                 ", gendercode='" + gendercode + '\'' +
                 ", userpoint=" + userpoint +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(imgshow);
+        dest.writeString(soloimg);
+        dest.writeString(userid);
+        dest.writeString(userheight);
+        dest.writeString(username);
+        dest.writeString(userjob);
+        dest.writeString(usercomment);
+        dest.writeString(userage);
+        dest.writeString(usernickname);
+        dest.writeString(localname);
+        dest.writeString(localcode);
+        dest.writeString(gendername);
+        dest.writeString(gendercode);
+        dest.writeInt(userpoint);
     }
 }

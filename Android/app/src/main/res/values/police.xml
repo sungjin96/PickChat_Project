@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="policeContent">
+        <item>욕설 및 비방</item>
+        <item>부적절한 사진</item>
+        <item>허위 내용</item>
+        <item>스팸 및 광고</item>
+        <item>기타</item>
+    </string-array>
+</resources>

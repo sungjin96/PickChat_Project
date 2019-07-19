@@ -26,7 +26,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class HWJ_FAQActivity extends AppCompatActivity {
-    RelativeLayout question, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
+    RelativeLayout question, question1, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
     TextView content1, content2, content3, content4, content5, content6, content7, content8, content9;
     ImageView btnView1, btnView2, btnView3, btnView4, btnView5, btnView6, btnView7, btnView8, btnView9;
 
@@ -213,16 +213,28 @@ public class HWJ_FAQActivity extends AppCompatActivity {
             }
         });
 
+        //문의하기
+        question1 = findViewById(R.id.question1);
+        question1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HWJ_FAQActivity.this, HWJ_QuestionActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        //메일로 문의하기
         question = findViewById(R.id.question);
         question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //문의하기
+                //메일로 문의하기
                 shareIntentSpecificApps();
             }
         });
     }
+
+
 
     //문의하기 버튼
     public void shareIntentSpecificApps() {

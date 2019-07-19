@@ -13,13 +13,28 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.Set;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.login.RemoteService.BASE_URL;
+
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bnaView;
     boolean joincheck=false;
+    Retrofit retrofit;
+    RemoteService rs;
+    UserProfileVO vo;
+    String userid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +43,18 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.title);
+
+        //로그인 한 유저 아이디값
+        SharedPreferences sharedPreferences= getSharedPreferences("userid",MODE_PRIVATE);
+        userid = sharedPreferences.getString("userid","");
+
+
+        vo = new UserProfileVO();
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        rs = retrofit.create(RemoteService.class);
 
         //가입 완료하고 넘어올 때
         Intent intent=getIntent();
@@ -39,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
             box.setNegativeButton("확인",null);
             box.show();
         }
-
 
         //상태바 아이콘색상변경
         View view = getWindow().getDecorView();
@@ -54,9 +80,21 @@ public class MainActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.BLACK);
         }
 
-        SharedPreferences sharedPreferences= getSharedPreferences("userid",MODE_PRIVATE);
-        String userid = sharedPreferences.getString("userid","");
-        //Toast.makeText(this, userid+"??????", Toast.LENGTH_SHORT).show();
+        //정보 리드하기
+        Call<UserProfileVO> call=rs.listProfile(userid);
+        call.enqueue(new Callback<UserProfileVO>() {
+            @Override
+            public void onResponse(Call<UserProfileVO> call, Response<UserProfileVO> response) {
+                vo = response.body();
+                System.out.println("vo에 있는 닉네임!!!"+vo.toString());
+
+            }
+
+            @Override
+            public void onFailure(Call<UserProfileVO> call, Throwable t) {
+                System.out.println("정보리드 에러"+t.toString());
+            }
+        });
 
         bnaView=findViewById(R.id.bnaView);
 
@@ -77,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.home:
                         showcustom();
-
                         HomeFragment homefragment=new HomeFragment();
+                        //homefragment.setArguments(bundle);
                         if(fragment!=null) {
                             tr.replace(R.id.frame, homefragment, "home");
                             tr.commit();
@@ -86,8 +124,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.bbs:
                         showcustom();
-
                         BbsFragment bbsfragment=new BbsFragment();
+                        //bbsfragment.setArguments(bundle);
                         if(fragment!=null) {
                             tr.replace(R.id.frame, bbsfragment, "bbs");
                             tr.commit();
@@ -95,8 +133,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.chat:
                         showcustom();
-
                         ChatFragment chatfragment=new ChatFragment();
+                        //chatfragment.setArguments(bundle);
                         if(fragment!=null) {
                             tr.replace(R.id.frame, chatfragment, "chat");
                             tr.commit();
@@ -106,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
                         showcustom();
 
                         LikeFragment likefragment=new LikeFragment();
+                        //likefragment.setArguments(bundle);
                         if(fragment!=null) {
                             tr.replace(R.id.frame, likefragment, "like");
                             tr.commit();
@@ -115,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         getSupportActionBar().hide();
 
                         AccountFragment accountfragment=new AccountFragment();
+                        //accountfragment.setArguments(bundle);
                         if(fragment!=null) {
                             tr.replace(R.id.frame, accountfragment, "account");
                             tr.commit();

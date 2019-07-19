@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/poppup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true">
+
+    <TextView
+        android:id="@+id/txtTitel"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="신고글 제목:"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/pTitel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@id/txtTitel"
+        android:text="제목"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/txtUser"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtTitel"
+        android:layout_margin="10dp"
+        android:text="신고자:"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/pUserid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pTitel"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@id/txtUser"
+        android:text="신고자 닉네임"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/txtReasonid"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtUser"
+        android:layout_margin="10dp"
+        android:text="신고사유:"
+        android:textSize="20dp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pUserid"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@id/txtReasonid"
+        android:text="신고사유"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/txtCon"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtReasonid"
+        android:layout_margin="10dp"
+        android:text="신고 내용:"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/edtPoliceContent"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/txtCon"
+        android:autoText="true"
+        android:gravity="top"
+        android:background="@android:color/transparent"
+        android:hint="신고내용을 입력하세요."
+        android:maxLines="5"
+        android:textSize="20dp" />
+
+
+</RelativeLayout>

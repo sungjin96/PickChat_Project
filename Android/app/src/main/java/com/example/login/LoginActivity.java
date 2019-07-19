@@ -54,8 +54,10 @@ public class LoginActivity extends AppCompatActivity {
         rs=retrofit.create(RemoteService.class);
 
         btnCancel=findViewById(R.id.btnCancel);
+
         sharedPreferences=getSharedPreferences("userid",MODE_PRIVATE);
         strUser=sharedPreferences.getString("userid","");
+
         if(!strUser.equals("")){
 
             Intent intent=new Intent(LoginActivity.this,MainActivity.class);

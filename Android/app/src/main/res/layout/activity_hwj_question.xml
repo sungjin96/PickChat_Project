@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HWJ_QuestionActivity">
+
+    <EditText
+        android:id="@+id/qtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="문의 제목"/>
+
+    <TextView
+        android:id="@+id/qwriter"
+        android:layout_below="@id/qtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="작성자 닉네임"/>
+
+    <EditText
+        android:id="@+id/qcontent"
+        android:layout_below="@id/qwriter"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:hint="문의 내용을 입력해주세요."
+        android:background="@null"
+        android:gravity="top"/>
+
+    <TextView
+        android:id="@+id/send"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20sp"
+        android:text="전송"
+        android:textSize="30sp"
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ff006c"/>
+
+</RelativeLayout>

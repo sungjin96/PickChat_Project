@@ -1,11 +1,13 @@
 package com.example.login;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
@@ -118,5 +120,105 @@ public interface RemoteService {
     @GET("api")
     Call<ResponseBody> faceapi();
 
+    /*=======================게시판 시작================================*/
+
+    /*이미지 리스트*/
+    @GET("board/bbslist")
+    Call<ArrayList<BBSVO>> list();
+
+    /*이미지추가*/
+    @Multipart
+    @POST("upload2")
+    Call<ResponseBody> bbsimg(
+            @Part MultipartBody.Part uploadfile
+    );
+
+    /*게시물추가*/
+    @POST("board/bbsinsert")
+    Call<Void> bbsinsert(@Body BBSVO vo);
+
+    /*상세페이지-해당게시글*/
+    @GET("board/bbsread/{bno}")
+    Call<BBSVO> bbsRead(
+            @Path("bno") int bno);
+
+    /*게시물 삭제*/
+    @DELETE("board/bbsdelete/{bno}")
+    Call<Void> bbsDelete(
+            @Path("bno") int bno);
+
+    /*  댓글리스트*/
+    @GET("board/reply/list/{bno}")
+    Call<List<BBSReplyVO>> replyList(
+            @Path("bno") int bno);
+
+    /*댓글달기*/
+    @POST("board/reply/insert")
+    Call<Void> replyInsert(
+            @Body() BBSReplyVO vo);
+
+    /*댓글삭제*/
+    @DELETE("board/reply/delete/{rno}")
+    Call<Void> replyDelete(
+            @Path("rno") int rno);
+
+    /*게시물 신고하기*/
+    @POST("board/police/insert")
+    Call<Void> bbsPolice(
+            @Body() BBSPoliceVO vo);
+
+    /*좋아요클릭*/
+    @POST("board/bbslikeinsert")
+    Call<Void> lickInsert(
+            @Body() BBSVO vo);
+
+    /*좋아요확인*/
+    @GET("bbslikestate/{bno}/{liker}")
+    Call<Integer> likeRead(
+            @Path("bno") int bno,
+            @Path("liker") String liker
+    );
+
+    /*좋아요 취소*/
+    @DELETE("board/bbslikedelete/{bno}/{liker}")
+    Call<Void> likeDelete(
+            @Path("bno") int bno,
+            @Path("liker") String liker
+    );
+
+    /*수정클릭시 해당정보 불러오기*/
+    @GET("board/bbsupdateread/{bno}")
+    Call<BBSVO> bbsUpRead(
+            @Path("bno") int bno);
+
+    /*게시글수정하기*/
+    @PATCH("board/bbsupdate")
+    Call<Void> bbsUpdate(
+            @Body() BBSVO vo);
+
+    /*해그검색*/
+    @GET("/board/bbstagread/{tagword}")
+    Call<List<BBSVO>> bbsTagRead(
+            @Path("tagword") String tagword);
+
+    //결제순수이익 입력
+    @POST("user/insert_profit/{userid}/{profit}")
+    Call<Void> insertProfit(@Path("userid") String userid, @Path("profit") int profit);
+
+    //문의하기 삽입
+    @POST("question/insert")
+    Call<Void> insertQuestion(@Body HWJ_QuestionListVO vo);
+
+    //문의받은 리스트
+    @GET("question/userlist/{userid}")
+    Call<List<HWJ_QuestionListVO>> listQuestion(@Path("userid") String userid);
+
+
+    /*해그검색*/
+//    @GET("/board/bbstagread/{tagword}")
+//    Call<List<BBSVO>> bbsTagRead(
+//            @Path("tagword") String tagword);
+
+    /*=======================게시판 끝================================*/
 
 }

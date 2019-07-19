@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HWJ_NoticeActivity"/>
+        <activity android:name=".HWJ_QuestionListActivity"></activity>
+        <activity android:name=".HWJ_QuestionActivity" />
+        <activity android:name=".BBSUpdateActivity" />
+        <activity android:name=".BBSReadActivity" />
+        <activity android:name=".BBSInsertActivity" />
+        <activity android:name=".HWJ_NoticeActivity" />
         <activity android:name=".HWJ_AccountActivity" />
         <activity android:name=".HWJ_AlarmActivity" />
         <activity android:name=".HWJ_BlockActivity" />

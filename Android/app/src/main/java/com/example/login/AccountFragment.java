@@ -37,7 +37,8 @@ public class AccountFragment extends Fragment {
     Retrofit retrofit;
     RemoteService rs;
     UserProfileVO vo;
-    ImageView soloimg, alarm, friend_block, notice, terms_of_service, account, faq;
+    Bundle bundle;
+    ImageView soloimg, question, friend_block, notice, terms_of_service, account, faq;
     TextView usernickname, userid, username, userjob, userage, localname, userpoint;
     TextView profile, charge, read_contact;
     Intent intent;
@@ -69,6 +70,10 @@ public class AccountFragment extends Fragment {
         localname = root.findViewById(R.id.localname);
         soloimg = root.findViewById(R.id.soloimg);
         userpoint = root.findViewById(R.id.userpoint);
+
+        //번들로vo받을 때
+        bundle = getArguments();
+       // UserProfileVO bundlevo = bundle.getParcelable("vo");
 
         //로그인부터 유저값 받아오기
         SharedPreferences sharedPreferences= this.getActivity().getSharedPreferences("userid",MODE_PRIVATE);
@@ -146,12 +151,12 @@ public class AccountFragment extends Fragment {
             }
         });
 
-        //"좋아요" 버튼
-        alarm = root.findViewById(R.id.alarm);
-        alarm.setOnClickListener(new View.OnClickListener() {
+        //"문의내역" 버튼
+        question = root.findViewById(R.id.question);
+        question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(getContext(), HWJ_LikeActivity.class);
+                intent = new Intent(getContext(), HWJ_QuestionListActivity.class);
                 startActivity(intent);
             }
         });
@@ -181,13 +186,11 @@ public class AccountFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println("userid?????????????????????"+strUser);
         Call<UserProfileVO> call = rs.listProfile(strUser); //아이디 값 받아오는 구간
         call.enqueue(new Callback<UserProfileVO>() {
             @Override
             public void onResponse(Call<UserProfileVO> call, Response<UserProfileVO> response) {
                 vo = response.body();
-                System.out.println("................."+response.body());
                 //이름 적용
                 usernickname.setText(vo.getUsernickname().toString());
                 userid.setText(vo.getUserid().toString());
@@ -196,8 +199,6 @@ public class AccountFragment extends Fragment {
                 userage.setText(vo.getUserage().toString());
                 localname.setText(vo.getLocalname().toString());
                 userpoint.setText(vo.getUserpoint() + "p");
-
-                System.out.println("==============================" + vo.toString());
 
                 //이미지 적용
                 Picasso.with(getContext())

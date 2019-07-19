@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/btnUpdate"
+        android:title="수정"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/btnDelete"
+        android:title="삭제"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/btnPolice"
+        android:title="신고하기"
+        app:showAsAction="never" />
+
+
+</menu>
