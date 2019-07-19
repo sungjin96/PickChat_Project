@@ -18,31 +18,37 @@ import { Paper } from 'components';
 
 // Component styles
 import styles from './styles';
+import Axios from 'axios';
 
 class Profit extends Component {
+  state = {
+    profit: 0
+  };
+
+  componentDidMount() {
+    Axios.get('http://sungjin5891.cafe24.com/user/total_userprofit').then(
+      data => this.setState({ profit: data.data })
+    );
+  }
+
+  AddComma(num) {
+    const regexp = /\B(?=(\d{3})+(?!\d))/g;
+    return num.toString().replace(regexp, ',');
+  }
   render() {
     const { classes, className, ...rest } = this.props;
 
     const rootClassName = classNames(classes.root, className);
 
     return (
-      <Paper
-        {...rest}
-        className={rootClassName}
-      >
+      <Paper {...rest} className={rootClassName}>
         <div className={classes.content}>
           <div className={classes.details}>
-            <Typography
-              className={classes.title}
-              variant="body2"
-            >
+            <Typography className={classes.title} variant="body2">
               TOTAL PROFIT
             </Typography>
-            <Typography
-              className={classes.value}
-              variant="h3"
-            >
-              $23,200
+            <Typography className={classes.value} variant="h3">
+              ₩{this.AddComma(this.state.profit)}
             </Typography>
           </div>
           <div className={classes.iconWrapper}>

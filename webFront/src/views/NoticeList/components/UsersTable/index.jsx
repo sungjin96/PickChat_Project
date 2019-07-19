@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
-// Externals
+import { useSelector } from 'react-redux';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-
-// Material helpers
 import { withStyles } from '@material-ui/core';
-
-// Material components
 import {
   Table,
   TableBody,
@@ -28,11 +21,12 @@ import { Portlet, PortletContent } from 'components';
 import styles from './styles';
 import Axios from 'axios';
 
-const UsersTable = ({ classes, className }) => {
+const UsersTable = React.memo(({ classes, className }) => {
   const [state, setState] = React.useState({
-    page: 0,
     client: []
   });
+
+  const input = useSelector(state => state.NoticeModule.input);
 
   React.useEffect(() => {
     Axios.get('http://sungjin5891.cafe24.com/notice/list').then(data =>
@@ -49,11 +43,21 @@ const UsersTable = ({ classes, className }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="left">번호</TableCell>
-                <TableCell align="left">제목</TableCell>
-                <TableCell align="left">내용</TableCell>
-                <TableCell align="left">등록일</TableCell>
-                <TableCell align="left" />
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  번호
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  제목
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  내용
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  등록일
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  삭제
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -62,14 +66,12 @@ const UsersTable = ({ classes, className }) => {
                     <TableRow className={classes.tableRow} hover key={user.nno}>
                       <TableCell className={classes.tableCell}>
                         <div className={classes.tableCellInner}>
-                          <Link to="#">
-                            <Typography
-                              className={classes.nameText}
-                              variant="body1"
-                              style={{ fontSize: '1rem' }}>
-                              {user.nno}
-                            </Typography>
-                          </Link>
+                          <Typography
+                            className={classes.nameText}
+                            variant="body1"
+                            style={{ fontSize: '1rem' }}>
+                            {user.nno}
+                          </Typography>
                         </div>
                       </TableCell>
                       <TableCell
@@ -91,7 +93,7 @@ const UsersTable = ({ classes, className }) => {
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
                         <DeleteBtn id={user.nno} />
-                      </TableCell>
+                      </TableCell>                      
                     </TableRow>
                   ))
                 : ''}
@@ -101,6 +103,6 @@ const UsersTable = ({ classes, className }) => {
       </PortletContent>
     </Portlet>
   );
-};
+});
 
 export default withStyles(styles)(UsersTable);

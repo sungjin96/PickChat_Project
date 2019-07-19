@@ -21,6 +21,8 @@ import {
   Typography
 } from '@material-ui/core';
 
+import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
+
 // Shared helpers
 import { getInitials } from 'helpers';
 
@@ -106,12 +108,26 @@ class UsersTable extends Component {
           <PerfectScrollbar>
             <Table>
               <TableHead>
-                <TableRow>
-                  <TableCell align="left">이름</TableCell>
-                  <TableCell align="left">아이디</TableCell>
-                  <TableCell align="left">성별</TableCell>
-                  <TableCell align="left">나이</TableCell>
-                  <TableCell align="left">등록일</TableCell>
+                <TableRow>                  
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    이름
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    아이디
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    성별
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    나이
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    등록일
+                  </TableCell>
+                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                    삭제
+                  </TableCell>
+
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -159,6 +175,11 @@ class UsersTable extends Component {
                           style={{ fontSize: '1rem' }}>
                           {moment(user.regdate).format('DD/MM/YYYY')}
                         </TableCell>
+                        <TableCell
+                        className={classes.tableCell}
+                        style={{ fontSize: '1rem' }}>
+                        <DeleteBtn id={user.nno} />
+                      </TableCell>
                       </TableRow>
                     ))
                   : ''}

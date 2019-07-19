@@ -97,15 +97,14 @@ class SignIn extends Component {
             <div className={classes.quote}>
               <div className={classes.quoteInner}>
                 <Typography className={classes.quoteText} variant="h1">
-                  Hella narwhal Cosby sweater McSweeney's, salvia kitsch before
-                  they sold out High Life.
+                  Pick_Chat
                 </Typography>
                 <div className={classes.person}>
                   <Typography className={classes.name} variant="body1">
-                    Takamaru Ayako
+                    Admin
                   </Typography>
                   <Typography className={classes.bio} variant="body2">
-                    Manager at inVision
+                    Sungjin Kim
                   </Typography>
                 </div>
               </div>
@@ -123,7 +122,7 @@ class SignIn extends Component {
               <div className={classes.contentBody}>
                 <form className={classes.form}>
                   <Typography className={classes.title} variant="h2">
-                    Admin Login
+                    Admin Log-in
                   </Typography>
                   <Typography className={classes.subtitle} variant="body1">
                     Admin is Code
@@ -164,7 +163,7 @@ class SignIn extends Component {
                   <Typography className={classes.signUp} variant="body1">
                     관리자만 로그인을 할 수 있습니다.{' '}
                     <Link className={classes.signUpUrl} to="/sign-up">
-                      문의
+                    &nbsp;&nbsp;&nbsp;&nbsp;문의
                     </Link>
                   </Typography>
                 </form>

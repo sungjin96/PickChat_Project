@@ -8,7 +8,7 @@ import Cards from '../Cards';
 
 const List = () => {
   const [datas, setDatas] = React.useState([]);
-  const [value, setVaule] = React.useState(3);
+  const [value, setVaule] = React.useState(6);
 
   React.useEffect(() => {
     axios
@@ -30,7 +30,7 @@ const List = () => {
           writer={data.writer}
           img={data.imgpath}
           tag={data.tagword}
-          userid={data.userid}
+          soloimg={data.soloimg}
           lcount={241}
           rcount={592}
         />
@@ -42,7 +42,7 @@ const List = () => {
     <Grid container spacing={3} style={{ width: '90%', margin: 'auto' }}>
       {getList()}
       <Button
-        onClick={() => setVaule(value + 3)}
+        onClick={() => setVaule(value + 6)}
         style={{ width: '100%' }}
         variant="outlined">
         Full

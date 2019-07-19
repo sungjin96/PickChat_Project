@@ -17,6 +17,7 @@ import ChatBubbleOutline from '@material-ui/icons/ChatBubbleOutline';
 import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import axios from 'axios';
+import ConfirmationDialogRaw from './component';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -38,10 +39,19 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     backgroundColor: red[500]
+  },
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper
+  },
+  paper: {
+    width: '80%',
+    maxHeight: 435
   }
 }));
 
-const Cards = ({ title, content, writer, tag, date, id, userid, img }) => {
+const Cards = ({ title, content, writer, tag, date, id, soloimg, img }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -49,6 +59,20 @@ const Cards = ({ title, content, writer, tag, date, id, userid, img }) => {
   const [lcount, setLcount] = React.useState(0);
   const [simg, setSImg] = React.useState('');
   const [tags, setTags] = React.useState(tag === null ? '' : tag);
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState('Dione');
+
+  function handleClickListItem() {
+    setOpen(true);
+  }
+
+  function handleClose(newValue) {
+    setOpen(false);
+
+    if (newValue) {
+      setValue(newValue);
+    }
+  }
 
   React.useEffect(() => {
     axios
@@ -58,10 +82,6 @@ const Cards = ({ title, content, writer, tag, date, id, userid, img }) => {
     axios
       .get(`http://sungjin5891.cafe24.com/board/bbslikecount/${id}`)
       .then(data => setLcount(data.data));
-
-    axios
-      .get(`http://sungjin5891.cafe24.com/user/read/${userid}`)
-      .then(data => setSImg(data.data.soloimg));
   }, [id]);
 
   function handleExpandClick() {
@@ -72,9 +92,11 @@ const Cards = ({ title, content, writer, tag, date, id, userid, img }) => {
     <Card className={classes.card} style={{ margin: 'auto' }}>
       <CardHeader
         avatar={
-          <Avatar aria-label="Recipe" className={classes.avatar} src={simg}>
-            <img src={simg} alt="프사" />
-          </Avatar>
+          <Avatar
+            aria-label="Recipe"
+            className={classes.avatar}
+            src={soloimg}
+          />
         }
         title={title}
         subheader={`${writer} / ${date}`}
@@ -106,10 +128,22 @@ const Cards = ({ title, content, writer, tag, date, id, userid, img }) => {
             badgeContent={rcount}
             max={10000}
             showZero
-            className={classes.margin}>
+            className={classes.margin}
+            onClick={handleClickListItem}>
             <ChatBubbleOutline />
           </Badge>
         </IconButton>
+        <ConfirmationDialogRaw
+          classes={{
+            paper: classes.paper
+          }}
+          id="ringtone-menu"
+          keepMounted
+          open={open}
+          onClose={handleClose}
+          value={value}
+          bno={id}
+        />
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded

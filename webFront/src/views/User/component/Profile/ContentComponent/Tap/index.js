@@ -79,7 +79,7 @@ const Tap = ({ id }) => {
       <Typography component="div" style={{ padding: 8 * 3 }}>
         {props.children === '게시글' ? <Itams.BoardList data={bbss} /> : ''}
         {props.children === '차단' ? <Itams.BlockList userid={id} /> : ''}
-        {props.children === '정보' ? <Itams.BlockList data={bbss} /> : ''}
+        {props.children === '정보' ? <Itams.Info userid={id} /> : ''}
       </Typography>
     );
   }
@@ -91,7 +91,7 @@ const Tap = ({ id }) => {
   }, []);
 
   return (
-    <div>
+    <div style={{ marginBottom: '10rem' }}>
       <AntTabs
         value={value}
         onChange={handleChange}

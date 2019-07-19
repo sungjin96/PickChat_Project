@@ -1,68 +1,48 @@
-import React, { Component } from 'react';
-
-// Externals
+import React from 'react';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
-
-// Material helpers
 import { withStyles } from '@material-ui/core';
-
-// Material components
 import { Typography, LinearProgress } from '@material-ui/core';
-
-// Material icons
 import { InsertChartOutlined as InsertChartIcon } from '@material-ui/icons';
-
-// Shared components
 import { Paper } from 'components';
+import Axios from 'axios';
 
-// Component styles
 import styles from './styles';
 
-class Progress extends Component {
-  render() {
-    const { classes, className, ...rest } = this.props;
+const Progress = ({ classes, className, ...rest }) => {
+  const [profit, setProfit] = React.useState(0);
 
-    const rootClassName = classNames(classes.root, className);
-
-    return (
-      <Paper
-        {...rest}
-        className={rootClassName}
-      >
-        <div className={classes.content}>
-          <div className={classes.details}>
-            <Typography
-              className={classes.title}
-              variant="body2"
-            >
-              PROGRESS
-            </Typography>
-            <Typography
-              className={classes.value}
-              variant="h3"
-            >
-              75.5%
-            </Typography>
-          </div>
-          <div className={classes.iconWrapper}>
-            <InsertChartIcon className={classes.icon} />
-          </div>
-        </div>
-        <div className={classes.footer}>
-          <LinearProgress
-            value={75.5}
-            variant="determinate"
-          />
-        </div>
-      </Paper>
+  React.useEffect(() => {
+    Axios.get('http://sungjin5891.cafe24.com/user/total_userprofit').then(
+      data => setProfit(data.data)
     );
-  }
-}
+  }, []);
+  const getProgress = () => {
+    const setProgress = 50000000;
+    const result = (profit / setProgress) * 100;
+    return result;
+  };
 
-Progress.propTypes = {
-  className: PropTypes.string,
-  classes: PropTypes.object.isRequired
+  const rootClassName = classNames(classes.root, className);
+  return (
+    <Paper {...rest} className={rootClassName}>
+      <div className={classes.content}>
+        <div className={classes.details}>
+          <Typography className={classes.title} variant="body2">
+            PROGRESS
+          </Typography>
+          <Typography className={classes.value} variant="h3">
+            {getProgress()}%
+          </Typography>
+        </div>
+        <div className={classes.iconWrapper}>
+          <InsertChartIcon className={classes.icon} />
+        </div>
+      </div>
+      <div className={classes.footer}>
+        <LinearProgress value={getProgress()} variant="determinate" />
+      </div>
+    </Paper>
+  );
 };
 
 export default withStyles(styles)(Progress);

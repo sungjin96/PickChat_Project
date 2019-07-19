@@ -31,25 +31,19 @@ const ProfileContent = ({ id }) => {
         <span style={{ fontSize: '2rem' }}>
           {user.usernickname !== null ? user.usernickname : 'Lodding'}
         </span>
-        <span>
-          <button>버튼1</button>
-        </span>
-        <span>
-          <button>버튼2</button>
-        </span>
       </div>
       <div className="count">
         <span>
+          게시글{' '}
           <b style={{ fontSize: '1.5em' }}>
             {bbsCounter !== 0 ? bbsCounter : '0'}
-          </b>{' '}
-          게시글
+          </b>
         </span>
         <span>
+          좋아요받은수{' '}
           <b style={{ fontSize: '1.5rem' }}>
             {likeCounter !== 0 ? likeCounter : '0'}
-          </b>{' '}
-          좋아요받은수
+          </b>
         </span>
       </div>
       <div className="content">

@@ -54,7 +54,7 @@ class UsersToolbar extends Component {
               <DeleteIcon />
             </IconButton>
           )}
-          <Button
+          {/* <Button
             className={classes.importButton}
             size="small"
             variant="outlined">
@@ -65,7 +65,7 @@ class UsersToolbar extends Component {
             size="small"
             variant="outlined">
             삭제
-          </Button>
+          </Button> */}
           <Modal
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"

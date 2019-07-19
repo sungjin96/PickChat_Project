@@ -54,25 +54,13 @@ class UsersToolbar extends Component {
               <DeleteIcon />
             </IconButton>
           )}
-          <Button
-            className={classes.importButton}
-            size="small"
-            variant="outlined">
-            수정
-          </Button>
-          <Button
-            className={classes.exportButton}
-            size="small"
-            variant="outlined">
-            삭제
-          </Button>
-          <Button
+          {/* <Button
             color="primary"
             size="small"
             variant="outlined"
             onClick={this.handleOpen}>
             글쓰기
-          </Button>
+          </Button> */}
           <Modal
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"

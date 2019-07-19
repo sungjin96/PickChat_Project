@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import img1 from '../../../../assets/img/MainLogo.png';
+import img2 from '../../../../assets/img/home.png';
+
 
 // Externals
 import classNames from 'classnames';
@@ -43,29 +46,19 @@ class Sidebar extends Component {
     return (
       <nav className={rootClassName}>
         <div className={classes.logoWrapper}>
-          <Link className={classes.logoLink} to="/">
+          <Link className={classes.logoLink} to="/">            
             <img
-              alt="Brainalytica logo"
-              className={classes.logoImage}
-              src="/images/logos/brainalytica_logo.svg"
-            />
+              // className={classes.logoImage}
+              className='img2' src={img2} alt='이미지가 없을때 뜨는 메세지' style={{width:'70px', height:'25px'}}/>
           </Link>
         </div>
         <Divider className={classes.logoDivider} />
-        <div className={classes.profile}>
-          <Link to="/account">
-            <Avatar
-              alt="Roman Kutepov"
-              className={classes.avatar}
-              src="/images/avatars/avatar_1.png"
-            />
-          </Link>
-          <Typography className={classes.nameText} variant="h6">
-            Roman Kutepov
-          </Typography>
-          <Typography className={classes.bioText} variant="caption">
-            Brain Director
-          </Typography>
+        <div className={classes.profile} style={{height: "160px"}}>
+          
+          <img              
+              // className={classes.logoImage}
+              className='img1' src={img1} alt='이미지가 없을때 뜨는 메세지' style={{width:'120px', height:'120px', margin: 'auto'}}/>
+         
         </div>
         <Divider className={classes.profileDivider} />
         <List component="div" disablePadding>

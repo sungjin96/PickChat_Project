@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
+import img5 from '../../../../assets/img/PickChatWord.png'
 
 // Externals
 import classNames from 'classnames';
@@ -117,17 +118,17 @@ class Topbar extends Component {
               className={classes.title}
               variant="h4"
               onClick={this.handleMain}>
-              <Button>{title} title</Button>
+              <Button>{title}<img className='img1' src={img5} style={{width:'100px', height:'20px'}}></img></Button>
             </Typography>
             <IconButton
               className={classes.notificationsButton}
               onClick={this.handlePick}>
-              <Button>픽스타</Button>
+              <Button><h3 style={{color:'#ff006c'}}>픽스타</h3></Button>
             </IconButton>
             <IconButton
               className={classes.signOutButton}
               onClick={this.handleCs}>
-              <Button>고객센터</Button>
+              <Button><h3 style={{color:'#ff006c'}}>고객센터</h3></Button>
             </IconButton>
             <IconButton
               className={classes.signOutButton}

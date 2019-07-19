@@ -25,12 +25,9 @@ import {
   TablePagination
 } from '@material-ui/core';
 
-// Shared helpers
-import { getInitials } from 'helpers';
-
-// Shared components
+import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
 import { Portlet, PortletContent } from 'components';
-
+import { useDispatch } from 'react-redux';
 // Component styles
 import styles from './styles';
 import Axios from 'axios';
@@ -42,6 +39,8 @@ const UsersTable = ({ classes, className, users }) => {
     page: 0,
     client: []
   });
+
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     Axios.get('http://sungjin5891.cafe24.com/question/list').then(data =>
@@ -58,11 +57,27 @@ const UsersTable = ({ classes, className, users }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="left">아이디</TableCell>
-                <TableCell align="left">제목</TableCell>
-                <TableCell align="left">내용</TableCell>
-                <TableCell align="left">답글</TableCell>
-                <TableCell align="left">등록일</TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  아이디
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  제목
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  내용
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  답글
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  등록일
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  답글등록
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  삭제
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -71,14 +86,12 @@ const UsersTable = ({ classes, className, users }) => {
                     <TableRow className={classes.tableRow} hover key={user.qno}>
                       <TableCell className={classes.tableCell}>
                         <div className={classes.tableCellInner}>
-                          <Link to="#">
-                            <Typography
-                              className={classes.nameText}
-                              variant="body1"
-                              style={{ fontSize: '1rem' }}>
-                              {user.qwriter}
-                            </Typography>
-                          </Link>
+                          <Typography
+                            className={classes.nameText}
+                            variant="body1"
+                            style={{ fontSize: '1rem' }}>
+                            {user.qwriter}
+                          </Typography>
                         </div>
                       </TableCell>
                       <TableCell
@@ -105,6 +118,21 @@ const UsersTable = ({ classes, className, users }) => {
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
                         <Btn qno={user.qno} />
+                      </TableCell>
+                      <TableCell
+                        className={classes.tableCell}
+                        style={{ fontSize: '1rem' }}>
+                        <Button
+                          onClick={() =>
+                            dispatch({
+                              type: 'Question/REMOVE',
+                              payload: {
+                                id: user.qno
+                              }
+                            })
+                          }>
+                          DELETE
+                        </Button>
                       </TableCell>
                     </TableRow>
                   ))

@@ -19,63 +19,58 @@ import {
 
 // Shared components
 import { DisplayMode, SearchInput } from 'components';
+import { useDispatch } from 'react-redux';
 
 // Component styles
 import styles from './styles';
 
-class UsersToolbar extends Component {
-  render() {
-    const { classes, className, selectedUsers } = this.props;
-
-    const rootClassName = classNames(classes.root, className);
-
-    return (
-      <div className={rootClassName}>
-        <div className={classes.row}>
-          <span className={classes.spacer} />
-          {selectedUsers.length > 0 && (
-            <IconButton
-              className={classes.deleteButton}
-              onClick={this.handleDeleteUsers}>
-              <DeleteIcon />
-            </IconButton>
-          )}
-          <Button
-            className={classes.importButton}
-            size="small"
-            variant="outlined">
-            수정
-          </Button>
-          <Button
-            className={classes.exportButton}
-            size="small"
-            variant="outlined">
-            삭제
-          </Button>
-          <Button color="primary" size="small" variant="outlined">
-            글쓰기
-          </Button>
-        </div>
-        <div className={classes.row}>
-          <SearchInput
-            className={classes.searchInput}
-            placeholder="Search user"
-          />
-          <span className={classes.spacer} />
-        </div>
+const UsersToolbar = ({ classes, className, selectedUsers }) => {
+  const rootClassName = classNames(classes.root, className);
+  const dispatch = useDispatch();
+  return (
+    <div className={rootClassName}>
+      <div className={classes.row}>
+        <span className={classes.spacer} />
+        {selectedUsers.length > 0 && (
+          <IconButton
+            className={classes.deleteButton}
+            onClick={this.handleDeleteUsers}>
+            <DeleteIcon />
+          </IconButton>
+        )}
+        {/* <Button
+          className={classes.importButton}
+          size="small"
+          variant="outlined">
+          수정
+        </Button>
+        <Button
+          className={classes.exportButton}
+          size="small"
+          variant="outlined">
+          삭제
+        </Button> */}
+        <Button color="primary" size="small" variant="outlined">
+          글쓰기
+        </Button>
       </div>
-    );
-  }
-}
-
-UsersToolbar.propTypes = {
-  className: PropTypes.string,
-  classes: PropTypes.object.isRequired,
-  selectedUsers: PropTypes.array
-};
-
-UsersToolbar.defaultProps = {
-  selectedUsers: []
+      <div className={classes.row}>
+        <SearchInput
+          className={classes.searchInput}
+          placeholder="Search user"
+          onChange={e =>
+            dispatch({
+              type: 'Faq/SEARCH_INPUT',
+              payload: {
+                input: e.target.value
+              }
+            })
+          }
+        />
+        <span className={classes.spacer} />
+      </div>
+    </div>
+  );
 };
 
 export default withStyles(styles)(UsersToolbar);

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 const QuestionContainer = ({ qno, content }) => {
   const dispatch = useDispatch();
   return (
+    <center>
     <Button
       onClick={() =>
         dispatch({
@@ -16,8 +17,9 @@ const QuestionContainer = ({ qno, content }) => {
           }
         })
       }>
-      COMMENT
+      Add
     </Button>
+    </center>
   );
 };
 

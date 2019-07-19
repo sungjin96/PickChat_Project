@@ -54,7 +54,7 @@ class UsersToolbar extends Component {
               <DeleteIcon />
             </IconButton>
           )}
-          <Button
+          {/* <Button
             className={classes.importButton}
             size="small"
             variant="outlined">
@@ -72,7 +72,7 @@ class UsersToolbar extends Component {
             variant="outlined"
             onClick={this.handleOpen}>
             글쓰기
-          </Button>
+          </Button> */}
           <Modal
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
