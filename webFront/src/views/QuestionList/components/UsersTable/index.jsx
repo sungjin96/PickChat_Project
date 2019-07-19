@@ -57,6 +57,9 @@ const UsersTable = ({ classes, className, users }) => {
           <Table>
             <TableHead>
               <TableRow>
+              <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  글번호
+                </TableCell>
                 <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   아이디
                 </TableCell>
@@ -84,7 +87,7 @@ const UsersTable = ({ classes, className, users }) => {
               {state.client !== undefined
                 ? state.client.map(user => (
                     <TableRow className={classes.tableRow} hover key={user.qno}>
-                      <TableCell className={classes.tableCell}>
+                      {/* <TableCell className={classes.tableCell}>
                         <div className={classes.tableCellInner}>
                           <Typography
                             className={classes.nameText}
@@ -93,6 +96,16 @@ const UsersTable = ({ classes, className, users }) => {
                             {user.qwriter}
                           </Typography>
                         </div>
+                      </TableCell> */}
+                      <TableCell
+                        className={classes.tableCell}
+                        style={{ fontSize: '1rem' }}>
+                        {user.qno}
+                      </TableCell>
+                      <TableCell
+                        className={classes.tableCell}
+                        style={{ fontSize: '1rem' }}>
+                        {user.qwriter}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
