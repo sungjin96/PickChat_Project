@@ -34,18 +34,15 @@ import Axios from 'axios';
 
 const UsersTable = ({ classes, className, users }) => {
   const [state, setState] = React.useState({
-    selectedUsers: [],
-    rowsPerPage: 10,
-    page: 0,
     client: []
   });
 
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    Axios.get('http://sungjin5891.cafe24.com/question/list').then(data =>
-      setState({ client: data.data })
-    );
+    Axios.get('http://sungjin5891.cafe24.com/question/list').then(data => {
+      setState({ client: data.data });
+    });
   }, [state.client]);
 
   const rootClassName = classNames(classes.root, className);

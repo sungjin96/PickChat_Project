@@ -93,7 +93,7 @@ const UsersTable = React.memo(({ classes, className }) => {
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
                         <DeleteBtn id={user.nno} />
-                      </TableCell>                      
+                      </TableCell>
                     </TableRow>
                   ))
                 : ''}

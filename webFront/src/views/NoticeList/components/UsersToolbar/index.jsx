@@ -5,24 +5,21 @@ import CreateModal from '../createModal';
 import Modal from '@material-ui/core/Modal';
 import { Button } from '@material-ui/core';
 import { SearchInput } from 'components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Component styles
 import styles from './styles';
 
 const UsersToolbar = ({ classes, className }) => {
+  const CloseState = useSelector(state => state.NoticeModule.CloseState);
+
+  React.useEffect(() => {
+    setState({ setOpen: CloseState });
+  }, [CloseState]);
+
   const [state, setState] = React.useState({
-    setOpen: false
+    setOpen: CloseState
   });
-
-  const handleOpen = () => {
-    setState({ setOpen: true });
-  };
-
-  const handleClose = () => {
-    setState({ setOpen: false });
-  };
-
   const rootClassName = classNames(classes.root, className);
   const dispatch = useDispatch();
 
@@ -34,14 +31,13 @@ const UsersToolbar = ({ classes, className }) => {
           color="primary"
           size="small"
           variant="outlined"
-          onClick={handleOpen}>
+          onClick={() => dispatch({ type: 'Notice/TEST' })}>
           글쓰기
         </Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
-          open={state.setOpen}
-          onClose={handleClose}>
+          open={state.setOpen}>
           <div style={{}}>
             <CreateModal />
           </div>
