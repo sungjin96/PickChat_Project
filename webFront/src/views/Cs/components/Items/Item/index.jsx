@@ -52,6 +52,7 @@ const Item = ({ title, content, comment, writer }) => {
           style={{ width: '100%', height: '100%', textAlign: 'center' }}>
           <div
             style={{
+              paddingBottom: '2rem',
               backgroundColor: '#F3E8FF',
               paddingTop: '0.1rem'
             }}>
@@ -77,6 +78,7 @@ const Item = ({ title, content, comment, writer }) => {
             style={{
               backgroundColor: '#f8f8f8',
               paddingTop: '0.1rem',
+              paddingBottom: '2rem',
               marginTop: '0.5rem'
             }}>
             <div
