@@ -13,14 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.BoardVO;
 import com.example.persistence.BoardDAO;
+import com.example.persistence.ReplyDAO;
 import com.example.service.BbsService;
+import com.example.service.ImageNameSaveService;
 
 @RestController
 @RequestMapping(value = "/board/")
 public class BoardController {
 
+	ImageNameSaveService ImageName = ImageNameSaveService.getImageService();
+
 	@Inject
 	BoardDAO dao;
+
+	@Inject
+	ReplyDAO rdao;
 
 	@Inject
 	private BbsService service;
@@ -65,8 +72,14 @@ public class BoardController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "bbsinsert", method = RequestMethod.POST)
 	public void bbsinsert(@RequestBody BoardVO vo) throws Exception {
-
+		String name = "null";
 		try {
+			if (ImageName.getSingleImage() != null) {
+				name = ImageName.getSingleImage();
+			}
+			String result = "http://sungjin5891.cafe24.com/img/" + name;
+			vo.setImgpath(result);
+
 			service.bbsinsert(vo);
 		} catch (Exception e) {
 			System.out.println("bbsinsert error" + e.toString());
@@ -76,6 +89,9 @@ public class BoardController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "bbsdelete/{bno}", method = RequestMethod.DELETE)
 	public void bbsdelete(@PathVariable("bno") int bno) throws Exception {
+		rdao.delete(0, bno);
+		dao.bbsdeletelikedelete(bno);
+		dao.bbstagdelete(bno);
 		dao.bbsdelete(bno);
 	}
 
@@ -84,6 +100,12 @@ public class BoardController {
 	@RequestMapping(value = "bbslikeread/{bno}", method = RequestMethod.GET)
 	public List<BoardVO> bbslikeread(@PathVariable("bno") int bno) throws Exception {
 		return dao.bbslikeread(bno);
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "bbslikestate/{bno}/{liker}", method = RequestMethod.GET)
+	public int bbslikestate(@PathVariable("bno") int bno, @PathVariable("liker") String liker) throws Exception {
+		return dao.bbslikestate(bno, liker);
 	}
 
 	@CrossOrigin(origins = "*")

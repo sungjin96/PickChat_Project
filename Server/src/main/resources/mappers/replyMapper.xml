@@ -25,7 +25,7 @@
     </update>
     
     <delete id="delete">
-        delete from tbl_reply where rno = #{rno}
+        delete from tbl_reply where rno = #{rno} or bno = #{bno}
     </delete>
 
     <select id="count" resultType="int">

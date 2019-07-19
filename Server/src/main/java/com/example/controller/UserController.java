@@ -7,11 +7,13 @@ import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.BlockuserVO;
+import com.example.domain.BoardVO;
 import com.example.domain.CategoryVO;
 import com.example.domain.HobbyVO;
 import com.example.domain.LikeTypeVO;
@@ -168,6 +170,13 @@ public class UserController {
 		return dao.listBlockUser(blocker);
 	}
 
+	// 나를 차단한 유저리스트
+	@CrossOrigin("*")
+	@RequestMapping(value = "list_blockeduser/{blocked}", method = RequestMethod.GET)
+	public List<BlockuserVO> listblockeduser(@PathVariable String blocked) throws Exception {
+		return dao.listBlockedUser(blocked);
+	}
+
 	// 채팅 가능 한 사람의 리스트 프로필
 	@CrossOrigin("*")
 	@RequestMapping(value = "user_eachlike/{userid}", method = RequestMethod.GET)
@@ -179,6 +188,49 @@ public class UserController {
 			array2.add(vo);
 		}
 		return array2;
+	}
+
+	// 포인트 업데이트
+	@CrossOrigin("*")
+	@RequestMapping(value = "update_userpoint/{userid}/{userpoint}", method = RequestMethod.PATCH)
+	public void updateUserpoint(@PathVariable String userid, @PathVariable int userpoint) throws Exception {
+		dao.updateUserpoint(userid, userpoint);
+	}
+
+	// 토탈 profit
+	@CrossOrigin("*")
+	@RequestMapping(value = "total_userprofit", method = RequestMethod.GET)
+	public int totalUserprofit() throws Exception {
+		return dao.totalUserprofit();
+	}
+
+	// 로그인 상태
+	@CrossOrigin("*")
+	@RequestMapping(value = "update_userstate/{userid}", method = RequestMethod.PATCH)
+	public void userState(@PathVariable String userid) throws Exception {
+		dao.userState(userid);
+	}
+
+	// 채팅
+	@CrossOrigin("*")
+	@RequestMapping(value = "setusertoken", method = RequestMethod.GET)
+	public void setusertoken(@RequestBody UserVO vo) throws Exception{
+		dao.setusertoken(vo);
+
+	}
+	@CrossOrigin("*")
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public int login( UserVO vo) throws Exception{
+			if(dao.checkid(vo.getUserid())==1) {
+				if(dao.checklogin(vo)==1) {
+					return 3;
+				}else {
+					return 2;
+				}
+			}else {
+				return 1;
+			}
+		
 	}
 
 }

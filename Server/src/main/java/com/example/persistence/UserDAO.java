@@ -23,6 +23,7 @@ public interface UserDAO {
 	public List<CategoryVO> listHobbyCategory()throws Exception;
 	public UserVO readUser(String userid);
 	public int checkid(String userid)throws Exception;
+	public int checklogin(UserVO VO);
 	public int checknickname(String usernickname)throws Exception;	
 	
 	public UserVO appointmentread(String userid)throws Exception;
@@ -30,5 +31,12 @@ public interface UserDAO {
 	
 	public void deleteBlockuser(int blockno)throws Exception;
 	public List<BlockuserVO> listBlockUser(String blocker)throws Exception;
+	public List<BlockuserVO> listBlockedUser(String blocked)throws Exception;
 	public List<String> listEachlike(String userid)throws Exception;
+	
+	public void updateUserpoint(String userid, int userpoint)throws Exception;
+	public int totalUserprofit()throws Exception;
+	public void userState(String userid)throws Exception;
+	
+	public void setusertoken(UserVO vo)throws Exception;
 }

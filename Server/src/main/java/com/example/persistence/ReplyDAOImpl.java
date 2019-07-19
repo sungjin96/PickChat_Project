@@ -1,6 +1,8 @@
 package com.example.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +34,11 @@ public class ReplyDAOImpl implements ReplyDAO {
     }
 
     @Override
-    public void delete(int rno) {
-        session.delete(namespace + ".delete", rno);
+    public void delete(int rno, int bno) {
+    	Map<String, Integer> map = new HashMap<String, Integer>();
+    	map.put("rno", rno);
+    	map.put("bno", bno);    	
+        session.delete(namespace + ".delete", map);
     }
 
     @Override

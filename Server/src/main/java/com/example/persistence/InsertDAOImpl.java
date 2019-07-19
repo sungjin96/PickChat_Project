@@ -24,11 +24,6 @@ public class InsertDAOImpl implements InsertDAO {
 	}
 
 	@Override
-	public void insertUserpoint(String userid) throws Exception {
-		session.insert(namespace2 + ".insert_userpoint", userid);
-	}
-
-	@Override
 	public void insertLiketype(String userid, int typeid) throws Exception {
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map.put("userid", userid);
@@ -91,6 +86,18 @@ public class InsertDAOImpl implements InsertDAO {
 	@Override
 	public void insertBlockuser(BlockuserVO vo) throws Exception {
 		session.insert(namespace2 + ".insert_blockuser", vo);
+	}
+
+	@Override
+	public void insertPoint(String userid) throws Exception {		
+		session.insert(namespace2+ ".insert_userpoint", userid);
+		
+	}
+
+	@Override
+	public void insertUserProfit(UserVO vo) throws Exception {
+		session.insert(namespace2 + ".insert_profit", vo);
+		
 	}
 
 }

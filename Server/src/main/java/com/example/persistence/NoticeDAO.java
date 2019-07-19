@@ -14,6 +14,7 @@ public interface NoticeDAO {
     public void notice_delete(int nno);   
   
     public List<NoticeVO> question_list(); 
+    public List<NoticeVO> question_userlist(String userid);
     public NoticeVO question_read(int qno);
     public void question_insert(NoticeVO vo);
     public void question_delete(int qno);

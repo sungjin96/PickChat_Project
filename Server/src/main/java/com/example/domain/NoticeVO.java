@@ -3,122 +3,139 @@ package com.example.domain;
 import java.sql.Date;
 
 public class NoticeVO {
-    private int nno;
-    private String title;
-    private String content;
-    private Date regdate;
-    private int qno;
-    private int questiontype;
-    private String qwriter;
-    private String qtitle;
-    private String qcontent;
-    private Date qregdate;
-    private String qccontent;
-    private Date qcregdate;
+	private int nno;
+	private String title;
+	private String content;
+	private Date regdate;
+	private int qno;
+	private int questiontype;
+	private String qwriter;
+	private String qtitle;
+	private String qcontent;
+	private Date qregdate;
+	private String qccontent;
+	private Date qcregdate;
+	private String usernickname;
+	private String userid;
 
-    public int getNno() {
-        return nno;
-    }
+	public String getUsernickname() {
+		return usernickname;
+	}
 
-    public void setNno(int nno) {
-        this.nno = nno;
-    }
+	public void setUsernickname(String usernickname) {
+		this.usernickname = usernickname;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getUserid() {
+		return userid;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public int getNno() {
+		return nno;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public void setNno(int nno) {
+		this.nno = nno;
+	}
 
-    public Date getRegdate() {
-        return regdate;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setRegdate(Date regdate) {
-        this.regdate = regdate;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public int getQno() {
-        return qno;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public void setQno(int qno) {
-        this.qno = qno;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public int getQuestiontype() {
-        return questiontype;
-    }
+	public Date getRegdate() {
+		return regdate;
+	}
 
-    public void setQuestiontype(int questiontype) {
-        this.questiontype = questiontype;
-    }
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
 
-    public String getQwriter() {
-        return qwriter;
-    }
+	public int getQno() {
+		return qno;
+	}
 
-    public void setQwriter(String qwriter) {
-        this.qwriter = qwriter;
-    }
+	public void setQno(int qno) {
+		this.qno = qno;
+	}
 
-    public String getQtitle() {
-        return qtitle;
-    }
+	public int getQuestiontype() {
+		return questiontype;
+	}
 
-    public void setQtitle(String qtitle) {
-        this.qtitle = qtitle;
-    }
+	public void setQuestiontype(int questiontype) {
+		this.questiontype = questiontype;
+	}
 
-    public String getQcontent() {
-        return qcontent;
-    }
+	public String getQwriter() {
+		return qwriter;
+	}
 
-    public void setQcontent(String qcontent) {
-        this.qcontent = qcontent;
-    }
+	public void setQwriter(String qwriter) {
+		this.qwriter = qwriter;
+	}
 
-    public Date getQregdate() {
-        return qregdate;
-    }
+	public String getQtitle() {
+		return qtitle;
+	}
 
-    public void setQregdate(Date qregdate) {
-        this.qregdate = qregdate;
-    }
+	public void setQtitle(String qtitle) {
+		this.qtitle = qtitle;
+	}
 
-    public String getQccontent() {
-        return qccontent;
-    }
+	public String getQcontent() {
+		return qcontent;
+	}
 
-    public void setQccontent(String qccontent) {
-        this.qccontent = qccontent;
-    }
+	public void setQcontent(String qcontent) {
+		this.qcontent = qcontent;
+	}
 
-    public Date getQcregdate() {
-        return qcregdate;
-    }
+	public Date getQregdate() {
+		return qregdate;
+	}
 
-    public void setQcregdate(Date qcregdate) {
-        this.qcregdate = qcregdate;
-    }
+	public void setQregdate(Date qregdate) {
+		this.qregdate = qregdate;
+	}
 
-    @Override
-    public String toString() {
-        return "NoticeVO [content=" + content + ", nno=" + nno + ", qccontent=" + qccontent + ", qcontent=" + qcontent
-                + ", qcregdate=" + qcregdate + ", qno=" + qno + ", qregdate=" + qregdate + ", qtitle=" + qtitle
-                + ", questiontype=" + questiontype + ", qwriter=" + qwriter + ", regdate=" + regdate + ", title="
-                + title + "]";
-    }
-    
-    
+	public String getQccontent() {
+		return qccontent;
+	}
+
+	public void setQccontent(String qccontent) {
+		this.qccontent = qccontent;
+	}
+
+	public Date getQcregdate() {
+		return qcregdate;
+	}
+
+	public void setQcregdate(Date qcregdate) {
+		this.qcregdate = qcregdate;
+	}
+
+	@Override
+	public String toString() {
+		return "NoticeVO [nno=" + nno + ", title=" + title + ", content=" + content + ", regdate=" + regdate + ", qno="
+				+ qno + ", questiontype=" + questiontype + ", qwriter=" + qwriter + ", qtitle=" + qtitle + ", qcontent="
+				+ qcontent + ", qregdate=" + qregdate + ", qccontent=" + qccontent + ", qcregdate=" + qcregdate
+				+ ", usernickname=" + usernickname + ", userid=" + userid + "]";
+	}
+
 }

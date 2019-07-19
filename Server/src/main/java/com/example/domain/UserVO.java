@@ -13,10 +13,11 @@ public class UserVO {
 	private String userid;
 	private String userheight;
 	private String userpassword;
+	private String userpass;
 	private String username;
 	private String userjob;
 	private String usercomment;
-	private String userage;
+	private int userage;
 	private String usernickname;
 	private String localcode;
 	private String localname;
@@ -32,6 +33,42 @@ public class UserVO {
 	private String apaddress;
 	private String apdate;
 	private String aptime;
+	private int pfno;
+	private int profit;
+	private String token;
+
+	
+	public String getUserpass() {
+		return userpass;
+	}
+
+	public void setUserpass(String userpass) {
+		this.userpass = userpass;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public int getPfno() {
+		return pfno;
+	}
+
+	public void setPfno(int pfno) {
+		this.pfno = pfno;
+	}
+
+	public int getProfit() {
+		return profit;
+	}
+
+	public void setProfit(int profit) {
+		this.profit = profit;
+	}
 
 	public String getApaddress() {
 		return apaddress;
@@ -145,11 +182,11 @@ public class UserVO {
 		this.usercomment = usercomment;
 	}
 
-	public String getUserage() {
+	public int getUserage() {
 		return userage;
 	}
 
-	public void setUserage(String userage) {
+	public void setUserage(int userage) {
 		this.userage = userage;
 	}
 
@@ -267,7 +304,8 @@ public class UserVO {
 				+ ", localname=" + localname + ", regdate=" + regdate + ", gendername=" + gendername + ", loginstatus="
 				+ loginstatus + ", userpoint=" + userpoint + ", gendercode=" + gendercode + ", reasonid=" + reasonid
 				+ ", soloimg=" + soloimg + ", latitude=" + latitude + ", longitude=" + longitude + ", apaddress="
-				+ apaddress + ", apdate=" + apdate + ", aptime=" + aptime + "]";
+				+ apaddress + ", apdate=" + apdate + ", aptime=" + aptime + ", pfno=" + pfno + ", profit=" + profit
+				+ ", token=" + token + "]";
 	}
 
 }

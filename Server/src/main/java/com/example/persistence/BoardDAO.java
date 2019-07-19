@@ -16,12 +16,16 @@ public interface BoardDAO {
     public List<BoardVO> userbbslist(String userid);
 
     public List<BoardVO> bbslikeread(int bno);
+    public int bbslikestate(int bno, String liker);
     public int bbslikecount(int bno);
+    
     public void bbslikedelete(int bno, String liker);
+    public void bbsdeletelikedelete(int bno);
     public void bbslikeinsert(BoardVO vo);
 
     public List<String> bnotagread(int bno);
     public List<BoardVO> bbstagread(String tagword);
     public void bbstaginsert(int bno, String tagword);
+    public void bbstagdelete(int bno);
 
 }

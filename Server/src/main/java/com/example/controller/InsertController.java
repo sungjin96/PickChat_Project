@@ -3,6 +3,7 @@ package com.example.controller;
 import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -119,10 +120,21 @@ public class InsertController {
 			System.out.println("약속잡기 입력 오류" + e.toString());
 		}
 	}
-	//차단유저입력
-	  @CrossOrigin("*")
-	  @RequestMapping(value="insert_blockuser", method = RequestMethod.POST)
-	  public void insertBlockUser(@RequestBody BlockuserVO vo)throws Exception{   
-	    idao.insertBlockuser(vo);
-	  }
+
+	// 차단유저입력
+	@CrossOrigin("*")
+	@RequestMapping(value = "insert_blockuser", method = RequestMethod.POST)
+	public void insertBlockUser(@RequestBody BlockuserVO vo) throws Exception {
+		idao.insertBlockuser(vo);
+	}
+
+	// 이익금액입력
+	@CrossOrigin("*")
+	@RequestMapping(value = "insert_profit/{userid}/{profit}", method = RequestMethod.POST)
+	public void insertProfit(@PathVariable("userid") String userid, @PathVariable("profit") int profit) throws Exception {
+		UserVO vo = new UserVO();
+		vo.setUserid(userid);
+		vo.setProfit(profit);
+		idao.insertUserProfit(vo);
+	}
 }

@@ -5,7 +5,6 @@
 	<select id="bbsmax" resultType="int">
 		select max(bno) from tbl_bbs
 	</select>
-
 	<select id="bbslist" resultType="com.example.domain.BoardVO">
 		select b.*, l.soloimg from
 		tbl_bbs b, userlist l
@@ -14,9 +13,8 @@
 	</select>
 
 	<select id="bbsread" resultType="com.example.domain.BoardVO">
-		select * from tbl_bbs
-		where bno =
-		#{bno}
+		select b.*, l.soloimg from tbl_bbs b, userlist l
+		where b.writer = l.usernickname and bno = #{bno}
 	</select>
 
 	<select id="bbsimglist" resultType="com.example.domain.BoardVO">
@@ -57,6 +55,11 @@
 		select * from tbl_bbslike
 		where bno = #{bno}
 	</select>
+	
+	<select id="bbslikestate" resultType="com.example.domain.BoardVO">
+		select * from tbl_bbslike
+		where bno = #{bno} and liker = #{liker}
+	</select>
 
 	<select id="bbslikecount" resultType="int">
 		select count(*) from
@@ -72,12 +75,16 @@
 	<delete id="bbslikedelete">
 		delete from tbl_bbslike where bno = #{bno} and liker = #{liker}
 	</delete>
+	
+	<delete id="bbsdeletelikedelete">
+		delete from tbl_bbslike where bno = #{bno}
+	</delete>
 
 	<!-- bbstag Start -->
 	<select id="bbstagread" resultType="com.example.domain.BoardVO">
-		select distinct bno from
-		tbl_tag where tagword like
-		concat('%',#{tagword},'%');
+		select b.*, l.soloimg, t.tagword from
+		tbl_bbs b, userlist l, tbl_tag t
+		where t.tagword = #{tagword} and t.bno = b.bno
 	</select>
 	<select id="bnotagread" resultType="String">
 		select tagword from tbl_tag
@@ -85,8 +92,9 @@
 	</select>
 	<insert id="bbstaginsert">
 		insert into tbl_tag(bno, tagword)
-		values(#{bno},
-		#{tagword})
+		values(#{bno}, #{tagword})
 	</insert>
-
+	<delete id="bbstagdelete">
+		delete from tbl_tag where bno = #{bno}
+	</delete>
 </mapper>
