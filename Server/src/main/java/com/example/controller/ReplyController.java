@@ -36,7 +36,7 @@ public class ReplyController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "delete/{rno}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable("rno") int rno) throws Exception {
-		dao.delete(rno);
+		dao.delete(rno, 0);
 	}
 
 	@CrossOrigin(origins = "*")

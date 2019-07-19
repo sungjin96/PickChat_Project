@@ -70,4 +70,9 @@ public class NoticeDAOImpl implements NoticeDAO {
         session.update(namespace + ".question_update", vo);
     }
 
+	@Override
+	public List<NoticeVO> question_userlist(String userid) {	
+		return session.selectList(namespace + ".question_userlist", userid);
+	}
+
 }

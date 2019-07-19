@@ -14,7 +14,7 @@
 	</insert>
 	<insert id="insert_userpoint">
 		insert into tbl_userpoint(userid, userpoint)
-		values(#{userid}, 100)
+		values(#{userid},100)
 	</insert>
 	<insert id="insert_userimage">
 		insert into tbl_userimg(userid, imgpath, imgshow)
@@ -52,13 +52,15 @@
 		values(#{sender}, #{receiver})
 	</insert>
 	<insert id="insert_appointment">
-		insert into tbl_appointment(userid, latitude,
-		longitude, apaddress, apdate,
-		aptime) values(#{userid}, #{latitude},
-		#{longitude}, #{apaddress},
+		insert into tbl_appointment(userid, latitude, longitude, apaddress, apdate,	aptime) values(#{userid}, #{latitude}, #{longitude}, #{apaddress},
 		#{apdate}, #{aptime})
 	</insert>
-	<insert id="insert_blockuser">insert into tbl_blockuser(blocker, blocked, blockedname)
-	values(#{blocker},#{blocked},#{blockedname})
+	<insert id="insert_blockuser">
+		insert into tbl_blockuser(blocker, blocked, blockedname)
+		values(#{blocker},#{blocked},#{blockedname})
+	</insert>
+	<insert id="insert_profit">
+		insert into tbl_profit(userid, profit)
+		values(#{userid}, #{profit})
 	</insert>
 </mapper>

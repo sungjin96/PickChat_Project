@@ -23,7 +23,8 @@ public class UserServiceImpl implements UserService {
     public void insertUser(UserVO vo) throws Exception {
         idao.insertPuser(vo);
         String userid = vo.getUserid();
-        idao.insertUserpoint(userid);
+        int userpoint = vo.getUserpoint();
+        idao.insertPoint(userid);
         for (int i = 0; i < vo.getImgpath().length; i++) {
             String[] imgpath = vo.getImgpath();
             idao.insertImg(userid, imgpath[i], vo.getImgshow());

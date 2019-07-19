@@ -104,11 +104,6 @@ const UsersTable = ({ classes, className }) => {
                       <TableCell
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
-                        {user.reasonid}
-                      </TableCell>
-                      <TableCell
-                        className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
                         <Button
                           onClick={() =>
                             dispatch({

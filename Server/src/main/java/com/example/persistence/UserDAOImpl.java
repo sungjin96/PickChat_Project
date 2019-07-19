@@ -1,6 +1,8 @@
 package com.example.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -99,15 +101,51 @@ public class UserDAOImpl implements UserDAO {
 	public void deleteBlockuser(int blockno) throws Exception {
 		session.delete(namespace + ".delete_blockuser", blockno);
 	}
-	
+
 	@Override
 	public List<BlockuserVO> listBlockUser(String blocker) throws Exception {
 		return session.selectList(namespace + ".list_blockuser", blocker);
 	}
 
 	@Override
+	public List<BlockuserVO> listBlockedUser(String blocked) throws Exception {
+		return session.selectList(namespace + ".list_blockeduser", blocked);
+	}
+
+	@Override
 	public List<String> listEachlike(String userid) throws Exception {
 		return session.selectList(namespace + ".list_eachlike", userid);
+	}
+
+	@Override
+	public void updateUserpoint(String userid, int userpoint) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userid", userid);
+		map.put("userpoint", userpoint);
+		session.update(namespace + ".update_userpoint", map);
+	}
+
+	@Override
+	public int totalUserprofit() throws Exception {
+		return session.selectOne(namespace + ".totalUserprofit");
+
+	}
+
+	@Override
+	public void userState(String userid) throws Exception {
+		session.update(namespace + ".userState", userid);
+
+	}
+
+	@Override
+	public void setusertoken(UserVO vo) throws Exception {
+		session.update(namespace + ".setusertoken", vo);
+		
+	}
+
+	@Override
+	public int checklogin(UserVO VO) {
+		return session.selectOne(namespace+".logincheck",VO);
 	}
 
 }

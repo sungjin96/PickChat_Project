@@ -29,6 +29,9 @@
     <select id="question_list" resultType="com.example.domain.NoticeVO">
         select * from tbl_question order by qno desc
     </select>
+    <select id="question_userlist" resultType="com.example.domain.NoticeVO">
+        select * from tbl_question where userid = #{userid} order by qno desc
+    </select>    
     <select id="question_read" resultType="com.example.domain.NoticeVO">
 		select * from tbl_question 
 		where qno=#{qno}

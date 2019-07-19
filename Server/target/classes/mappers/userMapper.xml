@@ -53,6 +53,10 @@
 		select count(*) from tbl_puser
 		where userid=#{userid}
 	</select>
+	<select id="logincheck" resultType="int">
+		select count(*) from tbl_puser
+		where userid=#{userid} and userpassword =#{userpass}
+	</select>
 	<select id="checknickname" resultType="int">
 		select count(*) from
 		tbl_puser where usernickname=#{usernickname}
@@ -67,13 +71,36 @@
 	<delete id="delete_blockuser">
 		delete from tbl_blockuser where blockno=#{blockno}
 	</delete>
-	<select id="list_blockuser" resultType="com.example.web.domain.BlockuserVO">
-	select * from tbl_blockuser where blocker=#{blocker}
+	<select id="list_blockuser"
+		resultType="com.example.domain.BlockuserVO">
+		select * from tbl_blockuser where blocker=#{userid}
+	</select>
+	<select id="list_blockeduser"
+		resultType="com.example.domain.BlockuserVO">
+		select * from tbl_blockuser where blocked=#{userid}
 	</select>
 	<select id="list_eachlike" resultType="String">
 		select sender from
-		tbl_likepeople where receiver = #{userid} and sender=
-		ANY(select
-		receiver from tbl_likepeople where sender = #{userid})
+		tbl_likepeople
+		where receiver = #{userid} and sender = ANY(select
+		receiver from
+		tbl_likepeople where sender = #{userid})
 	</select>
+	<update id="update_userpoint">
+		update tbl_userpoint set userpoint = userpoint +
+		#{userpoint}
+		where userid = #{userid}
+	</update>
+	<select id="totalUserprofit" resultType="int">
+		SELECT SUM(profit) FROM
+		tbl_profit
+	</select>
+	<update id="userState">
+		update tbl_puser set loginstatus = !loginstatus
+		where
+		userid = #{userid}
+	</update>
+	<update id="setusertoken">
+		update tbl_puser set token = #{token} where userid = #{userid}
+	</update>
 </mapper>

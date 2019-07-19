@@ -63,6 +63,12 @@ public class NoticeController {
 	public List<NoticeVO> questionlist() throws Exception {
 		return dao.question_list();
 	}
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "question/userlist/{userid}", method = RequestMethod.GET)
+	public List<NoticeVO> question_userlist(@PathVariable("userid") String userid) throws Exception {
+		return dao.question_userlist(userid);
+	}
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "question/read/{qno}", method = RequestMethod.GET)

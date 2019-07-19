@@ -27,11 +27,6 @@ public class FileUploadService {
 			// 서버에서 저장 할 파일 이름
 			String saveFileName = genSaveFileName(extName);
 
-			System.out.println("originFilename : " + originFilename);
-			System.out.println("extensionName : " + extName);
-			System.out.println("size : " + size);
-			System.out.println("saveFileName : " + saveFileName);
-
 			writeFile(multipartFile, saveFileName);
 			url = PREFIX_URL + saveFileName;
 		} catch (IOException e) {
@@ -53,8 +48,7 @@ public class FileUploadService {
 		fileName += calendar.get(Calendar.DATE);
 		fileName += calendar.get(Calendar.HOUR);
 		fileName += calendar.get(Calendar.MINUTE);
-		fileName += calendar.get(Calendar.SECOND);
-		fileName += calendar.get(Calendar.MILLISECOND);
+		fileName += calendar.get(Calendar.SECOND);		
 		fileName += extName;
 
 		return fileName;

@@ -6,7 +6,8 @@ import com.example.domain.UserVO;
 public interface InsertDAO {
     public void insertImg(String userid,String imgpath,int imgshow)throws Exception;
 	public void insertPuser(UserVO vo)throws Exception;
-	public void insertUserpoint(String userid)throws Exception;
+	
+	public void insertPoint(String userid)throws Exception;
 	public void insertMytype(String userid,int typeid)throws Exception;
 	public void insertLiketype(String userid, int typeid)throws Exception;
 	public void insertUserinfo(UserVO vo)throws Exception;
@@ -15,4 +16,5 @@ public interface InsertDAO {
 	public void insertLikePeople(String sender,String receiver)throws Exception;
 	public void appointmentinsert(UserVO vo)throws Exception;
 	public void insertBlockuser(BlockuserVO vo)throws Exception;
+	public void insertUserProfit(UserVO vo)throws Exception;
 }
