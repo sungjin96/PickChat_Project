@@ -33,7 +33,6 @@ import static com.example.login.RemoteService.BASE_URL;
 
 public class LoginActivity extends AppCompatActivity {
     EditText edtUser,edtPassword;
-    Button btnRegister;
     TextView btnLogin, btnCancel;
     String strUser,strPassword;
     Retrofit retrofit;
@@ -50,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword=findViewById(R.id.edtPassword);
         btnLogin=findViewById(R.id.btnLogin);
 
+
         retrofit=new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         rs=retrofit.create(RemoteService.class);
 
@@ -59,11 +59,11 @@ public class LoginActivity extends AppCompatActivity {
         strUser=sharedPreferences.getString("userid","");
 
         if(!strUser.equals("")){
-
-            Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-            //intent.putExtra("user",user);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
+
+
         //사용자 로그인
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,11 +83,12 @@ public class LoginActivity extends AppCompatActivity {
                        }else if(check==2){
                            Toast.makeText(LoginActivity.this, "비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show();
                        }else{
+                           Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                           startActivity(intent);
                            SharedPreferences.Editor editor = sharedPreferences.edit();
                            editor.putString("userid", strUser);
                            editor.commit();
                            loginUser(strUser);
-
                        }
                    }
 
@@ -105,24 +106,10 @@ public class LoginActivity extends AppCompatActivity {
 
     //사용자 로그인
     private void loginUser(String user){
-        updateProfile();
         Intent intent=new Intent(LoginActivity.this,MainActivity.class);
         //intent.putExtra("user",user);
         startActivity(intent);
-
-
     }
-    //토큰 값 받기
-    private void updateProfile(){
-        if(strUser != null){
-            UserVO vo = new UserVO();
-            vo.setFromUser(strUser);
-            vo.setToken(FirebaseInstanceId.getInstance().getToken());
-            //vo.setToken("c_EnELHmF4I:APA91bEqqIG10HiOFX1UpIuUccZkryNSNT_298ojt3m0i8sEaCv7r53vdLRRgkMTHcdWpvHakro4RJpKxTh3FEzGVVRHkXZKcFewgVwanqlN6ASge09PPN7n7cT8zcTMJlMvGusGj52Q");
-            //System.out.println(vo.toString());
-            db = FirebaseDatabase.getInstance();
-            db.getReference("userstoken").child(vo.getFromUser()).setValue(vo);
-        }
-    }
+
 
 }
