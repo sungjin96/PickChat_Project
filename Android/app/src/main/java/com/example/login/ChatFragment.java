@@ -1,7 +1,9 @@
 package com.example.login;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -47,12 +49,16 @@ public class ChatFragment extends Fragment {
     ListView list;
     List<UserProfileVO> users;
     MyAdapter myadapter;
-    String myId;
+    String myId,blockeduser;
     JHJ_Test test = JHJ_Test.getTest();
     Intent intent;
     FirebaseDatabase db;
     DatabaseReference ref;
     String userId;
+    boolean btnchatcheck=false;
+    boolean chatpossible=false;
+    List<HWJ_BlockVO> blockarray;
+
 
     @Nullable
     @Override
@@ -62,10 +68,10 @@ public class ChatFragment extends Fragment {
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         //유저 아이디값 받기
         SharedPreferences sharedPreferences= getContext().getSharedPreferences("userid",MODE_PRIVATE);
         myId = sharedPreferences.getString("userid","");
-
         list = view.findViewById(R.id.list);
         intent=new Intent(getContext(),JHJ_ChatRoomActivity.class);
 
@@ -162,30 +168,69 @@ public class ChatFragment extends Fragment {
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView =getLayoutInflater().inflate(R.layout.item_chat_user,parent,false);
+                convertView = getLayoutInflater().inflate(R.layout.item_chat_user, parent, false);
+            }
 
                 ImageView img=convertView.findViewById(R.id.img);
                 TextView name=convertView.findViewById(R.id.name);
-                TextView age=convertView.findViewById(R.id.age);
+                final TextView age=convertView.findViewById(R.id.age);
                 TextView local=convertView.findViewById(R.id.local);
                 TextView comment=convertView.findViewById(R.id.comment);
-                TextView btnchat=convertView.findViewById(R.id.btnchat);
+                final TextView btnchat=convertView.findViewById(R.id.btnchat);
 
+                //차단상대?
+            Call<List<HWJ_BlockVO>> blockcheck=rs.listBlock(myId);
+            blockcheck.enqueue(new Callback<List<HWJ_BlockVO>>() {
+                @Override
+                public void onResponse(Call<List<HWJ_BlockVO>> call, Response<List<HWJ_BlockVO>> response) {
+                    blockarray=response.body();
+                    for(int i=0; i<blockarray.size();i++){
+                        blockeduser=blockarray.get(i).getBlocked();
+                        if(array.get(position).getUserid().equals(blockeduser)){
+                            //차단된 상대임
+                            btnchat.setText("차단된 대상");
+                            break;
+                        }else{
+                            btnchat.setText("채팅하기");
+
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<List<HWJ_BlockVO>> call, Throwable t) {
+
+                }
+            });
                 //채팅하기 버튼
                 btnchat.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        db = FirebaseDatabase.getInstance();
-                        ref = db.getReference("chat");
-                        userId=array.get(position).getUserid();
-                        String img=array.get(position).getSoloimg();
-                        String usernick=array.get(position).getUsernickname();
-                        test.setId2(array.get(position).getUserid());
-                        intent.putExtra("myId", myId);
-                        intent.putExtra("userId",userId);
-                        intent.putExtra("userNickName", usernick);
-                        intent.putExtra("img", img);
-                        startActivity(intent);
+                        if (!btnchat.getText().equals("차단된 대상")) {
+                            db = FirebaseDatabase.getInstance();
+                            ref = db.getReference("chat");
+                            userId = array.get(position).getUserid();
+                            String img = array.get(position).getSoloimg();
+                            String usernick = array.get(position).getUsernickname();
+                            test.setId2(array.get(position).getUserid());
+                            intent.putExtra("myId", myId);
+                            intent.putExtra("userId", userId);
+                            intent.putExtra("userNickName", usernick);
+                            intent.putExtra("img", img);
+                            startActivity(intent);
+                        }else{
+                                AlertDialog.Builder box=new AlertDialog.Builder(getContext());
+                                box.setTitle("차단된 유저");
+                                box.setMessage("채팅 불가능 합니다.");
+                                box.setNegativeButton("차단 해제",null);
+                                box.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                });
+                                box.show();
+                        }
                     }
                 });
 
@@ -201,10 +246,8 @@ public class ChatFragment extends Fragment {
                             HttpURLConnection conn=(HttpURLConnection)url.openConnection();
                             conn.setDoInput(true);
                             conn.connect();
-
                             InputStream is=conn.getInputStream();
                             bitmap= BitmapFactory.decodeStream(is);
-
                         }catch (MalformedURLException e){
                             e.printStackTrace();
                         }catch (IOException e){
@@ -219,7 +262,7 @@ public class ChatFragment extends Fragment {
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
-            }
+
 
             return convertView;
         }

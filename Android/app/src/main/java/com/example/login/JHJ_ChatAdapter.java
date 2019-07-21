@@ -50,7 +50,7 @@ public class JHJ_ChatAdapter extends RecyclerView.Adapter<JHJ_ChatAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        System.out.println("채팅하는 사람 정보는??????????????"+strUser+"///////"+array.get(i).getUserName()+"ㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+        //System.out.println("채팅하는 사람 정보는??????????????"+strUser+"///////"+array.get(i).getUserName()+"ㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
         viewHolder.wdate.setText(array.get(i).getWdate());
         viewHolder.content.setText(array.get(i).getContent());
         viewHolder.name.setText(array.get(i).getUserName());

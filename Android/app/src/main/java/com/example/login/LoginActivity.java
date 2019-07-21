@@ -59,8 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         strUser=sharedPreferences.getString("userid","");
 
         if(!strUser.equals("")){
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
+          loginUser(strUser);
         }
 
 
@@ -83,8 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                        }else if(check==2){
                            Toast.makeText(LoginActivity.this, "비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show();
                        }else{
-                           Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-                           startActivity(intent);
+
                            SharedPreferences.Editor editor = sharedPreferences.edit();
                            editor.putString("userid", strUser);
                            editor.commit();
@@ -108,6 +106,24 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser(String user){
         Intent intent=new Intent(LoginActivity.this,MainActivity.class);
         //intent.putExtra("user",user);
+        //로그인한사람 토근 저장
+        UserProfileVO uservo=new UserProfileVO();
+        uservo.setUserid(user);
+        uservo.setToken(FirebaseInstanceId.getInstance().getToken());
+        Call<Void> updateToken =rs.tokenUpdate(uservo);
+        //System.out.println(uservo.getToken());
+        // System.out.println(uservo.getUserid());
+        updateToken.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
         startActivity(intent);
     }
 

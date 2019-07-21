@@ -1,6 +1,8 @@
 package com.example.login;
 
+import android.app.AlertDialog;
 import android.app.Notification;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,7 +60,7 @@ public class JHJ_ChatRoomActivity extends AppCompatActivity {
     DatabaseReference ref;
     Retrofit retrofit;
     RemoteService rs;
-
+    boolean chatpossible=false;
     LinearLayout makerLayout;
     DrawerLayout drawer;
     RecyclerView list;
@@ -65,25 +68,27 @@ public class JHJ_ChatRoomActivity extends AppCompatActivity {
     EditText edtContent;
     Button btnAdd;
     List<JHJ_FireBaseChatVO> array;
+    List<HWJ_BlockVO> blockarray;
     JHJ_ChatAdapter adapter;
     String strUser, myNick, youNick;
     Intent intent;
-    String toUserToken, fromUser, fromUserToken, toUser;
+    String toUserToken, fromUser, fromUserToken, toUser,blockeduser;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    TextView toolbar_title;
+    TextView toolbar_title,blockuser;
     HashMap<String, String> nicks;
     JHJ_Test t = JHJ_Test.getTest();
     String myId = t.getId();
     String youId = t.getId2();
     String myImage, youImage, strTime, strDate, strAddress, strLatitude, strLongitude;
     RoundedImageView myImg, youImg;
+    AlertDialog.Builder box;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.jhj_navi);
-
+        blockarray=new ArrayList<>();
         array = new ArrayList<JHJ_FireBaseChatVO>();
 
         //툴바설정
@@ -94,13 +99,13 @@ public class JHJ_ChatRoomActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.jhj_left_black);
 
         //chatFragment에서 값 받아오기
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         myNick = intent.getStringExtra("myNickname");
         youNick = intent.getStringExtra("userNickName");
         youImage = intent.getStringExtra("img");
         myImage = intent.getStringExtra("myImage");
 
-        System.out.println("chatroom.................."+myNick+"//////////"+youNick);
+        //System.out.println("chatroom.................."+myNick+"//////////"+youNick);
         //Adapter에 보낼 HashMap
         nicks = new HashMap<String, String>();
         nicks.put("myNick", myNick);
@@ -120,6 +125,7 @@ public class JHJ_ChatRoomActivity extends AppCompatActivity {
         txtAddress = view.findViewById(R.id.address);
         makerLayout=view.findViewById(R.id.makerLayout);
         txtMap=view.findViewById(R.id.map);
+        blockuser=view.findViewById(R.id.blockuser);
 
         myName.setText(myNick);
         youName.setText(youNick);
@@ -133,6 +139,68 @@ public class JHJ_ChatRoomActivity extends AppCompatActivity {
         retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         rs = retrofit.create(RemoteService.class);
 
+
+        //상대방 차단하기
+        blockuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(JHJ_ChatRoomActivity.this, myId+"//"+youId+"차단", Toast.LENGTH_SHORT).show();
+                HWJ_BlockVO blockvo=new HWJ_BlockVO();
+                blockvo.setBlocker(myId);
+                blockvo.setBlocked(youId);
+                Call<Void> block=rs.insertBlock(blockvo);
+                block.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        Toast.makeText(JHJ_ChatRoomActivity.this, youId+"차단했습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+        //차단한 상대인지 알기
+                Call<List<HWJ_BlockVO>> blockcheck=rs.listBlock(myId);
+                blockcheck.enqueue(new Callback<List<HWJ_BlockVO>>() {
+                    @Override
+                    public void onResponse(Call<List<HWJ_BlockVO>> call, Response<List<HWJ_BlockVO>> response) {
+                        blockarray=response.body();
+                        for(int i=0; i<blockarray.size();i++){
+                            blockeduser=blockarray.get(i).getBlocked();
+                            if(youId.equals(blockeduser)){
+                                //차단된 상대임
+                                chatpossible=true;
+//                                box=new AlertDialog.Builder(JHJ_ChatRoomActivity.this);
+//                                box.setTitle("차단된 유저");
+//                                box.setMessage("채팅 불가능 합니다.");
+//                                box.setNegativeButton("차단 해제",null);
+//                                box.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        //Toast.makeText(JHJ_ChatRoomActivity.this, "인텐트 넘기기", Toast.LENGTH_SHORT).show();
+//                                        Intent intent2=new Intent(JHJ_ChatRoomActivity.this,MainActivity.class);
+//                                        finish();
+//                                        startActivity(intent);
+//
+//                                    }
+//                                });
+//                                box.show();
+                                break;
+                            }else{
+                                Toast.makeText(JHJ_ChatRoomActivity.this, "채팅가능 유저", Toast.LENGTH_SHORT).show();
+                                chatpossible=false;
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<HWJ_BlockVO>> call, Throwable t) {
+
+                    }
+                });
 
         //내 토큰 읽어오기
         fromUser=myNick;
@@ -155,11 +223,13 @@ public class JHJ_ChatRoomActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JHJ_AppointmentVO> call, Response<JHJ_AppointmentVO> response) {
                 toUserToken=response.body().getToken();
+                Log.d("상대방 토큰",toUserToken);
 
             }
 
             @Override
             public void onFailure(Call<JHJ_AppointmentVO> call, Throwable t) {
+                Log.d("토큰오류이유",t.getMessage());
             }
         });
 
@@ -185,13 +255,15 @@ public class JHJ_ChatRoomActivity extends AppCompatActivity {
         ref.child(myId).child(youId).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String strDate = dataSnapshot.getKey();
-                JHJ_FireBaseChatVO vo = dataSnapshot.getValue(JHJ_FireBaseChatVO.class);
-                vo.setWdate(strDate);
-                vo.setImage(youImage);
-                array.add(vo);
-                list.scrollToPosition(array.size() - 1);
-                adapter.notifyDataSetChanged();
+                if (!chatpossible) {
+                    String strDate = dataSnapshot.getKey();
+                    JHJ_FireBaseChatVO vo = dataSnapshot.getValue(JHJ_FireBaseChatVO.class);
+                    vo.setWdate(strDate);
+                    vo.setImage(youImage);
+                    array.add(vo);
+                    list.scrollToPosition(array.size() - 1);
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -225,25 +297,28 @@ public class JHJ_ChatRoomActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strContent = edtContent.getText().toString();
-                //System.out.println(strContent);
-                if (strContent.equals("")) {
-                    Toast.makeText(JHJ_ChatRoomActivity.this, "내용을 입력하세요!", Toast.LENGTH_SHORT).show();
-                } else {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    String strDate = sdf.format(new Date());
-                    ref = db.getReference("chat").child(myId).child(youId).child(strDate);
-                    JHJ_FireBaseChatVO vo = new JHJ_FireBaseChatVO();
-                    vo.setContent(strContent);
-                    vo.setUserName(getUserID());
-                    String key = ref.child(myId).push().getKey().toString();
+                if(!chatpossible) {
+                    String strContent = edtContent.getText().toString();
+                    //System.out.println(strContent);
+                    if (strContent.equals("")) {
+                        Toast.makeText(JHJ_ChatRoomActivity.this, "내용을 입력하세요!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String strDate = sdf.format(new Date());
+                        ref = db.getReference("chat").child(myId).child(youId).child(strDate);
+                        JHJ_FireBaseChatVO vo = new JHJ_FireBaseChatVO();
+                        vo.setContent(strContent);
+                        vo.setUserName(getUserID());
+                        String key = ref.child(myId).push().getKey().toString();
 
-                    ref.setValue(vo);
+                        ref.setValue(vo);
+                    }
+                    sendGcm();
+                    edtContent.setText("");
+                }else{
+                    Toast.makeText(JHJ_ChatRoomActivity.this, "차단한 대상입니다.", Toast.LENGTH_SHORT).show();
                 }
-
-                sendGcm();
-                edtContent.setText("");
-            }
+                }
         });
 
 
@@ -296,7 +371,6 @@ public class JHJ_ChatRoomActivity extends AppCompatActivity {
                         txtTime.setText(strTime);
                         txtAddress.setText(strAddress);
                         txtDate.setText(strDate);
-
                         if (response.body()==null){
                             makerLayout.setVisibility(View.GONE);
                         }else {
@@ -348,10 +422,9 @@ public class JHJ_ChatRoomActivity extends AppCompatActivity {
         Gson gson = new Gson();
         JHJ_NotificationVO notification = new JHJ_NotificationVO();
         notification.setTo(toUserToken);
-
+        System.out.println("tousertoken?????????"+toUserToken);
         // notification.notification.title = ;
         notification.notification.text = fromUser+"님으로 부터 메세지가 도착했습니다.";
-
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf8"), gson.toJson(notification));
 
