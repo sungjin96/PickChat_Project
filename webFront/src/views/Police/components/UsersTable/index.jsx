@@ -59,6 +59,9 @@ const UsersTable = ({ classes, className }) => {
                 <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   삭제
                 </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  해당글 삭제
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -95,16 +98,10 @@ const UsersTable = ({ classes, className }) => {
                         style={{ fontSize: '1rem' }}>
                         {user.pcontent}
                       </TableCell>
-
                       <TableCell
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
                         {user.rpcontent}
-                      </TableCell>
-                      <TableCell
-                        className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
-                        {user.reasonid}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
