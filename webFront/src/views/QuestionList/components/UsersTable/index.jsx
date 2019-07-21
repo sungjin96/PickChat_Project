@@ -120,6 +120,7 @@ const UsersTable = ({ classes, className, users }) => {
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
                         <Button
+                        style={{color: '#ff006c'}}
                           onClick={() =>
                             dispatch({
                               type: 'Question/REMOVE',

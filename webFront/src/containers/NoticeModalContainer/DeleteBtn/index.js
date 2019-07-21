@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 const DeleteBtn = React.memo(({ id }) => {
   const dispatch = useDispatch();
   return (
-    <Button onClick={() => dispatch({ type: 'DELETE', id })}>Delete</Button>
+    <Button style={{color: '#ff006c'}}
+    onClick={() => dispatch({ type: 'DELETE', id })}>Delete</Button>
   );
 });
 

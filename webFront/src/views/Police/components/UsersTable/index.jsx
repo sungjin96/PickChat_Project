@@ -120,15 +120,16 @@ const UsersTable = ({ classes, className }) => {
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1rem'}}>
                         <Button
+                        style={{color: '#ff006c'}}
                           onClick={() =>
                             dispatch({
                               type: 'Pick/DELETE',
                               payload: { id: user.bno }
                             })
                           }>
-                          DELETE
+                         DELETE
                         </Button>
                       </TableCell>
                     </TableRow>
