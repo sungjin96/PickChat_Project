@@ -118,6 +118,19 @@ const UsersTable = ({ classes, className }) => {
                           DELETE
                         </Button>
                       </TableCell>
+                      <TableCell
+                        className={classes.tableCell}
+                        style={{ fontSize: '1rem' }}>
+                        <Button
+                          onClick={() =>
+                            dispatch({
+                              type: 'Pick/DELETE',
+                              payload: { id: user.bno }
+                            })
+                          }>
+                          DELETE
+                        </Button>
+                      </TableCell>
                     </TableRow>
                   ))
                 : ''}
