@@ -71,7 +71,7 @@ class Sidebar extends Component {
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText
-              classes={{ primary: classes.listItemText }}
+              classes={{ primary: classes.listItemText }}              
               primary="Dashboard"
             />
           </ListItem>
