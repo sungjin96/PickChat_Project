@@ -54,7 +54,8 @@
 		where userid=#{userid}
 	</select>
 	<select id="logincheck" resultType="int">
-		select count(*) from tbl_puser
+		select count(*) from
+		tbl_puser
 		where userid=#{userid} and userpassword =#{userpass}
 	</select>
 	<select id="checknickname" resultType="int">
@@ -63,7 +64,8 @@
 	</select>
 	<select id="appointmentread"
 		resultType="com.example.domain.UserVO">
-		select * from tbl_appointment where userid=#{userid}
+		SELECT u.* FROM tbl_puser u LEFT JOIN tbl_appointment a ON a.userid=u.userid
+		WHERE u.userid = #{userid}
 	</select>
 	<delete id="appointmentdelete">
 		delete from tbl_appointment where userid=#{userid}
@@ -101,6 +103,10 @@
 		userid = #{userid}
 	</update>
 	<update id="setusertoken">
-		update tbl_puser set token = #{token} where userid = #{userid}
+		update tbl_puser set token = #{token} where userid =
+		#{userid}
+	</update>
+	<update id="updateUserimgpath">
+		update tbl_userimg set imgpath = #{imgpath} where userid = #{userid}
 	</update>
 </mapper>
