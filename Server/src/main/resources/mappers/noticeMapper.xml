@@ -37,8 +37,8 @@
 		where qno=#{qno}
 	</select>
 	<insert id="question_insert">
-		insert into tbl_question(questiontype, qwriter, qtitle, qcontent, qregdate)
-		values(#{questiontype}, #{qwriter}, #{qtitle}, #{qcontent}, now())
+		insert into tbl_question(userid, questiontype, qwriter, qtitle, qcontent, qregdate)
+		values(#{userid}, #{questiontype}, #{qwriter}, #{qtitle}, #{qcontent}, now())
 	</insert>
 	<delete id="question_delete">
 		delete from tbl_question where qno = #{qno}

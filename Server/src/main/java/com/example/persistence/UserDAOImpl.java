@@ -148,4 +148,12 @@ public class UserDAOImpl implements UserDAO {
 		return session.selectOne(namespace+".logincheck",VO);
 	}
 
+	@Override
+	public void updateUserimgpath(String userid, String imgpath) throws Exception {
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("userid", userid);
+		map.put("imgpath", imgpath);
+		session.update(namespace + ".updateUserimgpath", map);
+		
+	}
 }

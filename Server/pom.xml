@@ -16,19 +16,24 @@
 	</properties>
 	<dependencies>
 		<!-- 새로운 라이브러리 추가 시작 -->
-		 <dependency>
-      <groupId>com.amazonaws</groupId>
-      <artifactId>aws-java-sdk</artifactId>
-      <version>1.11.578</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.amazonaws</groupId>
-      <artifactId>amazon-kinesis-client</artifactId>
-      <version>1.2.1</version>
-      <scope>compile</scope>
-    </dependency>
-		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>1.11.578</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>amazon-kinesis-client</artifactId>
+			<version>1.2.1</version>
+			<scope>compile</scope>
+		</dependency>
+
 		<!-- common fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>

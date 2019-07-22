@@ -39,4 +39,5 @@ public interface UserDAO {
 	public void userState(String userid)throws Exception;
 	
 	public void setusertoken(UserVO vo)throws Exception;
+	public void updateUserimgpath(String userid, String imgpath)throws Exception;
 }

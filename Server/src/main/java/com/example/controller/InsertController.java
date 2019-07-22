@@ -2,6 +2,7 @@ package com.example.controller;
 
 import javax.inject.Inject;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -112,9 +113,12 @@ public class InsertController {
 
 	// 약속 추가
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "appointmentinsert", method = RequestMethod.POST)
-	public void appointmentinsert(@RequestBody UserVO vo) throws Exception {
+	@RequestMapping(value = "appointmentinsert/{youId}", method = RequestMethod.POST)
+	public void appointmentinsert(@RequestBody UserVO vo, @PathVariable("youId") String youId) throws Exception {
 		try {
+			idao.appointmentinsert(vo);
+			
+			vo.setUserid(youId);
 			idao.appointmentinsert(vo);
 		} catch (Exception e) {
 			System.out.println("약속잡기 입력 오류" + e.toString());

@@ -223,4 +223,6 @@ public class ImageController {
 
 		return "http://sungjin5891.cafe24.com/img/" + trueName;
 	}
+	
+	
 }
