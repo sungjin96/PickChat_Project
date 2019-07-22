@@ -49,35 +49,33 @@ public class ChatFragment extends Fragment {
     ListView list;
     List<UserProfileVO> users;
     MyAdapter myadapter;
-    String myId,blockeduser;
+    String myId, blockeduser;
     JHJ_Test test = JHJ_Test.getTest();
     Intent intent;
     FirebaseDatabase db;
     DatabaseReference ref;
     String userId;
-    boolean btnchatcheck=false;
-    boolean chatpossible=false;
+    boolean btnchatcheck = false;
+    boolean chatpossible = false;
     List<HWJ_BlockVO> blockarray;
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root=inflater.inflate(R.layout.fragment_chat,container,false);
+        View root = inflater.inflate(R.layout.fragment_chat, container, false);
         return root;
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         //유저 아이디값 받기
-        SharedPreferences sharedPreferences= getContext().getSharedPreferences("userid",MODE_PRIVATE);
-        myId = sharedPreferences.getString("userid","");
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("userid", MODE_PRIVATE);
+        myId = sharedPreferences.getString("userid", "");
         list = view.findViewById(R.id.list);
-        intent=new Intent(getContext(),JHJ_ChatRoomActivity.class);
+        intent = new Intent(getContext(), JHJ_ChatRoomActivity.class);
 
         retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         rs = retrofit.create(RemoteService.class);
-
 
         //채팅 가능한 사람 리스트 출력
         Call<List<UserProfileVO>> call = rs.eachlikeUser(myId);
@@ -87,11 +85,12 @@ public class ChatFragment extends Fragment {
                 users = response.body();
                 myadapter = new ChatFragment.MyAdapter(getContext(), R.layout.item_chat_user, users);
                 list.setAdapter(myadapter);
-
+                myadapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<UserProfileVO>> call, Throwable t) { }
+            public void onFailure(Call<List<UserProfileVO>> call, Throwable t) {
+            }
         });
 
         //로그인한 사람 읽어오기
@@ -100,10 +99,10 @@ public class ChatFragment extends Fragment {
             @Override
             public void onResponse(Call<UserProfileVO> call, Response<UserProfileVO> response) {
                 String nickName = response.body().getUsernickname();
-                String myImg=response.body().getSoloimg();
+                String myImg = response.body().getSoloimg();
                 test.setId(response.body().getUserid());
                 intent.putExtra("myImage", myImg);
-                intent.putExtra("myNickname",nickName);
+                intent.putExtra("myNickname", nickName);
             }
 
             @Override
@@ -113,12 +112,12 @@ public class ChatFragment extends Fragment {
         });
 
         //로그인한사람 토근 저장
-        UserProfileVO uservo=new UserProfileVO();
+        UserProfileVO uservo = new UserProfileVO();
         uservo.setUserid(myId);
         uservo.setToken(FirebaseInstanceId.getInstance().getToken());
-        Call<Void> updateToken =rs.tokenUpdate(uservo);
+        Call<Void> updateToken = rs.tokenUpdate(uservo);
         //System.out.println(uservo.getToken());
-       // System.out.println(uservo.getUserid());
+        // System.out.println(uservo.getUserid());
         updateToken.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -132,8 +131,6 @@ public class ChatFragment extends Fragment {
         });
 
     }
-
-
 
 
     //어댑터
@@ -171,26 +168,26 @@ public class ChatFragment extends Fragment {
                 convertView = getLayoutInflater().inflate(R.layout.item_chat_user, parent, false);
             }
 
-                ImageView img=convertView.findViewById(R.id.img);
-                TextView name=convertView.findViewById(R.id.name);
-                final TextView age=convertView.findViewById(R.id.age);
-                TextView local=convertView.findViewById(R.id.local);
-                TextView comment=convertView.findViewById(R.id.comment);
-                final TextView btnchat=convertView.findViewById(R.id.btnchat);
+            ImageView img = convertView.findViewById(R.id.img);
+            TextView name = convertView.findViewById(R.id.name);
+            final TextView age = convertView.findViewById(R.id.age);
+            TextView local = convertView.findViewById(R.id.local);
+            TextView comment = convertView.findViewById(R.id.comment);
+            final TextView btnchat = convertView.findViewById(R.id.btnchat);
 
-                //차단상대?
-            Call<List<HWJ_BlockVO>> blockcheck=rs.listBlock(myId);
+            //차단상대?
+            Call<List<HWJ_BlockVO>> blockcheck = rs.listBlock(myId);
             blockcheck.enqueue(new Callback<List<HWJ_BlockVO>>() {
                 @Override
                 public void onResponse(Call<List<HWJ_BlockVO>> call, Response<List<HWJ_BlockVO>> response) {
-                    blockarray=response.body();
-                    for(int i=0; i<blockarray.size();i++){
-                        blockeduser=blockarray.get(i).getBlocked();
-                        if(array.get(position).getUserid().equals(blockeduser)){
+                    blockarray = response.body();
+                    for (int i = 0; i < blockarray.size(); i++) {
+                        blockeduser = blockarray.get(i).getBlocked();
+                        if (array.get(position).getUserid().equals(blockeduser)) {
                             //차단된 상대임
                             btnchat.setText("차단된 대상");
                             break;
-                        }else{
+                        } else {
                             btnchat.setText("채팅하기");
 
                         }
@@ -203,70 +200,88 @@ public class ChatFragment extends Fragment {
 
                 }
             });
-                //채팅하기 버튼
-                btnchat.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (!btnchat.getText().equals("차단된 대상")) {
-                            db = FirebaseDatabase.getInstance();
-                            ref = db.getReference("chat");
-                            userId = array.get(position).getUserid();
-                            String img = array.get(position).getSoloimg();
-                            String usernick = array.get(position).getUsernickname();
-                            test.setId2(array.get(position).getUserid());
-                            intent.putExtra("myId", myId);
-                            intent.putExtra("userId", userId);
-                            intent.putExtra("userNickName", usernick);
-                            intent.putExtra("img", img);
-                            startActivity(intent);
-                        }else{
-                                AlertDialog.Builder box=new AlertDialog.Builder(getContext());
-                                box.setTitle("차단된 유저");
-                                box.setMessage("채팅 불가능 합니다.");
-                                box.setNegativeButton("차단 해제",null);
-                                box.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
-                                });
-                                box.show();
-                        }
-                    }
-                });
 
-                name.setText(array.get(position).getUsername());
-                age.setText(String.valueOf(array.get(position).getUserage()));
-                local.setText(array.get(position).getLocalname());
-                Thread thread=new Thread(){
-                    @Override
-                    public void run() {
-                        super.run();
-                        try{
-                            URL url=new URL(array.get(position).getSoloimg());
-                            HttpURLConnection conn=(HttpURLConnection)url.openConnection();
-                            conn.setDoInput(true);
-                            conn.connect();
-                            InputStream is=conn.getInputStream();
-                            bitmap= BitmapFactory.decodeStream(is);
-                        }catch (MalformedURLException e){
-                            e.printStackTrace();
-                        }catch (IOException e){
-                            e.printStackTrace();
-                        }
+            //채팅하기 버튼
+            btnchat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!btnchat.getText().equals("차단된 대상")) {
+                        db = FirebaseDatabase.getInstance();
+                        ref = db.getReference("chat");
+                        userId = array.get(position).getUserid();
+                        String img = array.get(position).getSoloimg();
+                        String usernick = array.get(position).getUsernickname();
+                        test.setId2(array.get(position).getUserid());
+                        intent.putExtra("myId", myId);
+                        intent.putExtra("userId", userId);
+                        intent.putExtra("userNickName", usernick);
+                        intent.putExtra("img", img);
+                        startActivity(intent);
+                    } else {
+                        AlertDialog.Builder box = new AlertDialog.Builder(getContext());
+                        box.setTitle("차단된 유저");
+                        box.setMessage("채팅 불가능 합니다.");
+                        box.setNegativeButton("차단 해제", null);
+                        box.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                        box.show();
                     }
-                };
-                thread.start();
-                try{
-                    thread.join();
-                    img.setImageBitmap(bitmap);
-                }catch (InterruptedException e){
-                    e.printStackTrace();
                 }
+            });
 
-
+            name.setText(array.get(position).getUsername());
+            age.setText(String.valueOf(array.get(position).getUserage()));
+            local.setText(array.get(position).getLocalname());
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+                    try {
+                        URL url = new URL(array.get(position).getSoloimg());
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                        conn.setDoInput(true);
+                        conn.connect();
+                        InputStream is = conn.getInputStream();
+                        bitmap = BitmapFactory.decodeStream(is);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            thread.start();
+            try {
+                thread.join();
+                img.setImageBitmap(bitmap);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return convertView;
         }
     }
 
+    //화면을 다시 불러올 때 리스트 재출력
+    @Override
+    public void onResume() {
+        super.onResume();
+        //채팅 가능한 사람 리스트 출력
+        Call<List<UserProfileVO>> call = rs.eachlikeUser(myId);
+        call.enqueue(new Callback<List<UserProfileVO>>() {
+            @Override
+            public void onResponse(Call<List<UserProfileVO>> call, Response<List<UserProfileVO>> response) {
+                users = response.body();
+                myadapter = new ChatFragment.MyAdapter(getContext(), R.layout.item_chat_user, users);
+                list.setAdapter(myadapter);
+                myadapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onFailure(Call<List<UserProfileVO>> call, Throwable t) {
+            }
+        });
+    }
 }

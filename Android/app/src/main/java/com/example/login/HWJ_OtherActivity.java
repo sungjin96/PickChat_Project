@@ -52,7 +52,7 @@ public class HWJ_OtherActivity extends AppCompatActivity {
     List<LikePeopleVO> likearray;
     LikePeopleVO likevo;
     String receiverccheck;
-    boolean likecheck=false;
+    boolean likecheck=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,8 +102,8 @@ public class HWJ_OtherActivity extends AppCompatActivity {
                                     call1.enqueue(new Callback<List<LikePeopleVO>>() {
                                         @Override
                                         public void onResponse(Call<List<LikePeopleVO>> call, Response<List<LikePeopleVO>> response) {
-                                            //System.out.println(strUser+"////////"+receiver);
                                             likearray = response.body();
+                                            System.out.println("................."+likearray);
                                             for (int i = 0; i < likearray.size(); i++) {
                                                 receiverccheck = likearray.get(i).getReceiver();
                                                 if (receiver.equals(receiverccheck)) {
@@ -120,6 +120,7 @@ public class HWJ_OtherActivity extends AppCompatActivity {
                                             }
                                             //좋아요 테이블에 넣기
                                             if(likecheck) {
+                                                System.out.println(".........."+likecheck+receiver+"///"+strUser);
                                                 likevo.setSender(strUser);
                                                 likevo.setReceiver(receiver);
                                                 Call<Void> call2 = rs.insertLike(likevo);
