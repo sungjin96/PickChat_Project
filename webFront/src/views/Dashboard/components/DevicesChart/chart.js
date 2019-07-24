@@ -2,18 +2,6 @@
 import palette from 'theme/palette';
 
 // Chart data
-export const data = {
-  datasets: [
-    {
-      data: [63, 15],
-      backgroundColor: [palette.primary.main, palette.danger.main],
-      borderWidth: 8,
-      borderColor: palette.common.white,
-      hoverBorderColor: palette.common.white
-    }
-  ],
-  labels: ['남자', '여자']
-};
 
 // Chart options
 export const options = {

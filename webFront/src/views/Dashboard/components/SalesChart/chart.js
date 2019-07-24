@@ -40,8 +40,8 @@ export const options = {
   scales: {
     xAxes: [
       {
-        barThickness: 12,
-        maxBarThickness: 10,
+        barThickness: 20,
+        maxBarThickness: 100,
         barPercentage: 0.5,
         categoryPercentage: 0.5,
         ticks: {
