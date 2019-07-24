@@ -46,25 +46,26 @@ const UsersTable = ({ classes, className, users }) => {
         <PerfectScrollbar>
           <Table>
             <TableHead>
-              <TableRow><TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+              <TableRow>
+              <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   글번호
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   작성자
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   제목
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   내용
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   태그
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   등록일
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   삭제
                 </TableCell>
               </TableRow>
@@ -72,30 +73,45 @@ const UsersTable = ({ classes, className, users }) => {
             <TableBody>
               {state.client !== undefined
                 ? state.client.map(user => (
-                    <TableRow className={classes.tableRow} hover key={user.bno}>                      
+                    <TableRow className={classes.tableRow} hover key={user.bno}>
+                      {/* <TableCell className={classes.tableCell}>
+                        <div className={classes.tableCellInner}>
+                          <Avatar className={classes.avatar} src={user.imgpath}>
+                            {getInitials(
+                              user.writer !== null ? user.writer : ''
+                            )}
+                          </Avatar>
+                          <Typography
+                            className={classes.nameText}
+                            variant="body1"
+                            style={{ fontSize: '1rem' }}>
+                            {user.writer}
+                          </Typography>
+                        </div>
+                      </TableCell> */}
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {user.bno}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {user.writer}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {user.title}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {user.content}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {user.tagword.map((data, index) => (
                           <Chip
                             key={index}
@@ -106,14 +122,13 @@ const UsersTable = ({ classes, className, users }) => {
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {moment(user.regdate).format('DD/MM/YYYY')}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         <Button
-                        style={{color: '#ff006c'}}
                           onClick={() =>
                             dispatch({
                               type: 'Pick/DELETE',

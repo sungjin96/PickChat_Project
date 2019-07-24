@@ -34,15 +34,18 @@ import Axios from 'axios';
 
 const UsersTable = ({ classes, className, users }) => {
   const [state, setState] = React.useState({
+    selectedUsers: [],
+    rowsPerPage: 10,
+    page: 0,
     client: []
   });
 
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    Axios.get('http://sungjin5891.cafe24.com/question/list').then(data => {
-      setState({ client: data.data });
-    });
+    Axios.get('http://sungjin5891.cafe24.com/question/list').then(data =>
+      setState({ client: data.data })
+    );
   }, [state.client]);
 
   const rootClassName = classNames(classes.root, className);
@@ -54,25 +57,28 @@ const UsersTable = ({ classes, className, users }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+              <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  글번호
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   아이디
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   제목
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   내용
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   답글
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   등록일
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   답글등록
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight:'bold' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   삭제
                 </TableCell>
               </TableRow>
@@ -81,46 +87,55 @@ const UsersTable = ({ classes, className, users }) => {
               {state.client !== undefined
                 ? state.client.map(user => (
                     <TableRow className={classes.tableRow} hover key={user.qno}>
-                      <TableCell className={classes.tableCell}>
+                      {/* <TableCell className={classes.tableCell}>
                         <div className={classes.tableCellInner}>
                           <Typography
                             className={classes.nameText}
                             variant="body1"
-                            style={{ fontSize: '1.1rem' }}>
+                            style={{ fontSize: '1rem' }}>
                             {user.qwriter}
                           </Typography>
                         </div>
+                      </TableCell> */}
+                      <TableCell
+                        className={classes.tableCell}
+                        style={{ fontSize: '1rem' }}>
+                        {user.qno}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
+                        {user.qwriter}
+                      </TableCell>
+                      <TableCell
+                        className={classes.tableCell}
+                        style={{ fontSize: '1rem' }}>
                         {user.qtitle}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {user.qcontent}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {user.qccontent}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {moment(user.qregdate).format('DD/MM/YYYY')}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         <Btn qno={user.qno} />
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         <Button
-                        style={{color: '#ff006c'}}
                           onClick={() =>
                             dispatch({
                               type: 'Question/REMOVE',

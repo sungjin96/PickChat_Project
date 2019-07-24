@@ -118,17 +118,17 @@ class Topbar extends Component {
               className={classes.title}
               variant="h4"
               onClick={this.handleMain}>
-              <Button>{title}<img className='img1' src={img5} style={{width:'110px', height:'25px'}}></img></Button>
+              <Button>{title}<img className='img1' src={img5} style={{width:'100px', height:'20px'}}></img></Button>
             </Typography>
             <IconButton
               className={classes.notificationsButton}
               onClick={this.handlePick}>
-              <Button><h2 style={{color:'#ff006c'}}>픽스타</h2></Button>
+              <Button><h3 style={{color:'#ff006c'}}>픽스타</h3></Button>
             </IconButton>
             <IconButton
               className={classes.signOutButton}
               onClick={this.handleCs}>
-              <Button><h2 style={{color:'#ff006c'}}>고객센터</h2></Button>
+              <Button><h3 style={{color:'#ff006c'}}>고객센터</h3></Button>
             </IconButton>
             <IconButton
               className={classes.signOutButton}

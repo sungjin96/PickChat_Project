@@ -3,19 +3,16 @@ import axios from 'axios';
 const INSERT = 'Notice/INSERT';
 const DELETE = 'Notice/DELETE';
 const SEARCH_INPUT = 'Notice/SEARCH_INPUT';
-const TEST = 'Notice/TEST';
 
 export const insert = () => ({
   type: INSERT
 });
 export const delete1 = () => ({ type: DELETE });
 export const searchInput = () => ({ type: SEARCH_INPUT });
-export const Test = () => ({ type: TEST });
 
 const initialState = {
   complete: [],
-  input: '',
-  CloseState: false
+  input: ''
 };
 
 const CompleteModule = (state = initialState, action) => {
@@ -25,16 +22,7 @@ const CompleteModule = (state = initialState, action) => {
       axios
         .post('http://sungjin5891.cafe24.com/notice/insert', { title, content })
         .catch(err => console.log(err));
-      return {
-        ...state,
-        CloseState: !state.CloseState
-      };
-
-    case TEST:
-      return {
-        ...state,
-        CloseState: !state.CloseState
-      };
+      return {};
 
     case 'DELETE':
       const { id } = action;

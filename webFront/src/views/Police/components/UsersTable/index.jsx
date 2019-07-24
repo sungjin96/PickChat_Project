@@ -41,23 +41,23 @@ const UsersTable = ({ classes, className }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   번호
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   신고자
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   신고 글
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   신고 내용
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   신고 유형
-                </TableCell>                
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
-                  해당글 삭제
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  삭제
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -74,7 +74,7 @@ const UsersTable = ({ classes, className }) => {
                             <Typography
                               className={classes.nameText}
                               variant="body1"
-                              style={{ fontSize: '1.1rem' }}>
+                              style={{ fontSize: '1rem' }}>
                               {user.bpno}
                             </Typography>
                           </Link>
@@ -82,56 +82,40 @@ const UsersTable = ({ classes, className }) => {
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {user.sender}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {user.bno}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {user.pcontent}
                       </TableCell>
+
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}>
+                        style={{ fontSize: '1rem' }}>
                         {user.rpcontent}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1.1rem' }}
-                        >
-                          {
-                            user.bno === 0 ? <Button
-                            style={{color: '#ff006c'}}
-                            onClick={() =>
-                              dispatch({
-                                type: 'Police/REMOVE',
-                                payload: {
-                                  bpno1: user.bpno,
-                                }
-                              })
-                            }>
-                              삭제됨
-                            </Button> : <Button
-                        style={{color: '#ff006c'}}
+                        style={{ fontSize: '1rem' }}>
+                        <Button
                           onClick={() =>
                             dispatch({
                               type: 'Police/DELETE',
                               payload: {
-                                id: user.bno,
                                 bpno: user.bpno
                               }
                             })
                           }>
                           DELETE
                         </Button>
-                          }
-                        
-                      </TableCell>                      
+                      </TableCell>
                     </TableRow>
                   ))
                 : ''}
