@@ -17,15 +17,19 @@ import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
 import { Portlet, PortletContent } from 'components';
 import styles from './styles';
 import Axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const UsersTable = ({ classes, className }) => {
+  const [modalState] = useSelector(
+    state => [state.PoliceModule.modalState],
+    []
+  );
   const [state, setState] = React.useState({
     selectedUsers: [],
     rowsPerPage: 10,
     page: 0,
     client: [],
-    setOpen: false
+    setOpen: modalState
   });
 
   const dispatch = useDispatch();
@@ -104,7 +108,15 @@ const UsersTable = ({ classes, className }) => {
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1rem' }}
+                        onClick={() =>
+                          dispatch({
+                            type: 'Police/MODAL_CHECK',
+                            payload: {
+                              bnoo: user.bno
+                            }
+                          })
+                        }>
                         {user.bno}
                       </TableCell>
                       <TableCell
@@ -155,6 +167,19 @@ const UsersTable = ({ classes, className }) => {
           </Table>
         </PerfectScrollbar>
       </PortletContent>
+      <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={modalState}
+        onClose={() =>
+          dispatch({
+            type: 'Police/MODAL_CHECK1'
+          })
+        }>
+        <div style={{}}>
+          <CreateModal />
+        </div>
+      </Modal>
     </Portlet>
   );
 };
