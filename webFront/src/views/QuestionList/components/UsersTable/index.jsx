@@ -57,7 +57,7 @@ const UsersTable = ({ classes, className, users }) => {
           <Table>
             <TableHead>
               <TableRow>
-              <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   글번호
                 </TableCell>
                 <TableCell align="left" style={{ fontSize: '1.1rem' }}>
@@ -130,7 +130,15 @@ const UsersTable = ({ classes, className, users }) => {
                       <TableCell
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
-                        <Btn qno={user.qno} />
+                        <Button
+                          onClick={() =>
+                            dispatch({
+                              type: 'Question/MODAL_CHECK',
+                              payload: { no: user.qno }
+                            })
+                          }>
+                          COMMENT
+                        </Button>
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
@@ -154,6 +162,7 @@ const UsersTable = ({ classes, className, users }) => {
           </Table>
         </PerfectScrollbar>
       </PortletContent>
+      <Btn />
     </Portlet>
   );
 };

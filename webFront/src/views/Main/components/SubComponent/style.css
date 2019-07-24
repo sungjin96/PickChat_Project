@@ -1,7 +1,7 @@
 .Wrap {
   width: 1200px;
   height: 100%;
-  margin-left: 19%;
-  display: inline-block;
-  float: left;
+  margin: 0 auto;
+  display: block;
+  float: center;
 }

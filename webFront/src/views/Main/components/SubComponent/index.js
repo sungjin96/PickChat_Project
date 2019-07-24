@@ -18,18 +18,16 @@ const SubComponent = ({ content, content2 }) => {
 
   return (
     <div style={style.container}>
-      <div style={{ color: 'black' }}>
-        <div>
-          <h1>{content}</h1>
-        </div>
-        <div style={{ margin: '20px', color: '#5D5D5D' }}>
-          <h2>{content2}</h2>
-        </div>
-        <div className="Wrap">
-          {users.slice(0, 6).map(data => (
-            <UserCard img={data.soloimg} nick={data.usernickname} />
-          ))}
-        </div>
+      <div>
+        <h1>{content}</h1>
+      </div>
+      <div style={{ margin: '20px', color: '#5D5D5D' }}>
+        <h2>{content2}</h2>
+      </div>
+      <div className="Wrap">
+        {users.slice(0, 8).map(data => (
+          <UserCard img={data.soloimg} nick={data.usernickname} />
+        ))}
       </div>
     </div>
   );

@@ -3,16 +3,19 @@ import axios from 'axios';
 const INSERT = 'Notice/INSERT';
 const DELETE = 'Notice/DELETE';
 const SEARCH_INPUT = 'Notice/SEARCH_INPUT';
+const MODAL_CHECK = 'Notice/MODAL_CHECK';
 
 export const insert = () => ({
   type: INSERT
 });
 export const delete1 = () => ({ type: DELETE });
 export const searchInput = () => ({ type: SEARCH_INPUT });
+export const modalCheck = () => ({ type: MODAL_CHECK });
 
 const initialState = {
   complete: [],
-  input: ''
+  input: '',
+  modalState: false
 };
 
 const CompleteModule = (state = initialState, action) => {
@@ -22,7 +25,10 @@ const CompleteModule = (state = initialState, action) => {
       axios
         .post('http://sungjin5891.cafe24.com/notice/insert', { title, content })
         .catch(err => console.log(err));
-      return {};
+      return {
+        ...state,
+        modalState: !state.modalState
+      };
 
     case 'DELETE':
       const { id } = action;
@@ -35,6 +41,12 @@ const CompleteModule = (state = initialState, action) => {
       return {
         ...state,
         input: action.payload.input
+      };
+
+    case MODAL_CHECK:
+      return {
+        ...state,
+        modalState: !state.modalState
       };
 
     default:

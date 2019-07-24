@@ -78,13 +78,9 @@ const Item = ({ title, content, comment, writer }) => {
             style={{
               backgroundColor: '#f8f8f8',
               paddingTop: '0.1rem',
-<<<<<<< HEAD
-              marginTop: '0.5rem'
-=======
               paddingBottom: '2rem',
               marginTop: '0.5rem',
               fontSize: '1.1rem'
->>>>>>> df3462f4de168f50fb41261ddb9400741fe62932
             }}>
             <div
               style={{
@@ -94,7 +90,7 @@ const Item = ({ title, content, comment, writer }) => {
                 margin: '0.8rem'
               }}>
               Answer
-            </div>           
+            </div>
             {comment === undefined ? content : comment}
           </div>
         </Typography>

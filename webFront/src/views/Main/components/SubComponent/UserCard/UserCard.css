@@ -1,13 +1,13 @@
 .wrap {
-  background-color: blanchedalmond;
   width: 300px;
   height: 300px;
-  margin: 20px;
+  margin: 0 auto;
   transform: scale(1);
   transition: transform 0.5s;
   opacity: 0.4;
-  display: inline-block;
+  display: block;
   position: relative;
+  float: left;
 }
 
 .wrap:hover {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CreateModal from '../createModal';
 import classNames from 'classnames';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { withStyles, Button } from '@material-ui/core';
@@ -9,7 +10,8 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Typography
+  Typography,
+  Modal
 } from '@material-ui/core';
 import DeleteBtn from '../../../../containers/NoticeModalContainer/DeleteBtn';
 import { Portlet, PortletContent } from 'components';
@@ -22,7 +24,8 @@ const UsersTable = ({ classes, className }) => {
     selectedUsers: [],
     rowsPerPage: 10,
     page: 0,
-    client: []
+    client: [],
+    setOpen: false
   });
 
   const dispatch = useDispatch();
@@ -33,6 +36,10 @@ const UsersTable = ({ classes, className }) => {
     );
   });
 
+  const handleClose = () => {
+    setState({ setOpen: false });
+  };
+
   const rootClassName = classNames(classes.root, className);
   return (
     <Portlet className={rootClassName}>
@@ -41,43 +48,35 @@ const UsersTable = ({ classes, className }) => {
           <Table>
             <TableHead>
               <TableRow>
-<<<<<<< HEAD
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell
+                  align="left"
+                  style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                   번호
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell
+                  align="left"
+                  style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                   신고자
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell
+                  align="left"
+                  style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                   신고 글
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell
+                  align="left"
+                  style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                   신고 내용
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell
+                  align="left"
+                  style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                   신고 유형
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
-                  삭제
-=======
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
-                  번호
-                </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
-                  신고자
-                </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
-                  신고 글
-                </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
-                  신고 내용
-                </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
-                  신고 유형
-                </TableCell>                
-                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
+                <TableCell
+                  align="left"
+                  style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                   해당글 삭제
->>>>>>> df3462f4de168f50fb41261ddb9400741fe62932
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -90,14 +89,12 @@ const UsersTable = ({ classes, className }) => {
                       key={user.bpno}>
                       <TableCell className={classes.tableCell}>
                         <div className={classes.tableCellInner}>
-                          <Link to="#">
-                            <Typography
-                              className={classes.nameText}
-                              variant="body1"
-                              style={{ fontSize: '1rem' }}>
-                              {user.bpno}
-                            </Typography>
-                          </Link>
+                          <Typography
+                            className={classes.nameText}
+                            variant="body1"
+                            style={{ fontSize: '1rem' }}>
+                            {user.bpno}
+                          </Typography>
                         </div>
                       </TableCell>
                       <TableCell
@@ -124,17 +121,32 @@ const UsersTable = ({ classes, className }) => {
                       <TableCell
                         className={classes.tableCell}
                         style={{ fontSize: '1rem' }}>
-                        <Button
-                          onClick={() =>
-                            dispatch({
-                              type: 'Police/DELETE',
-                              payload: {
-                                bpno: user.bpno
-                              }
-                            })
-                          }>
-                          DELETE
-                        </Button>
+                        {user.bno === 0 ? (
+                          <Button
+                            onClick={() =>
+                              dispatch({
+                                type: 'Police/REMOVE',
+                                payload: {
+                                  no: user.bpno
+                                }
+                              })
+                            }>
+                            삭제됨
+                          </Button>
+                        ) : (
+                          <Button
+                            onClick={() =>
+                              dispatch({
+                                type: 'Police/DELETE',
+                                payload: {
+                                  bno: user.bno,
+                                  bpno: user.bpno
+                                }
+                              })
+                            }>
+                            DELETE
+                          </Button>
+                        )}
                       </TableCell>
                     </TableRow>
                   ))
