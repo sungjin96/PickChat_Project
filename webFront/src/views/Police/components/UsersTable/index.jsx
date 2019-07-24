@@ -41,6 +41,7 @@ const UsersTable = ({ classes, className }) => {
           <Table>
             <TableHead>
               <TableRow>
+<<<<<<< HEAD
                 <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   번호
                 </TableCell>
@@ -58,6 +59,25 @@ const UsersTable = ({ classes, className }) => {
                 </TableCell>
                 <TableCell align="left" style={{ fontSize: '1.1rem' }}>
                   삭제
+=======
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
+                  번호
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
+                  신고자
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
+                  신고 글
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
+                  신고 내용
+                </TableCell>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
+                  신고 유형
+                </TableCell>                
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
+                  해당글 삭제
+>>>>>>> df3462f4de168f50fb41261ddb9400741fe62932
                 </TableCell>
               </TableRow>
             </TableHead>
