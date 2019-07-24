@@ -47,11 +47,11 @@ export default theme => ({
   listItem: {
     cursor: 'pointer',
     '&:hover': {
-      backgroundColor: theme.palette.primary.light,
-      borderLeft: `4px solid ${theme.palette.primary.main}`,
+      backgroundColor: 'rgba(	255, 0, 108, 0.2)',
+      borderLeft: `4px solidrgba(	255, 0, 108, 1)`,
       borderRadius: '4px',
       '& $listItemIcon': {
-        color: theme.palette.primary.main,
+        color: 'rgba(	255, 0, 108, 1)',
         marginLeft: '-4px'
       }
     },
@@ -60,14 +60,14 @@ export default theme => ({
     }
   },
   activeListItem: {
-    borderLeft: `4px solid ${theme.palette.primary.main}`,
+    borderLeft: `4px solid rgba(	255, 0, 108, 1)`,
     borderRadius: '4px',
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: 'rgba(	255, 0, 108, 0.2)',
     '& $listItemText': {
       color: theme.palette.text.primary
     },
     '& $listItemIcon': {
-      color: theme.palette.primary.main,
+      color: 'rgba(	255, 0, 108, 1)',
       marginLeft: '-4px'
     }
   },

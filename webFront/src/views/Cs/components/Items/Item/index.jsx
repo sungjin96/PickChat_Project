@@ -54,7 +54,8 @@ const Item = ({ title, content, comment, writer }) => {
             style={{
               paddingBottom: '2rem',
               backgroundColor: '#F3E8FF',
-              paddingTop: '0.1rem'
+              paddingTop: '0.1rem',
+              fontSize: '1.1rem'
             }}>
             {writer === undefined ? (
               ''
@@ -64,7 +65,7 @@ const Item = ({ title, content, comment, writer }) => {
                   fontSize: '1.5rem',
                   // width: '100%',
                   textAlign: 'left',
-                  margin: '2rem',
+                  margin: '1rem',
                   width: '95%',
                   height: '95%',
                   backgroundColor: '#fff'
@@ -79,18 +80,18 @@ const Item = ({ title, content, comment, writer }) => {
               backgroundColor: '#f8f8f8',
               paddingTop: '0.1rem',
               paddingBottom: '2rem',
-              marginTop: '0.5rem'
+              marginTop: '0.5rem',
+              fontSize: '1.1rem'
             }}>
             <div
               style={{
                 fontSize: '1.5rem',
                 width: '100%',
                 textAlign: 'left',
-                margin: '2rem'
+                margin: '0.8rem'
               }}>
-              답글
-            </div>
-            <br />
+              Answer
+            </div>           
             {comment === undefined ? content : comment}
           </div>
         </Typography>

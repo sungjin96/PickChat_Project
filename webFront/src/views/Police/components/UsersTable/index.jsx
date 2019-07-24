@@ -41,22 +41,22 @@ const UsersTable = ({ classes, className }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
                   번호
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
                   신고자
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
                   신고 글
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
                   신고 내용
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
                   신고 유형
                 </TableCell>                
-                <TableCell align="left" style={{ fontSize: '1.2rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight:'bold'  }}>
                   해당글 삭제
                 </TableCell>
               </TableRow>
