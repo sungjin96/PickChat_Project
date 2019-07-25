@@ -109,22 +109,22 @@ class UsersTable extends Component {
             <Table>
               <TableHead>
                 <TableRow>                  
-                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                     이름
                   </TableCell>
-                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                     아이디
                   </TableCell>
-                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                     성별
                   </TableCell>
-                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                     나이
                   </TableCell>
-                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                     등록일
                   </TableCell>
-                  <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                     삭제
                   </TableCell>
 

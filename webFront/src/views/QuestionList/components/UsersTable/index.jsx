@@ -57,28 +57,28 @@ const UsersTable = ({ classes, className, users }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                   글번호
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                   아이디
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                   제목
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                   내용
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                   답글
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                   등록일
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                   답글등록
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem' }}>
+                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
                   삭제
                 </TableCell>
               </TableRow>
