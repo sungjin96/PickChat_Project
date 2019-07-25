@@ -11,8 +11,14 @@ const List = () => {
   const [value, setVaule] = React.useState(6);
 
   React.useEffect(() => {
+    var headers = {
+      'Access-Control-Allow-Origin': '*',
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    };
+
     axios
-      .get('http://sungjin5891.cafe24.com/board/bbslist')
+      .get('http://sungjin5891.cafe24.com/board/bbslist', headers)
       .then(data => setDatas(data.data));
   }, []);
 

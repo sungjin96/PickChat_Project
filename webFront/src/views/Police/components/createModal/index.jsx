@@ -42,8 +42,8 @@ const CreateModal = React.memo(() => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: '60rem',
-        height: '50rem'
+        width: '23rem',
+        height: '25rem'
       }}>
       {GetData()}
     </div>
