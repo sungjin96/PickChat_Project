@@ -57,28 +57,28 @@ const UsersTable = ({ classes, className, users }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   글번호
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   아이디
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   제목
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   내용
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   답글
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   등록일
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   답글등록
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   삭제
                 </TableCell>
               </TableRow>
@@ -99,37 +99,37 @@ const UsersTable = ({ classes, className, users }) => {
                       </TableCell> */}
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.qno}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.qwriter}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.qtitle}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.qcontent}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.qccontent}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {moment(user.qregdate).format('DD/MM/YYYY')}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         <Button
                           onClick={() =>
                             dispatch({
@@ -142,7 +142,7 @@ const UsersTable = ({ classes, className, users }) => {
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         <Button
                           onClick={() =>
                             dispatch({

@@ -9,7 +9,7 @@ const Question = () => {
     axios.get('http://sungjin5891.cafe24.com/question/list').then(data => {
       setValue(data.data);
     });
-  }, []);
+  }, []);  
 
   return (
     <React.Fragment>

@@ -109,22 +109,22 @@ class UsersTable extends Component {
             <Table>
               <TableHead>
                 <TableRow>                  
-                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                  <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                     이름
                   </TableCell>
-                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                  <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                     아이디
                   </TableCell>
-                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                  <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                     성별
                   </TableCell>
-                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                  <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                     나이
                   </TableCell>
-                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                  <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                     등록일
                   </TableCell>
-                  <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                  <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                     삭제
                   </TableCell>
 
@@ -149,7 +149,7 @@ class UsersTable extends Component {
                               <Typography
                                 className={classes.nameText}
                                 variant="body1"
-                                style={{ fontSize: '1rem' }}>
+                                style={{ fontSize: '1.1rem' }}>
                                 {user.username}
                               </Typography>
                             </Link>
@@ -157,27 +157,27 @@ class UsersTable extends Component {
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '1.1rem' }}>
                           {user.userid}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '1.1rem' }}>
                           {user.gendername}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '1.1rem' }}>
                           {user.userage}
                         </TableCell>
                         <TableCell
                           className={classes.tableCell}
-                          style={{ fontSize: '1rem' }}>
+                          style={{ fontSize: '1.1rem' }}>
                           {moment(user.regdate).format('DD/MM/YYYY')}
                         </TableCell>
                         <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         <DeleteBtn id={user.nno} />
                       </TableCell>
                       </TableRow>

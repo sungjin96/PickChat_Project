@@ -56,13 +56,13 @@ const Info = ({ userid }) => {
         <TableHead />
         <TableBody>
           <TableRow hover>
-            <TableCell align="left">
-              <b style={{ fontSize: '1.3rem' }}>매력</b>
+            <TableCell align="left" style={{ width: '30rem' }}>
+              <b style={{ fontSize: '1.3rem' }}>매&nbsp;&nbsp;&nbsp;&nbsp;력</b>
             </TableCell>
             {Mytype() !== undefined
               ? Mytype().map(mytype => (
                   <TableCell
-                    style={{ fontSize: '1rem' }}
+                    style={{ fontSize: '1rem', width: '30rem' }}
                     key={mytype.mno}
                     align="left">
                     {mytype.content}
@@ -76,13 +76,13 @@ const Info = ({ userid }) => {
         <TableHead />
         <TableBody>
           <TableRow hover>
-            <TableCell align="left">
+            <TableCell align="left" style={{ width: '30rem' }}>
               <b style={{ fontSize: '1.3rem' }}>이상형</b>
             </TableCell>
             {Liketype() !== undefined
               ? Liketype().map(liketype => (
                   <TableCell
-                    style={{ fontSize: '1rem' }}
+                    style={{ fontSize: '1rem', width: '30rem' }}
                     align="left"
                     key={liketype.lno}>
                     {liketype.content}
@@ -96,13 +96,13 @@ const Info = ({ userid }) => {
         <TableHead />
         <TableBody>
           <TableRow hover>
-            <TableCell align="left">
-              <b style={{ fontSize: '1.3rem' }}>취미</b>
+            <TableCell align="left" style={{ width: '30rem' }}>
+              <b style={{ fontSize: '1.3rem' }}>취&nbsp;&nbsp;&nbsp;&nbsp;미</b>
             </TableCell>
             {Hobby() !== undefined
               ? Hobby().map(hobby => (
                   <TableCell
-                    style={{ fontSize: '1rem' }}
+                    style={{ fontSize: '1rem', width: '30rem' }}
                     key={hobby.hno}
                     align="left">
                     {hobby.content}

@@ -96,19 +96,19 @@ const UsersTable = ({ classes, className }) => {
                           <Typography
                             className={classes.nameText}
                             variant="body1"
-                            style={{ fontSize: '1rem' }}>
+                            style={{ fontSize: '1.1rem' }}>
                             {user.bpno}
                           </Typography>
                         </div>
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.sender}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}
+                        style={{ fontSize: '1.1rem' }}
                         onClick={() =>
                           dispatch({
                             type: 'Police/MODAL_CHECK',
@@ -121,18 +121,18 @@ const UsersTable = ({ classes, className }) => {
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.pcontent}
                       </TableCell>
 
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.rpcontent}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.bno === 0 ? (
                           <Button
                             onClick={() =>

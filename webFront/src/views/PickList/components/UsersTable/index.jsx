@@ -47,25 +47,25 @@ const UsersTable = ({ classes, className, users }) => {
           <Table>
             <TableHead>
               <TableRow>
-              <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+              <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   글번호
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   작성자
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   제목
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   내용
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   태그
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   등록일
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   삭제
                 </TableCell>
               </TableRow>
@@ -91,27 +91,27 @@ const UsersTable = ({ classes, className, users }) => {
                       </TableCell> */}
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.bno}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.writer}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.title}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.content}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.tagword.map((data, index) => (
                           <Chip
                             key={index}
@@ -122,12 +122,12 @@ const UsersTable = ({ classes, className, users }) => {
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {moment(user.regdate).format('DD/MM/YYYY')}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         <Button
                           onClick={() =>
                             dispatch({

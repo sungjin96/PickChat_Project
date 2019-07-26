@@ -43,19 +43,19 @@ const UsersTable = React.memo(({ classes, className }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   번호
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   제목
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   내용
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   등록일
                 </TableCell>
-                <TableCell align="left" style={{ fontSize: '1.1rem', fontWeight: 'bold'  }}>
+                <TableCell align="left" style={{ fontSize: '1.2rem', fontWeight: 'bold'  }}>
                   삭제
                 </TableCell>
               </TableRow>
@@ -69,29 +69,29 @@ const UsersTable = React.memo(({ classes, className }) => {
                           <Typography
                             className={classes.nameText}
                             variant="body1"
-                            style={{ fontSize: '1rem' }}>
+                            style={{ fontSize: '1.1rem' }}>
                             {user.nno}
                           </Typography>
                         </div>
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.title}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {user.content}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         {moment(user.regdate).format('DD/MM/YYYY')}
                       </TableCell>
                       <TableCell
                         className={classes.tableCell}
-                        style={{ fontSize: '1rem' }}>
+                        style={{ fontSize: '1.1rem' }}>
                         <DeleteBtn id={user.nno} />
                       </TableCell>                      
                     </TableRow>
