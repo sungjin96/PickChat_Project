@@ -47,7 +47,7 @@
     "redux": "^4.0.1",
     "redux-actions": "^2.6.5",
     "redux-pender": "^2.0.12",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "validate.js": "^0.12.0"
   },
   "devDependencies": {
